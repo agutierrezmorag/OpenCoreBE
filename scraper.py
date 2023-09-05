@@ -1,3 +1,4 @@
+import json
 import requests
 from bs4 import BeautifulSoup
 
@@ -52,4 +53,9 @@ if __name__ == "__main__":
                     if tags_html:
                         save_html(str(tags_html), f"{website}_{link.replace('/', '_').replace('.', '_')}_{tag}.html")
 
-        
+def save_to_json(data, filename):    
+    
+    with open(filename, 'w') as file:
+        json.dump(data, file, indent=4)
+    
+    print(f"JSON saved to {filename}")
