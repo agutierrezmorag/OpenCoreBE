@@ -3,6 +3,7 @@ name: Daily Scraper
 on:
   schedule:
     - cron: '0 13 * * *' # Runs at 13:00 UTC every day
+  workflow_dispatch:  
 
 jobs:
   build:
@@ -19,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.
+          pip install -r requirements.txt  
 
       - name: Run scraper
-        run: python main.py  # Replace with the command to run your scraper
+        run: python main.py  
