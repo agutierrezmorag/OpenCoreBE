@@ -24,3 +24,11 @@ jobs:
 
       - name: Run scraper
         run: python main.py  
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "josesand99v@gmail.com"
+          git config --global user.name "José Sandoval"
+          git add db/newsdb.json
+          git commit -m "Update JSON file via GitHub Actions"
+          git push
