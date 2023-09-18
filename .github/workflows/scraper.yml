@@ -1,0 +1,25 @@
+name: Daily Scraper
+
+on:
+  schedule:
+    - cron: '0 13 * * *' # Runs at 13:00 UTC every day
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10.8
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.
+
+      - name: Run scraper
+        run: python main.py  # Replace with the command to run your scraper
