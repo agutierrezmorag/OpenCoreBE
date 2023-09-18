@@ -25,8 +25,10 @@ def news_collector(html, depth, website):
                 news_html = fetch_webpage(link)
                 if news_html:
                     news_html = clean_html(news_html)
-                    news_title = extract_news_title(container, website)
-                    news_content, news_secondary_headings = extract_news_content(container, website)
+                    opened_container = extract_tags(news_html, tags[website][0])
+                    opened_container = opened_container[0]
+                    news_title = extract_news_title(opened_container, website)
+                    news_content, news_secondary_headings = extract_news_content(opened_container, website)
                     news_list.append({
                         #website will be the domain of the website
                         'website': website.split('.')[0],
