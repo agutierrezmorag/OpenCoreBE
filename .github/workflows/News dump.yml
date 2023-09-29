@@ -25,11 +25,13 @@ jobs:
         run: python main.py
 
       - name: Dump data
-        run: python manage.py loadnews
+        run: |
+          cd openCore
+          python manage.py loadnews
 
       - name: Commit and push changes
         run: |
-          git config --global user.email "alvarogutierrezmoraga@gmail.com"
+          git config --global user.email "agm@gmail.com"
           git config --global user.name "Alvaro G"
           git add db/newsdb.json
           git commit -m "loaded news to database"
