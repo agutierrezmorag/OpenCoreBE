@@ -9,6 +9,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DEBUG: ${{ secrets.DEBUG }}
+      DB_NAME: ${{ secrets.DB_NAME }}
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_HOST: ${{ secrets.DB_HOST }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -33,6 +41,6 @@ jobs:
         run: |
           git config --global user.email "agm@gmail.com"
           git config --global user.name "Alvaro G"
-          git add db/newsdb.json
+          git add openCore/newsdb.json
           git commit -m "loaded news to database"
           git push
