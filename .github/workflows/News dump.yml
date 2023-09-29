@@ -1,0 +1,38 @@
+name: Scrap and load
+
+on:
+  schedule:
+    - cron: '0 13 * * *' # Runs at 13:00 UTC every day
+  workflow_dispatch:  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10.8
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  
+      - name: Run scraper
+        run: python main.py
+
+      - name: Dump data
+        run: |
+          cd openCore
+          python manage.py loadnews
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "agm@gmail.com"
+          git config --global user.name "Alvaro G"
+          git add db/newsdb.json
+          git commit -m "loaded news to database"
+          git push
