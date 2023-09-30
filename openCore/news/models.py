@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class News(models.Model):
@@ -12,7 +13,7 @@ class News(models.Model):
     ]
 
     title = models.CharField(max_length=150, blank=False)
-    date_published = models.DateTimeField()
+    date_published = models.DateTimeField(default=timezone.now)
     date_pulled = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
     website = models.CharField(max_length=50)
