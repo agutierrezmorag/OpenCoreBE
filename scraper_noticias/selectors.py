@@ -22,7 +22,7 @@ title_selector = {
         #en la tercera se encuentra dentro de un div con la clase 'h1' -> <div class="h1">
         'container': 'div',
         'attribute': 'class',
-        'value': ' hl',
+        'value': 'hl',
     },
 }
 

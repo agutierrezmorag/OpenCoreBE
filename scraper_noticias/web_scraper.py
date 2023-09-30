@@ -68,15 +68,15 @@ def extract_tags(html, tag, attrs=None):
     return None
 
 
-def extract_tags_from_container(container, sub_container, attrs=None, attr_type=None):
+def extract_tags_from_container(container, sub_container, attrs_custom=None, attr_type=None):
     '''
     Esta función recibe un contenedor(etiqueta html), un sub contenedor, la tag que se quiere extraer y los atributos de la tag
     Retorna una lista con todas las tags que coincidan con los atributos
     TODO: está función fue desarrollada con latecera en mente, posible candidato a refactorizar
     '''
     if container:
-        if attrs and attr_type:
-            return container.find_all(sub_container, {attr_type: attrs})
+        if attrs_custom and attr_type:
+            return container.find_all(sub_container, attrs={attr_type: attrs_custom})
         else:
             return container.find_all(sub_container)
     return None
@@ -91,7 +91,10 @@ def extract_news_title(container, website):
     '''
     regex = re.compile(r'[\n\t]')
     selector = title_selector[website]
-    container = extract_tags_from_container(container, selector['container'], selector['value'], selector['attribute'])
+    if selector['container'] and selector['value'] and selector['attribute']:
+        container = extract_tags_from_container(container, selector['container'], selector['value'], selector['attribute'])
+    else:
+        container = extract_tags_from_container(container, selector['container'])
     if container:
         return regex.sub('', container[0].text.strip())
     else:
