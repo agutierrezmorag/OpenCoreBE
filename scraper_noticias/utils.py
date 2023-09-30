@@ -2,6 +2,10 @@ from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
 
 def link_compare(website_link, new_link):
+    '''
+    Esta función recibe dos links y retorna True si ambos links pertenecen al mismo dominio
+    '''
+    
     # Parse the website link and new link
     website_parts = urlparse(website_link)
     new_link_parts = urlparse(new_link)
@@ -21,6 +25,10 @@ def link_compare(website_link, new_link):
     return website_link == full_new_link
 
 def clean_html(html):
+    '''
+    Está función recibe el html de una página web y retorna el html sin las etiquetas <script> y <style>
+    ademas de darle un formato legible al html
+    '''
     if html:
         soup = BeautifulSoup(html, 'html.parser')
         for script in soup(['script', 'style']):
