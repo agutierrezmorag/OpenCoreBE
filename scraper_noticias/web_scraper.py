@@ -42,6 +42,9 @@ def news_collector(html, depth, website):
 
 
 def fetch_webpage(url):
+    '''
+    Esta función recibe un link y retorna el html de la página web sin formato
+    '''
     try:
         response = requests.get(url, timeout=5)
         if response.status_code == 200:
@@ -55,44 +58,66 @@ def fetch_webpage(url):
 
 
 def extract_tags(html, tag, attrs=None):
+    '''
+    Esta función recibe el html de una página web, la tag que se quiere extraer y los atributos de la tag
+    Retorna una lista con todas las tags que coincidan con los atributos
+    '''
     if html:
         soup = BeautifulSoup(html, 'html.parser')
         return soup.find_all(tag, attrs)
     return None
 
 
-def extract_tags_from_container(container, sub_container, attrs=None, attr_type=None):
+def extract_tags_from_container(container, sub_container, attrs_custom=None, attr_type=None):
+    '''
+    Esta función recibe un contenedor(etiqueta html), un sub contenedor, la tag que se quiere extraer y los atributos de la tag
+    Retorna una lista con todas las tags que coincidan con los atributos
+    TODO: está función fue desarrollada con latecera en mente, posible candidato a refactorizar
+    '''
     if container:
-        if attrs and attr_type:
-            return container.find_all(sub_container)
+        if attrs_custom and attr_type:
+            return container.find_all(sub_container, attrs={attr_type: attrs_custom})
         else:
             return container.find_all(sub_container)
     return None
 
 
 def extract_news_title(container, website):
+    '''
+    Esta función recibe el contenedor(etiqueta html) donde se encuentra el titulo de la noticia y el sitio web
+    Retorna el titulo de la noticia
+    website se utiliza para saber que selector utilizar correspondiente al sitio web
+    TODO: Posible candidato a refactorizar
+    '''
+    regex = re.compile(r'[\n\t]')
     selector = title_selector[website]
-    container = extract_tags_from_container(container, selector['container'], selector['value'], selector['attribute'])
-    if container:
-        return container[0].text.strip()
+    if selector['container'] and selector['value'] and selector['attribute']:
+        container = extract_tags_from_container(container, selector['container'], selector['value'], selector['attribute'])
     else:
-        # extract h1 tag
+        container = extract_tags_from_container(container, selector['container'])
+    if container:
+        return regex.sub('', container[0].text.strip())
+    else:
         container = extract_tags_from_container(container, 'h1')
         if container:
-            # remove \n and \t from the title
-            regex = re.compile(r'[\n\t]')
             return regex.sub('', container[0].text.strip())
     return None
 
 
 def extract_news_content(container, website):
+    '''
+    Esta función recibe el contenedor(etiqueta html) donde se encuentra el contenido de la noticia y el sitio web
+    Retorna el contenido de la noticia
+    website se utiliza para saber que selector utilizar correspondiente al sitio web
+    '''
+    regex = re.compile(r'[\n\t]')
     # exract the news content using the dictionary of selectors
     content = ""
     secondary_headings = []
     for selector in content_selector[website]:
         for tag in container.find_all(content_selector[website][selector]):
             if selector == 'news_content':
-                content += tag.text.strip()
+                content += regex.sub('', tag.text.strip())
             elif selector == 'news_secondary_headings':
                 # search for a container with text content inside of it and then append it to the list
                 for child in tag.children:

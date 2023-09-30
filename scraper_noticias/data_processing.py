@@ -2,12 +2,14 @@ import json
 import os
 from scraper_noticias.utils import clean_html
 
+#Archivo donde se guardan las funciones para procesar los datos
+
 def save_to_json(data, filename, path):    
     # Check if the provided path exists, create if not
     if not os.path.exists(path):
         os.makedirs(path)
     
-    # Check if the file already exists
+    # Verifica si el archivo existe, si existe agrega los datos al archivo, si no existe crea el archivo
     file_path = os.path.join(path, filename)
     if os.path.exists(file_path):
         with open(file_path, 'r', encoding='utf-8') as existing_file:
