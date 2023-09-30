@@ -13,4 +13,5 @@ if __name__ == "__main__":
                 html = clean_html(html)
                 news_list = news_collector(html, 3, website)
                 if news_list:
-                    save_to_json(news_list, 'newsdb.json', os.path.join(os.path.dirname(__file__), 'openCore'))
+                    save_to_json(news_list, 'newsdb.json', os.path.join(os.path.dirname(__file__), 'openCore'), overwrite=True)
+                    save_to_json(news_list, 'newsdb_historical.json', os.path.join(os.path.dirname(__file__), 'openCore'))
