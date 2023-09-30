@@ -39,8 +39,8 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global user.email "agm@gmail.com"
-          git config --global user.name "Alvaro G"
+          git config --global user.email "opencore@gmail.com"
+          git config --global user.name "opencore"
           git add openCore/newsdb.json
           git commit -m "loaded news to database"
           git push
