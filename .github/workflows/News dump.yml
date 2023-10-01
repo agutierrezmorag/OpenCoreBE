@@ -41,6 +41,6 @@ jobs:
         run: |
           git config --global user.email "opencore@unap.cl"
           git config --global user.name "opencore"
-          git add openCore/newsdb.json
-          git commit -m "loaded news to database"
+          git add openCore/newsdb_historical.json
+          git commit -m "loaded news to repo"
           git push
