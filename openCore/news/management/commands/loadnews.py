@@ -18,20 +18,21 @@ class Command(BaseCommand):
         try:
             with open(json_file, 'r', encoding='utf-8') as file:
                 data = json.load(file)
-            for item in data and item['link'] not in previous_news_uris:
-                date_published_str = item['date']
-                date_published = timezone.make_aware(
-                    timezone.datetime.strptime(date_published_str, '%Y-%m-%d %H:%M:%S'),
-                    timezone=timezone.get_current_timezone()
-                )
-                news_item = News(
-                    title=item['title'],
-                    date_published=date_published,
-                    content=item['content'],
-                    website=item['website'],
-                    link=item['link']
-                )
-                news_item.save()
+            for item in data:
+                if not item['link'] in previous_news_uris:
+                    date_published_str = item['date']
+                    date_published = timezone.make_aware(
+                        timezone.datetime.strptime(date_published_str, '%Y-%m-%d %H:%M:%S'),
+                        timezone=timezone.get_current_timezone()
+                    )
+                    news_item = News(
+                        title=item['title'],
+                        date_published=date_published,
+                        content=item['content'],
+                        website=item['website'],
+                        link=item['link']
+                    )
+                    news_item.save()
 
             self.stdout.write(self.style.SUCCESS('Data loaded successfully into the database'))
 
