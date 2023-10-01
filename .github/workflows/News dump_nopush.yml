@@ -1,4 +1,4 @@
-name: Scrap and load
+name: Scrap and load no push or cron
 
 on:
   workflow_dispatch:  
