@@ -21,4 +21,4 @@ class News(models.Model):
     sentiment = models.CharField(max_length=15, default='Neutro', choices=SENTIMENT_CHOICES)
 
     def __str__(self):
-        return f'{self.title}, de {self.website} ({self.link})'
+        return f'{self.title} ({self.website})'
