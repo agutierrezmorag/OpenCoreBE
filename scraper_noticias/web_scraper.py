@@ -13,7 +13,9 @@ def news_collector(html, depth, website):
     # the idea is to have a list of news objects, each object will have a title, content and secondary headings
     news_list = []
     if html:
-        news_container = extract_tags(html, tags[website][0])
+        news_container = (extract_tags(html, tags[website]['container'], {tags[website]['attribute']: tags[website]['value']})
+                 if isinstance(tags.get(website), dict)
+                 else extract_tags(html, tags[website][0]))
         news_container = news_container[:depth]
         for container in news_container:
             # we look for a link to the new page then we fetch the html from that page
