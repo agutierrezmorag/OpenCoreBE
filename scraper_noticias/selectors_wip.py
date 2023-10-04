@@ -7,7 +7,11 @@
 #tags: diccionario que guarda el contenedor donde se encuentran las noticias en la pagina principal de cada sitio web
 tags = {
     'latercera': ['article'],
-    't13': ['article'],
+    't13': {
+        'container': 'div',
+        'attribute': 'class',
+        'value': 'card-normal t13-ui-card-normal'
+    },
 }
 
 #links: diccionario que guarda el link de la pagina principal de cada sitio web
@@ -19,11 +23,16 @@ links = {
 #title_selector: diccionario que guarda el selector de la etiqueta html donde se encuentra el titulo de la noticia
 title_selector = {
     'latercera': {
-        #en la tercera se encuentra dentro de un div con la clase 'hl' -> <div class="hl">
+        #en la tercera se encuentra dentro de un div con la clase 'h1' -> <div class="h1">
         'container': 'div',
         'attribute': 'class',
         'value': 'hl',
     },
+    't13':{
+        'container': 'h1.article-component__header-title',
+        'attribute': 'class',
+        'value': 'home-category-grilla__article home-category-grilla__article--secondary-1',
+    }
 }
 
 #content_selector: diccionario que guarda el selector de la etiqueta html donde se encuentra el contenido de la noticia
@@ -32,5 +41,9 @@ content_selector = {
         #en la tercera se encuentra dentro de las etiquetas <p>
         'news_content': 'p',
         'news_secondary_headings': 'h2',
-    }
+    },
+    't13':{
+        'news_content': 'div#article-body-wrapper',
+        'news_secondary_headings': 'h2',
+    },
 }
