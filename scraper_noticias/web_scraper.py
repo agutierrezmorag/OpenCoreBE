@@ -13,20 +13,33 @@ def news_collector(html, depth, website):
     # the idea is to have a list of news objects, each object will have a title, content and secondary headings
     news_list = []
     if html:
-        news_container = extract_tags(html, tags[website][0])
+        news_container = (extract_tags(html, tags[website]['container'], {tags[website]['attribute']: tags[website]['value']})
+                 if isinstance(tags.get(website), dict)
+                 else extract_tags(html, tags[website][0]))
+
         news_container = news_container[:depth]
         for container in news_container:
             # we look for a link to the new page then we fetch the html from that page
             a_tag = container.find('a')
             if a_tag:
                 link = a_tag.get('href')
+                #print(f"{links[website][0]}")
                 if not link_compare(links[website][0], link):
                     link = urljoin(links[website][0], link)
                 news_html = fetch_webpage(link)
+                #print(f"newshtml {news_html}")
                 if news_html:
                     news_html = clean_html(news_html)
+                    if(website=='t13'):
+                        print(f"{news_html}")
                     opened_container = extract_tags(news_html, tags[website][0])
+                    #print(f"{opened_container}")
+                    #opened_container = (extract_tags(news_html, tags[website]['container'], {tags[website]['attribute']: tags[website]['value']})
+                    #                    if isinstance(tags.get(website), dict)
+                    #                    else extract_tags(news_html, tags[website][0]))
+
                     opened_container = opened_container[0]
+
                     news_title = extract_news_title(opened_container, website)
                     news_content, news_secondary_headings = extract_news_content(opened_container, website)
                     news_list.append({
@@ -66,6 +79,7 @@ def extract_tags(html, tag, attrs=None):
         soup = BeautifulSoup(html, 'html.parser')
         return soup.find_all(tag, attrs)
     return None
+
 
 
 def extract_tags_from_container(container, sub_container, attrs_custom=None, attr_type=None):
