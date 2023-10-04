@@ -7,12 +7,19 @@
 #tags: diccionario que guarda el contenedor donde se encuentran las noticias en la pagina principal de cada sitio web
 tags = {
     'latercera': ['article'],
-    't13': ['article'],
+    't13': {
+        'container': 'div',
+        'attribute': 'class',
+        'value': 'card-normal t13-ui-card-normal'
+    },
+    '24horas': ['section']
 }
 
 #links: diccionario que guarda el link de la pagina principal de cada sitio web
 links = {
     'latercera': ['https://www.latercera.com/canal/politica/'],
+    't13': ['https://www.t13.cl/politica/'],
+    '24horas': ["https://www.24horas.cl/actualidad/politica"]
 }
 
 
@@ -24,6 +31,16 @@ title_selector = {
         'attribute': 'class',
         'value': 'hl',
     },
+    't13': {
+        'container': 'a',
+        'attribute': 'class',
+        'value': 'ui-card__title',
+    },
+    '24horas': {
+        'container': 'div',
+        'attribute': 'class',
+        'value': 'titular'
+    }
 }
 
 #content_selector: diccionario que guarda el selector de la etiqueta html donde se encuentra el contenido de la noticia
@@ -32,5 +49,13 @@ content_selector = {
         #en la tercera se encuentra dentro de las etiquetas <p>
         'news_content': 'p',
         'news_secondary_headings': 'h2',
+    },
+    't13': {
+        'news_content': 'div.card-normal__info',
+        'news_secondary_headings': 'h2',
+    },
+    '24horas': {
+        'news_content': 'p',
+        'news_secondary_headings': 'h2'
     }
 }
