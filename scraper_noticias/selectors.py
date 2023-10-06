@@ -39,9 +39,5 @@ title_selector = {
 #content_selector: diccionario que guarda el selector de la etiqueta html donde se encuentra el contenido de la noticia
 content_selector = {
     'latercera': ['p'],
-    't13':{
-        'container': 'p',
-        'attribute': 'style',
-        'value': 'color: rgb(209, 203, 199)',
-    },
+    't13':['p']
 }
