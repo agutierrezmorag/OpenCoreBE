@@ -15,9 +15,11 @@ class News(models.Model):
     date_published = models.DateTimeField(default=timezone.now)
     date_pulled = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
+    img_url = models.URLField()
     website = models.CharField(max_length=50)
     link = models.URLField()
     sentiment = models.CharField(max_length=15, default='Neutro', choices=SENTIMENT_CHOICES)
+
     class Meta:
         indexes = [
             models.Index(fields=['date_published']),
