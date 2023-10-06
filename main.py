@@ -16,4 +16,4 @@ if __name__ == "__main__":
                 if news_list:
                     noticias.extend(news_list)
     save_to_json(noticias, 'newsdb.json', os.path.join(os.path.dirname(__file__), 'openCore'), overwrite=True)
-    save_to_json(news_list, 'newsdb_historical.json', os.path.join(os.path.dirname(__file__), 'openCore'))
+    save_to_json(noticias, 'newsdb_historical.json', os.path.join(os.path.dirname(__file__), 'openCore'))
