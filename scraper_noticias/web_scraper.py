@@ -13,13 +13,14 @@ def news_collector(html, depth, website):
     # the idea is to have a list of news objects, each object will have a title, content and secondary headings
     news_list = []
     if html:
-        news_container = (extract_tags(html, tags[website]['container'], {tags[website]['attribute']: tags[website]['value']})
+        news_container = (extract_tags(html, tags[website]['container'], tags[website]['value'], tags[website]['attribute'])
                  if isinstance(tags.get(website), dict)
                  else extract_tags(html, tags[website][0]))
         news_container = news_container[:depth]
         for container in news_container:
-            # we look for a link to the new page then we fetch the html from that page
-            a_tag = container.find('a')
+            # in the current container we either look for href in the current tag or in the first a tag
+            a_tag = container.find('a') if container.name != 'a' else container
+
             if a_tag:
                 link = a_tag.get('href')
                 if not link_compare(links[website][0], link):
@@ -27,16 +28,15 @@ def news_collector(html, depth, website):
                 news_html = fetch_webpage(link)
                 if news_html:
                     news_html = clean_html(news_html)
-                    opened_container = extract_tags(news_html, tags[website][0])
-                    opened_container = opened_container[0]
+                    #opened_container will be body tag 
+                    opened_container = extract_tags(news_html, 'body')[0]
                     news_title = extract_news_title(opened_container, website)
-                    news_content, news_secondary_headings = extract_news_content(opened_container, website)
+                    news_content = extract_news_content(opened_container, website)
                     news_list.append({
                         # website will be the domain of the website
                         'website': website.split('.')[0],
                         'title': news_title,
                         'content': news_content,
-                        'secondary_headings': news_secondary_headings,
                         'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                         'link': link,
                     })
@@ -59,14 +59,14 @@ def fetch_webpage(url):
         return None
 
 
-def extract_tags(html, tag, attrs=None):
+def extract_tags(html, tag, attrs_custom=None, attr_type=None):
     '''
     Esta función recibe el html de una página web, la tag que se quiere extraer y los atributos de la tag
     Retorna una lista con todas las tags que coincidan con los atributos
     '''
     if html:
         soup = BeautifulSoup(html, 'html.parser')
-        return soup.find_all(tag, attrs)
+        return soup.select(f'{tag}[{attr_type}^="{attrs_custom}"]') if attrs_custom and attr_type else soup.select(tag)
     return None
 
 
@@ -112,17 +112,17 @@ def extract_news_content(container, website):
     Retorna el contenido de la noticia
     website se utiliza para saber que selector utilizar correspondiente al sitio web
     '''
-    regex = re.compile(r'[\n\t]')
-    # exract the news content using the dictionary of selectors
+    regex = re.compile(r'[\n\t\\]| {2,}')
+    #extrae el contenido utilizando los selectores de contenido
     content = ""
-    secondary_headings = []
-    for selector in content_selector[website]:
-        for tag in container.find_all(content_selector[website][selector]):
-            if selector == 'news_content':
-                content += regex.sub('', tag.text.strip())
-            elif selector == 'news_secondary_headings':
-                # search for a container with text content inside of it and then append it to the list
-                for child in tag.children:
-                    if child.text.strip():
-                        secondary_headings.append(child.text.strip())
-    return content, secondary_headings
+    #chequea si el selector tiene un contenedor, valor y atributo
+    if isinstance(content_selector[website], dict):
+        container = extract_tags_from_container(container, content_selector[website]['container'], content_selector[website]['value'], content_selector[website]['attribute'])
+    else:
+        container = extract_tags_from_container(container, content_selector[website][0])
+    if container:
+        for tag in container:
+            content += regex.sub('', tag.text.strip())
+    else:
+        return None
+    return content

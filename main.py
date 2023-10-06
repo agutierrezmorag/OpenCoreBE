@@ -6,6 +6,7 @@ import os
 
 
 if __name__ == "__main__":
+    noticias = []
     for website, link_list in links.items():
         for link in link_list:
             html = fetch_webpage(link)
@@ -13,5 +14,6 @@ if __name__ == "__main__":
                 html = clean_html(html)
                 news_list = news_collector(html, 5, website)
                 if news_list:
-                    save_to_json(news_list, 'newsdb.json', os.path.join(os.path.dirname(__file__), 'openCore'), overwrite=True)
-                    save_to_json(news_list, 'newsdb_historical.json', os.path.join(os.path.dirname(__file__), 'openCore'))
+                    noticias.extend(news_list)
+    save_to_json(noticias, 'newsdb.json', os.path.join(os.path.dirname(__file__), 'openCore'), overwrite=True)
+    #save_to_json(news_list, 'newsdb_historical.json', os.path.join(os.path.dirname(__file__), 'openCore'))
