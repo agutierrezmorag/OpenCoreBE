@@ -41,3 +41,16 @@ content_selector = {
     'latercera': ['p'],
     't13':['p']
 }
+
+image_selector = {
+    'latercera': {
+        'container': 'figure',
+        'attribute': 'class',
+        'value': 'mainimg',
+    },
+    't13': {
+        'container': 'div',
+        'attribute': 'class',
+        'value': 'article-component__header-image-wrapper',
+    }
+}

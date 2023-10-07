@@ -4,7 +4,7 @@ import datetime
 import requests
 from bs4 import BeautifulSoup
 from scraper_noticias.utils import link_compare, clean_html
-from scraper_noticias.selectors import tags, links, title_selector, content_selector
+from scraper_noticias.selectors import tags, links, title_selector, content_selector, image_selector
 
 def fetch_webpage(url):
     """
@@ -187,6 +187,50 @@ def extract_news_content(container, website):
         return None
     return content
 
+def extract_news_image_url(container, website):
+    ##using selector image_selector which is either a list or a dict
+    """
+    Extrae la URL de la imagen de un artículo de noticias del elemento contenedor HTML proporcionado
+    basado en el selector de imagen del sitio web especificado.
+
+    Args:
+        container (Tag o ResultSet): El elemento contenedor HTML o ResultSet que contiene
+                                      elementos HTML.
+        website (str): El nombre del sitio web del cual se está extrayendo la URL de la imagen.
+
+    Returns:
+        str o None: La URL de la imagen del artículo de noticias extraído como una cadena, o None
+                     si no se puede encontrar la URL.
+
+    Raises:
+        None
+
+    Esta función está diseñada para extraer la URL de la imagen de un artículo de noticias del elemento
+    contenedor HTML proporcionado, basado en el selector de imagen definido para el sitio web
+    especificado. Utiliza una expresión regular para limpiar el texto de la URL extraída.
+
+    Ejemplo de uso:
+    >>> container_html = "<div><picture><img src='https://www.ejemplodenoticias.com/imagen1.jpg'></picture></div>"
+    >>> container = BeautifulSoup(container_html, 'html.parser')
+    >>> extract_news_image_url(container, 'Ejemplo de Noticias')
+    'https://www.ejemplodenoticias.com/imagen1.jpg'
+
+    """
+    regex = re.compile(r'[\n\t\\]| {2,}')
+    selector = image_selector[website]
+    if isinstance(selector, dict):
+        container = extract_tags_from_container(container, selector['container'], selector['value'], selector['attribute'])
+    else:
+        container = extract_tags_from_container(container, selector[0])
+    if container:
+        try:
+            return regex.sub('', container[0].find('img').get('src'))
+        except:
+            return None
+    else:
+        return None
+
+
 def news_collector(html, depth, website):
     """
     Recopila artículos de noticias a partir del código fuente HTML proporcionado, basándose en la estructura y profundidad especificadas del sitio web.
@@ -250,13 +294,14 @@ def news_collector(html, depth, website):
             if news_html:
                 news_html = clean_html(news_html)
                 opened_container = extract_tags(news_html, 'body')[0]
+                news_image_url = extract_news_image_url(opened_container, website)
                 news_title = extract_news_title(opened_container, website)
                 news_content = extract_news_content(opened_container, website)
-                
                 news_list.append({
                     'website': website.split('.')[0],
                     'title': news_title,
                     'content': news_content,
+                    'image_url': news_image_url,
                     'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                     'link': link,
                 })
