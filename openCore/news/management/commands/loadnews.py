@@ -30,7 +30,8 @@ class Command(BaseCommand):
                         date_published=date_published,
                         content=item['content'],
                         website=item['website'],
-                        link=item['link']
+                        link=item['link'],
+                        img_url=item['image_url'],
                     )
                     news_item.save()
 
