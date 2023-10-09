@@ -1,3 +1,5 @@
 *.html
 *.pyc
 *.env
+*.json
+openCore/news/migrations/
