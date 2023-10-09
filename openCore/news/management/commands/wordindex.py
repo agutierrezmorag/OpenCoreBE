@@ -7,6 +7,7 @@ from django.utils import timezone  # Import Django's timezone module
 import time
 from django.db import transaction
 import bson
+
 class Command(BaseCommand):
     help = 'Index words from new News articles using spaCy and TF-IDF'
 
@@ -47,7 +48,7 @@ class Command(BaseCommand):
                     else:
                         # if the word is on the db, it will update the record
                         word_index = WordIndex.objects.get(word=word)
-                        word_index.importance_scores.add({'_id':imported_scored_id, 'article_id': news_article.id,'frequency': frequency})
+                        word_index.importance_scores.append({'_id':imported_scored_id, 'article_id': news_article.id,'frequency': frequency})
                         word_index.news.add(news_article)
                         word_index.save()
 
