@@ -49,10 +49,10 @@ def indexer():
                     "importance_scores": [
                         {
                             "id_noticia": news_article.id,
-                            "frequency": frequency
+                            "frequency": frequency,
+                            "tf_idf": 0.0
                         }
                     ],
-                    "tf_idf_score": 0.0
                 })
             elif word in [word["word"] for word in word_list_to_save]:
                 #if word is already in the list, append a dict to the importance_scores list with the id_noticia and frequency
@@ -61,7 +61,8 @@ def indexer():
                         word_dict["frequency_global"] += frequency
                         word_dict["importance_scores"].append({
                             "id_noticia": news_article.id,
-                            "frequency": frequency
+                            "frequency": frequency,
+                            "tf_idf": 0.0
                         })
         # Update the record of the last indexed article to the most recent one in the batch
         update_last_indexed_article(news_article)
