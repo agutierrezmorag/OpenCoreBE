@@ -26,7 +26,13 @@ tags = {
         'container': 'div',
         'attribute': 'class',
         'value': 'category-list__item',
-    },    
+    },
+    'elmostrador': {
+        'container': 'div',
+        'attribute': 'class',        
+        'value': 'd-tag-card | common:margin-top-25',
+    }
+
 }
 
 #links: diccionario que guarda el link de la pagina principal de cada sitio web
@@ -36,6 +42,7 @@ links = {
     'meganoticias':['https://www.meganoticias.cl/temas/politica/'],
     'cnn':['https://www.cnnchile.com/tag/politica/'],
     'chvn': ['https://www.chvnoticias.cl/tag/politica/'],
+    'elmostrador': ['https://www.elmostrador.cl/categoria/politica/'],
 
 }
 
@@ -63,7 +70,12 @@ title_selector = {
         'container': 'h1',
         'attribute': 'class',
         'value': 'the-single__title',
-    }    
+    },
+    'elmostrador':{
+        'container': 'h1',
+        'attribute': 'class',
+        'value': 'd-the-single__title | common:margin-bottom-25',        
+    },    
 }
 
 #content_selector: diccionario que guarda el selector de la etiqueta html donde se encuentra el contenido de la noticia
@@ -73,6 +85,7 @@ content_selector = {
     'meganoticias':['p'],
     'cnn':['p'],
     'chvn':['p'],
+    'elmostrador':['p'],
 }
 
 image_selector = {
@@ -100,5 +113,10 @@ image_selector = {
         'container': 'div',
         'attribute': 'class',
         'value': 'js-content-img',
-    }    
+    },
+    'elmostrador':{
+        'container': 'div',
+        'attribute': 'class',
+        'value': 'alignnone wp-image-2953495 size-full',        
+    },    
 }
