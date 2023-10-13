@@ -12,11 +12,18 @@ tags = {
         'attribute': 'class',
         'value': 'card-normal t13-ui-card-normal'
     },
+    'chvn': {
+        'container': 'div',
+        'attribute': 'class',
+        'value': 'category-list__item'
+    },
 }
 
 #links: diccionario que guarda el link de la pagina principal de cada sitio web
 links = {
     'latercera': ['https://www.latercera.com/canal/politica/'],
+    't13': ['https://www.t13.cl/politica'],
+    'chvn': ['https://www.chvnoticias.cl/tag/politica/'],
 }
 
 
@@ -32,6 +39,11 @@ title_selector = {
         'container': 'h1.article-component__header-title',
         'attribute': 'class',
         'value': 'home-category-grilla__article home-category-grilla__article--secondary-1',
+    },
+    'chvn':{
+        'container': 'h2',
+        'attribute': 'class',
+        'value': 'category-card__title',
     }
 }
 
@@ -46,4 +58,9 @@ content_selector = {
         'news_content': 'div#article-body-wrapper',
         'news_secondary_headings': 'h2',
     },
+    'chvn':{
+        'container': 'a',
+        'attribute': 'class',
+        'value': 'the-text-card__permalink',
+    }
 }
