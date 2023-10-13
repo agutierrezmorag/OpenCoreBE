@@ -12,12 +12,24 @@ tags = {
         'attribute': 'class',
         'value': 'home-category-grilla__article'
     },
+    'meganoticias': {
+        'container': 'article',
+        'attribute': 'class',
+        'value': 'box-generica'
+    },
+    'cnn': {
+        'container': 'article',
+        'attribute': 'class',
+        'value': 'box-generica'
+    },
 }
 
 #links: diccionario que guarda el link de la pagina principal de cada sitio web
 links = {
     'latercera': ['https://www.latercera.com/canal/politica/'],
     't13': ['https://www.t13.cl/politica'],
+    'meganoticias':['https://www.meganoticias.cl/temas/politica/'],
+    'cnn':['https://www.cnnchile.com/tag/politica/']
 }
 
 
@@ -33,13 +45,15 @@ title_selector = {
         'container': 'h1',
         'attribute': 'class',
         'value': 'article-component__header-title',
-    }
+    },
+    'meganoticias':['h1'],
 }
 
 #content_selector: diccionario que guarda el selector de la etiqueta html donde se encuentra el contenido de la noticia
 content_selector = {
     'latercera': ['p'],
-    't13':['p']
+    't13':['p'],
+    'meganoticias':['p']
 }
 
 image_selector = {
@@ -52,5 +66,10 @@ image_selector = {
         'container': 'div',
         'attribute': 'class',
         'value': 'article-component__header-image-wrapper',
+    },
+    'meganoticias': {
+        'container': 'figure',
+        'attribute': 'class',
+        'value': 'creditosImgBody',
     }
 }
