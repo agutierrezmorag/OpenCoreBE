@@ -30,7 +30,7 @@ tags = {
     'elmostrador': {
         'container': 'div',
         'attribute': 'class',        
-        'value': 'd-tag-card | common:margin-top-25',
+        'value': 'd-tag-card',
     }
 
 }
@@ -72,9 +72,9 @@ title_selector = {
         'value': 'the-single__title',
     },
     'elmostrador':{
-        'container': 'h1',
+        'container': 'a',
         'attribute': 'class',
-        'value': 'd-the-single__title | common:margin-bottom-25',        
+        'value': 'd-tag-card__permalink',        
     },    
 }
 
