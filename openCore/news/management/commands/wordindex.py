@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from news.models import News, WordIndex
+from news.models import News, WordIndex, ImportanceScore
 import spacy
 from collections import defaultdict
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -33,8 +33,9 @@ class Command(BaseCommand):
             
             #lista de palabras filtradas(sin stop words)
             words = [token.text.lower() for token in doc if token.text.lower() not in stop_words and token.is_alpha]
+            words = list(set(words)) #elimina duplicados
 
-            words_list = list(WordIndex.objects.values_list('word', flat=True)) #lista de palabras ya indexadas en la base de datos
+            words_list = set(WordIndex.objects.values_list('word', flat=True)) #lista de palabras ya indexadas en la base de datos
             # indexado de palabras en el articulo
             for word in words:
                 frequency = content.count(word)  # frecuencia de la palabra en el artículo
@@ -42,13 +43,14 @@ class Command(BaseCommand):
                 with transaction.atomic():
                     if word not in words_list:
                         # if the word is not on the db, it will create a new record
-                        word_index = WordIndex(word=word, importance_scores={'_id':imported_scored_id, 'article_id': news_article.id,'frequency': frequency})
+                        word_index = WordIndex(word=word, 
+                        importance_scores= ImportanceScore.objects.create(_id=imported_scored_id, article_id=news_article.id, frequency=frequency))
                         word_index.save()
                         word_index.news.add(news_article)
                     else:
                         # if the word is on the db, it will update the record
                         word_index = WordIndex.objects.get(word=word)
-                        word_index.importance_scores.append({'_id':imported_scored_id, 'article_id': news_article.id,'frequency': frequency})
+                        word_index.importance_scores.append(ImportanceScore(_id=imported_scored_id, article_id=news_article.id, frequency=frequency))
                         word_index.news.add(news_article)
                         word_index.save()
 
@@ -65,6 +67,8 @@ class Command(BaseCommand):
         # Return a default value (e.g., 0) if no previous indexing has been done
         try:
             last_indexed_article = News.objects.latest('indexed_on')
+            if last_indexed_article.indexed_on is None:
+                return 0
             return last_indexed_article.id
         except News.DoesNotExist:
             return 0
