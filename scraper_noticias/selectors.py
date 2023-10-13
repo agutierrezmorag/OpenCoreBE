@@ -18,9 +18,9 @@ tags = {
         'value': 'box-generica'
     },
     'cnn': {
-        'container': 'article',
+        'container': 'div',
         'attribute': 'class',
-        'value': 'box-generica'
+        'value': 'inner-list__item inner-item'
     },
 }
 
@@ -47,13 +47,19 @@ title_selector = {
         'value': 'article-component__header-title',
     },
     'meganoticias':['h1'],
+    'cnn':{
+        'container': 'h1',
+        'attribute': 'class',
+        'value': 'main-single-header__title',
+    },
 }
 
 #content_selector: diccionario que guarda el selector de la etiqueta html donde se encuentra el contenido de la noticia
 content_selector = {
     'latercera': ['p'],
     't13':['p'],
-    'meganoticias':['p']
+    'meganoticias':['p'],
+    'cnn':['p']
 }
 
 image_selector = {
@@ -71,5 +77,10 @@ image_selector = {
         'container': 'figure',
         'attribute': 'class',
         'value': 'creditosImgBody',
+    },
+    'cnn': {
+        'container': 'div',
+        'attribute': 'class',
+        'value': 'js-content-img',
     }
 }
