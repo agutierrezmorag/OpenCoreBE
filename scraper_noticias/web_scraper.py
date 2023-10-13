@@ -131,7 +131,7 @@ def extract_news_title(container, website):
     """
     regex = re.compile(r'[\n\t]')
     selector = title_selector[website]
-    if selector['container'] and selector['value'] and selector['attribute']:
+    if isinstance(selector, dict):
         container = extract_tags_from_container(container, selector['container'], selector['value'], selector['attribute'])
     else:
         container = extract_tags_from_container(container, selector['container'])
