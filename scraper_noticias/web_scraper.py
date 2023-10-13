@@ -134,7 +134,7 @@ def extract_news_title(container, website):
     if isinstance(selector, dict):
         container = extract_tags_from_container(container, selector['container'], selector['value'], selector['attribute'])
     else:
-        container = extract_tags_from_container(container, selector['container'])
+        container = extract_tags_from_container(container, selector[0])
     
     if container:
         return regex.sub('', container[0].text.strip())
