@@ -1,5 +1,10 @@
 *.html
 *.pyc
 *.env
+#everything json except package.json
 *.json
+!package.json
 openCore/news/migrations/
+#add node modules and bun.lockb
+/node_modules
+bun.lockb
