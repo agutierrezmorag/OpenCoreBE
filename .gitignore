@@ -1,7 +1,6 @@
 *.html
 *.pyc
 *.env
-#everything json except package.json
 *.json
 !package.json
 openCore/news/migrations/
