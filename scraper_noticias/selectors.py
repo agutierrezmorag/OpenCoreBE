@@ -37,13 +37,23 @@ tags = {
 
 #links: diccionario que guarda el link de la pagina principal de cada sitio web
 links = {
+    'meganoticias':['https://www.meganoticias.cl/temas/politica/'],
     'latercera': ['https://www.latercera.com/canal/politica/'],
     't13': ['https://www.t13.cl/politica'],
-    'meganoticias':['https://www.meganoticias.cl/temas/politica/'],
     'cnn':['https://www.cnnchile.com/tag/politica/'],
     'chvn': ['https://www.chvnoticias.cl/tag/politica/'],
     'elmostrador': ['https://www.elmostrador.cl/categoria/politica/'],
 
+}
+
+#links_inside
+links_inside = {
+    'latercera':['https://www.latercera.com/politica/noticia/'],
+    't13':['https://www.t13.cl/noticia/politica/', 'https://www.t13.cl/noticia/consejo-constitucional/politica/'],
+    'meganoticias':['https://www.meganoticias.cl/nacional/'],
+    'cnn':['https://www.cnnchile.com/pais/'],
+    'chvn':['https://www.chvnoticias.cl/nacional/'],
+    'elmostrador':['https://www.elmostrador.cl/politica'],
 }
 
 
