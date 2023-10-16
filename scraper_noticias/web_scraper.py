@@ -1,10 +1,10 @@
-from urllib.parse import urljoin
+from urllib.parse import urljoin,urlparse
 import re
 import datetime
 import requests
 from bs4 import BeautifulSoup
-from scraper_noticias.utils import link_compare, clean_html
-from scraper_noticias.selectors import tags, links, title_selector, content_selector, image_selector
+from scraper_noticias.utils import link_compare, clean_html, check_in_links_inside
+from scraper_noticias.selectors import tags, links, title_selector, content_selector, image_selector, links_inside
 
 def fetch_webpage(url):
     """
@@ -231,6 +231,29 @@ def extract_news_image_url(container, website):
         return None
 
 
+def extract_links(html, website,depth=5):
+    news_container = tags.get(website)
+    if isinstance(news_container, dict):
+        news_container = extract_tags(html, news_container['container'], news_container['value'], news_container['attribute'])
+    else:
+        news_container = extract_tags(html, news_container[0])
+    news_container = news_container[:depth]
+    links_to_store = []
+    for container in news_container:
+        #get a tag inside container only if the url begins as the one in tags selector
+        #using link_compare to check this
+        a_tags = container.find_all('a') if container.name != 'a' else [container]
+        for a_tag in a_tags:
+            if check_in_links_inside(website, a_tag.get('href')):
+                website_parts = urlparse(links[website][0])
+                #check if urljoin is in links_to_store
+                if (urljoin(links[website][0], a_tag.get('href')) not in links_to_store):
+                    links_to_store.append(urljoin(links[website][0], a_tag.get('href')))
+    return links_to_store
+                
+
+    
+
 def news_collector(html, depth, website):
     """
     Recopila artículos de noticias a partir del código fuente HTML proporcionado, basándose en la estructura y profundidad especificadas del sitio web.
@@ -274,22 +297,9 @@ def news_collector(html, depth, website):
     news_list = []
     if not html:
         return news_list
-    
-    news_container = tags.get(website)
-    if isinstance(news_container, dict):
-        news_container = extract_tags(html, news_container['container'], news_container['value'], news_container['attribute'])
-    else:
-        news_container = extract_tags(html, news_container[0])
-    
-    news_container = news_container[:depth]
-    
-    for container in news_container:
-        a_tag = container.find('a') if container.name != 'a' else container
-        if a_tag:
-            link = a_tag.get('href')
-            if not link_compare(links[website][0], link):
-                link = urljoin(links[website][0], link)
-            
+    news_links = extract_links(html, website, depth)
+    if news_links:
+        for link in news_links:
             news_html = fetch_webpage(link)
             if news_html:
                 news_html = clean_html(news_html)
