@@ -26,8 +26,18 @@ jobs:
       run: |
         python scraper_noticias/scraper_bun/scrape_links.py
 
+    - name: Check JSON file
+      run: |
+        if [ -f "scraper_noticias/scraper_bun/bun_jsons/news_links.json" ]; then
+          echo "File exists: scraper_noticias/scraper_bun/bun_jsons/news_links.json"
+        else
+          echo "File does not exist: scraper_noticias/scraper_bun/bun_jsons/news_links.json"
+          exit 1  # Exit with an error code if the file is missing
+        fi
+      working-directory: ${{ github.workspace }}
+        
     - name: Save JSON as artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: generated-json
         path: scraper_noticias/scraper_bun/bun_jsons/news_links.json
@@ -49,14 +59,23 @@ jobs:
         bun install
 
     - name: Download JSON artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: generated-json
-        path: scraper_noticias/scraper_bun/bun_jsons/news_links.json
+        path: scraper_noticias/scraper_bun/bun_jsons
+      
+    - name: Check JSON Content
+      run: |
+        cat scraper_noticias/scraper_bun/bun_jsons/news_links.json
+
+    - name: List downloaded files
+      run: ls -R scraper_noticias/scraper_bun/bun_jsons/
+
 
     - name: Run bun scraper
+      working-directory: scraper_noticias/scraper_bun
       run: |
-        bun scraper_noticias/scraper_bun/index.js
+        bun index.js
 
     - name: Commit and push changes
       run: |
@@ -65,3 +84,5 @@ jobs:
             git add scraper_noticias/scraper_bun/bun_jsons/articles.json
             git commit -m "upload articles.json from bun"
             git push
+
+
