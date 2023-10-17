@@ -1,0 +1,59 @@
+name: Bun Scraper
+
+on:
+  schedule:
+    - cron: '0 20 * * *' # Runs at 13:00 UTC every day
+  workflow_dispatch:  
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10.8
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt 
+
+    - name: Run Python script
+      run: |
+        python scraper_noticias/scraper_bun/scrape_links.py
+
+    - name: Save JSON as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: generated-json
+        path: scraper_noticias/scraper_bun/bun_jsons/news_links.json
+
+  node:
+    needs: python
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up Bun
+      uses: actions/setup-node@v2
+
+    - name: Download JSON artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: generated-json
+        path: scraper_noticias/scraper_bun/bun_jsons/news_links.json
+
+    - name: Run bun scraper
+      run: |
+        bun scraper_noticias/scraper_bun/index.js
+
+    - name: Commit and push changes
+      run: |
+            git config --global user.name "opencore"
+            git config --global user.email "opencore@unap.cl
+            git add scraper_noticias/scraper_bun/bun_jsons/articles.json
+            git commit -m "upload articles.json from bun"
+            git push
