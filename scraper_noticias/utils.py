@@ -42,9 +42,6 @@ def check_in_links_inside(website, incoming_link):
     incoming_link_parts = urlparse(incoming_link)
     links_inside_website = links_inside[website]
 
-    #print type of website_parts.netloc
-    print(type(website_parts.netloc))
-    print(type(links[website][0]))
     modified_website_netloc = "https://"+ website_parts.netloc + "/"
     full_link = urljoin(modified_website_netloc, incoming_link_parts.path)
     full_link = full_link.split('/')
