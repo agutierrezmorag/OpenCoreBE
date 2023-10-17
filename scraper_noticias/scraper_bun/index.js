@@ -2,7 +2,7 @@ import { extract } from '@extractus/article-extractor'
 const fs = require('fs')
 
 //imort news_links.json and iterate over it
-const news_links = require('./bun_jsons/news_links.json')
+const news_links = JSON.parse(fs.readFileSync('./bun_jsons/news_links.json'))
 const articles = []
 for (const link of news_links) {
     //extract the article
