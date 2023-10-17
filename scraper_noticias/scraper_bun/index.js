@@ -20,7 +20,23 @@ Promise.all(extractPromises)
   .then(() => {
     // Save the articles in a JSON file
     const articlesFilePath = path.join(scriptDirectory, 'bun_jsons/articles.json');
-    fs.writeFileSync(articlesFilePath, JSON.stringify(articles));
+    //the articles follow this structure
+    /*
+    {
+      url: String,
+      title: String,
+      description: String,
+      image: String,
+      author: String,
+      favicon: String,
+      content: String,
+      published: Date String,
+      source: String, // original publisher
+      links: Array, // list of alternative links
+      ttr: Number, // time to read in second, 0 = unknown
+    }
+    */
+    fs.writeFileSync(articlesFilePath, JSON.stringify(articles, null, 2));
   })
   .catch((error) => {
     console.error('Error extracting articles:', error);
