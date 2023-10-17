@@ -62,8 +62,10 @@ def extract_tags(html, tag, attrs_custom=None, attr_type=None):
     """
     if html:
         soup = BeautifulSoup(html, 'html.parser')
-        selector = f'{tag}[{attr_type}^="{attrs_custom}"]' if attrs_custom and attr_type else tag
-        return soup.select(selector)
+        if attrs_custom and attr_type:
+            return soup.find_all(tag, attrs={attr_type: attrs_custom})
+        else:
+            return soup.find_all(tag)
     return None
 
 def extract_tags_from_container(container, sub_container, attrs_custom=None, attr_type=None):
