@@ -38,7 +38,7 @@ jobs:
 
     steps:
     - name: Set up Bun
-      uses: actions/setup-node@v2
+      uses: oven-sh/setup-bun@v1
 
     - name: Download JSON artifact
       uses: actions/download-artifact@v2
