@@ -81,7 +81,7 @@ jobs:
       run: |
             git config --global user.name "opencore"
             git config --global user.email "opencore@unap.cl"
-            git add scraper_noticias/scraper_bun/bun_jsons/articles.json
+            git add -f scraper_noticias/scraper_bun/bun_jsons/articles.json
             git commit -m "upload articles.json from bun"
             git push
 
