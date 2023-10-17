@@ -45,6 +45,7 @@ jobs:
     
     - name: Install dependencies
       run: |
+        cd scraper_noticias/scraper_bun
         bun install
 
     - name: Download JSON artifact
