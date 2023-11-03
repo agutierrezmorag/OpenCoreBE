@@ -12,13 +12,17 @@ Proyecto openCore. Taller de sistemas. UNAP 2023.
 Una vez clonado el repositorio, insertar el archivo `.env` enviado en su respectiva carpeta.
 Luego, ejecutar:
 
-`pip install -r requirements.txt`
+```
+pip install -r requirements.txt
+```
 
 No es necesario hacer migraciones, estas ya fueron realizadas con anterioridad.
 
 # Comandos creados
 
-`python manage.py loadnews`
+```
+python manage.py loadnews
+```
 
 Pasa los datos extraídos desde el archivo json a la base de datos disponible en línea.
 
@@ -31,7 +35,7 @@ Pasa los datos extraídos desde el archivo json a la base de datos disponible en
   - CNN
   - Chilevision
   - El mostrador
-  - Bio Bio
+  - El dínamo
   - ADN
   - Cooperativa
   - 24 horas
