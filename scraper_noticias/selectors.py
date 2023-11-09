@@ -31,7 +31,7 @@ tags = {
         'container': 'div',
         'attribute': 'class',        
         'value': 'd-tag-card',
-    }
+    },
     'ciper1': {
         'container': 'div',
         'attribute': 'class',
@@ -95,10 +95,10 @@ title_selector = {
         'value': 'the-single__title',
     },
     'elmostrador':{
-        'container': 'a',
+        'container': 'h1',
         'attribute': 'class',
-        'value': 'd-tag-card__permalink',        
-    },  
+        'value': 'd-the-single__title',        
+    },
     'ciper1':{
         'container': 'h1',
         'attribute': 'class',
@@ -153,7 +153,7 @@ image_selector = {
     'elmostrador':{
         'container': 'div',
         'attribute': 'class',
-        'value': 'alignnone wp-image-2953495 size-full',        
+        'value': 'd-the-single-media d-the-single__media',        
     },  
     'ciper1': {
         'container': 'div',
