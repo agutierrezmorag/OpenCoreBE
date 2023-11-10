@@ -32,16 +32,11 @@ tags = {
         'attribute': 'class',        
         'value': 'd-tag-card',
     },
-    'ciper1': {
+    'ciper': {
         'container': 'div',
         'attribute': 'class',
-        'value': 'TitHomePpl'
-    },
-    'ciper2': {
-        'container': 'div',
-        'attribute': 'class',
-        'value': 'col-10 order-4 py-3 order-md-3'
-    },
+        'value': 'col-md-4 col-lg-3 mb-3'
+    }
 
 }
 
@@ -53,8 +48,7 @@ links = {
     'cnn':['https://www.cnnchile.com/tag/politica/'],
     'chvn': ['https://www.chvnoticias.cl/tag/politica/'],
     'elmostrador': ['https://www.elmostrador.cl/categoria/politica/'],
-    'ciper1': ['https://www.ciperchile.cl/investigacion/'],
-    'ciper2': ['https://www.ciperchile.cl/investigacion/'],
+    'ciper': ['https://www.ciperchile.cl/tag/politica/']
 }
 
 #links_inside
@@ -65,8 +59,7 @@ links_inside = {
     'cnn':['https://www.cnnchile.com/pais/'],
     'chvn':['https://www.chvnoticias.cl/nacional/'],
     'elmostrador':['https://www.elmostrador.cl/politica'],
-    'ciper1': ['https://www.ciperchile.cl/actualidad/'],
-    'ciper2': ['https://www.ciperchile.cl/actualidad/'],
+    'ciper': ['https://www.ciperchile.cl/tag/politica/']
 }
 
 
@@ -99,13 +92,7 @@ title_selector = {
         'attribute': 'class',
         'value': 'd-the-single__title',        
     },
-    'ciper1':{
-        'container': 'h1',
-        'attribute': 'class',
-        'value': 'article-big-text__title pl-4 pr-4 pb-4',
-    },
-    
-    'ciper2':{
+    'ciper':{
         'container': 'h1',
         'attribute': 'class',
         'value': 'article-big-text__title pl-4 pr-4 pb-4',
@@ -120,8 +107,7 @@ content_selector = {
     'cnn':['p'],
     'chvn':['p'],
     'elmostrador':['p'],
-    'ciper1':['p'],
-    'ciper2':['p']
+    'ciper':['p']
 }
 
 image_selector = {
@@ -154,15 +140,10 @@ image_selector = {
         'container': 'div',
         'attribute': 'class',
         'value': 'd-the-single-media d-the-single__media',        
-    },  
-    'ciper1': {
-        'container': 'div',
-        'attribute': 'class',
-        'value': 'row position-relative',
     },
-    'ciper2': {
+    'ciper': {
         'container': 'div',
         'attribute': 'class',
-        'value': 'row position-relative',
-    }  
+        'value': 'col-lg-9',
+    }
 }
