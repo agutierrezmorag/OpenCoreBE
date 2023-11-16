@@ -98,7 +98,7 @@ def indexer(historical_json = None):
                             "tf_idf": 0.0
                         })
         # Update the record of the last indexed article to the most recent one in the batch
-        #update_last_indexed_article(news_article)
+        update_last_indexed_article(news_article)
         print("indexed article: ", news_article.id)
     return word_list_to_save
     print ('time after query: ', timezone.now())
