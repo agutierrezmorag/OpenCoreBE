@@ -29,3 +29,9 @@ def save_to_json(data, filename, path, overwrite=False):
                 json.dump(data, file, indent=4, ensure_ascii=False)
             print(f"JSON saved to {filename}")
 
+
+def read_json(filename, path):
+    file_path = os.path.join(path, filename)
+    with open(file_path, 'r', encoding='utf-8') as file:
+        data = json.load(file)
+    return data
