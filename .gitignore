@@ -2,6 +2,7 @@
 *.env
 *.json
 !package.json
+!index_historical.json
 openCore/news/migrations/
 #node modules folder in any directory
 node_modules/
