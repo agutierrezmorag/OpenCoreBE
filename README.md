@@ -30,7 +30,7 @@ Pasa los datos extraídos desde el archivo json a la base de datos disponible en
 
 ## Tareas
 
-- Revisar y corregir archivo yml para el correcto dump de noticias del archivo json a la base de datos.
+- **Revisar y corregir archivo yml para el correcto dump de noticias del archivo json a la base de datos**.
 
 - Extender el script de web scraping para incluir más fuentes de noticias. Minimo 10 noticias por fuente:
 
