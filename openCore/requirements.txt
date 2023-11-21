@@ -19,3 +19,4 @@ soupsieve==2.5
 sqlparse==0.2.4
 tzdata==2023.3
 urllib3==2.0.4
+whitenoise==6.6.0
