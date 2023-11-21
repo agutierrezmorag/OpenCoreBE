@@ -27,5 +27,4 @@ def news_detail(request, pk):
 def search(request):
     query = request.POST.get('query', None)
     search_results = News.objects.filter(Q(content__icontains=query) | Q(title__icontains=query))
-    print(search_results)
     return render(request, 'results.html', {'search_results': search_results})
