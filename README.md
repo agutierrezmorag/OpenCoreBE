@@ -28,6 +28,14 @@ python manage.py loadnews
 
 Pasa los datos extraídos desde el archivo json a la base de datos disponible en línea.
 
+## Correr el servidor
+
+Una vez se añada el archivo `.env` al directorio y se hagan las instalaciones de las librerias requisitos, ingresar a la carpeta _openCore_ y ejecutar el siguiente comando.
+
+```python
+python manage.py runserver
+```
+
 ## Tareas
 
 - **Revisar y corregir archivo yml para el correcto dump de noticias del archivo json a la base de datos**.
