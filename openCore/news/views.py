@@ -19,11 +19,6 @@ def home(request):
     return render(request, 'index.html', context)
 
 
-def news_detail(request, pk):
-    news = get_object_or_404(News, id=pk)
-    return render(request, 'details.html', {'news': news})
-
-
 def search(request):
     query = request.POST.get('query', None)
     search_results = News.objects.filter(Q(content__icontains=query) | Q(title__icontains=query))

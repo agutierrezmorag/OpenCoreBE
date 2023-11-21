@@ -18,7 +18,7 @@
     <img src="{{ news.img_url }}" alt="" />
     <h3>{{ news.title }}</h3>
 
-    <a href="{% url 'news_detail' pk=news.id %}"
+    <a href="{% news.link %}"
       >Leer Mas <i class="fas fa-angle-double-right"></i
     ></a>
   </div>
