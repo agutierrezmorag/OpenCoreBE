@@ -1,4 +1,17 @@
 {% extends 'base.html' %} {% block content %} {% block news %}
+<header class="showcase">
+  <h2>NOTICIA DEL DIA</h2>
+  <br />
+  <h2>
+    Presidente Gabriel Boric confirma quiebre con Irina Karamanos tras
+    casi 5 años de relación
+  </h2>
+
+  <a href="details.html" class="btn">
+    Ver Más <i class="fas fa-chevron-right"></i>
+  </a>
+</header>
+
 <div class="news-cards">
   {% for news in recent_news %}
   <div>

@@ -52,26 +52,18 @@
         <!-- Right Nav -->
         <ul class="nav-menu-right">
           <li>
-            <a href="results.html">
-              <i class="fas fa-search"></i>
-            </a>
+            <form method="POST" action="{% url 'query_results' %}">
+              {% csrf_token %}
+              <input type="text" name="query" placeholder="Buscar...">
+              <button type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
           </li>
         </ul>
       </nav>
+      
       <hr />
-
-      <header class="showcase">
-        <h2>NOTICIA DEL DIA</h2>
-        <br />
-        <h2>
-          Presidente Gabriel Boric confirma quiebre con Irina Karamanos tras
-          casi 5 años de relación
-        </h2>
-
-        <a href="details.html" class="btn">
-          Ver Más <i class="fas fa-chevron-right"></i>
-        </a>
-      </header>
 
       {% block content %} {% endblock %}
 

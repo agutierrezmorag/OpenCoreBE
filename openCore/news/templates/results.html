@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %} {% block query_results %}
+<div class="container">
+  <div class="col-md-8">
+    <h3 class="pb-4 mb-4 fst-italic border-bottom">Resultados encontrados</h3>
+  </div>
+</div>
+{% for news in search_results %}
+<div class="container" style="margin-top: 20px; color: var(--bs-body-bg)">
+  <div class="container_results">
+    <div class="card-body">
+      <h5 class="card-title">
+        <a
+          class="text"
+          href="{{ news.link }}"
+          style="text-decoration: none; color: var(--bs-body-bg)"
+          >{{ news.title }}</a
+        >
+      </h5>
+      <p class="card-text"></p>
+      <p class="card-text" style="color: var(--bs-body-bg)">
+      </p>
+    </div>
+    <img class="noticia-image" src="{{ news.img_url }}" />
+  </div>
+  <div class="text-start" id="text-info" style="padding: 10px"></div>
+</div>
+{% endfor %} {% endblock %} {% endblock %}
