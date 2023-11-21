@@ -1,82 +1,85 @@
-{% extends 'base.html' %}
-
-{% block content %}
-{% block news %}
+{% extends 'base.html' %} {% block content %} {% block news %}
 <div class="news-cards">
-    {% for news in recent_news %}
-      <div>
-        <img src="{{ news.img_url }}" alt="" />
-        <h3>{{ news.title }}</h3>
+  {% for news in recent_news %}
+  <div>
+    <img src="{{ news.img_url }}" alt="" />
+    <h3>{{ news.title }}</h3>
 
-        <a href="{% url 'news_detail' pk=news.id %}">Leer Mas <i class="fas fa-angle-double-right"></i></a>
-      </div>
-    {% endfor %}
+    <a href="{% url 'news_detail' pk=news.id %}"
+      >Leer Mas <i class="fas fa-angle-double-right"></i
+    ></a>
   </div>
+  {% endfor %}
+</div>
 
-    <!-- Card Banner 1-->
-    <section class="cards-banner-one">
-      <div class="content">
-        <h2>Noticias Negativas</h2>
-        <!-- lorem 20 -->
-        <p>Aqui podras encontrar noticas negativas recientes</p>
-        <a href="#" class="btn">Ver todas<i class="fas fa-chevron-right"></i></a>
-      </div>
-    </section>
-
-    <div class="news-cards">
-    {% for news in negative_news %}
-      <div>
-        <img src="{{ news.img_url }}" alt="" />
-        <h3>{{ news.title }}</h3>
-
-        <a href="{% url 'news_detail' pk=news.id %}">Leer Mas <i class="fas fa-angle-double-right"></i></a>
-      </div>
-    {% endfor %}
+<!-- Card Banner 1-->
+<section class="cards-banner-one">
+  <div class="content">
+    <h2>Noticias Negativas</h2>
+    <!-- lorem 20 -->
+    <p>Aqui podras encontrar noticas negativas recientes</p>
+    <a href="#" class="btn">Ver todas<i class="fas fa-chevron-right"></i></a>
   </div>
+</section>
 
-    <!-- third card -->
-    <section class="cards-banner-two">
-      <div class="content">
-        <h2>Noticas Positivas.</h2>
-        <!-- lorem 30 -->
-        <p>Aqui podras encontrar noticas positivas recientes.</p>
-        <a href="#" class="btn">Ver todas <i class="fas fa-chevron-right"></i></a>
-      </div>
-    </section>
+<div class="news-cards">
+  {% for news in negative_news %}
+  <div>
+    <img src="{{ news.img_url }}" alt="" />
+    <h3>{{ news.title }}</h3>
 
-    <!-- NEWS CARDS -->
-    <div class="news-cards">
-    {% for news in positive_news %}
-      <div>
-        <img src="{{ news.img_url }}" alt="" />
-        <h3>{{ news.title }}</h3>
-
-        <a href="{% url 'news_detail' pk=news.id %}">Leer Mas <i class="fas fa-angle-double-right"></i></a>
-      </div>
-    {% endfor %}
+    <a href="{% url 'news_detail' pk=news.id %}"
+      >Leer Mas <i class="fas fa-angle-double-right"></i
+    ></a>
   </div>
+  {% endfor %}
+</div>
 
-
-    <!-- third card -->
-    <section class="cards-banner-tree">
-      <div class="content">
-        <h2>Noticas Neutrales.</h2>
-        <!-- lorem 30 -->
-        <p>Aqui podras encontrar noticas neutrales recientes.</p>
-        <a href="#" class="btn">Ver todas <i class="fas fa-chevron-right"></i></a>
-      </div>
-    </section>
-
-    <!-- NEWS CARDS -->
-    <div class="news-cards">
-    {% for news in neutral_news %}
-      <div>
-        <img src="{{ news.img_url }}" alt="" />
-        <h3>{{ news.title }}</h3>
-
-        <a href="{% url 'news_detail' pk=news.id %}">Leer Mas <i class="fas fa-angle-double-right"></i></a>
-      </div>
-    {% endfor %}
+<!-- third card -->
+<section class="cards-banner-two">
+  <div class="content">
+    <h2>Noticas Positivas.</h2>
+    <!-- lorem 30 -->
+    <p>Aqui podras encontrar noticas positivas recientes.</p>
+    <a href="#" class="btn">Ver todas <i class="fas fa-chevron-right"></i></a>
   </div>
-{% endblock %}
-{% endblock %}
+</section>
+
+<!-- NEWS CARDS -->
+<div class="news-cards">
+  {% for news in positive_news %}
+  <div>
+    <img src="{{ news.img_url }}" alt="" />
+    <h3>{{ news.title }}</h3>
+
+    <a href="{% url 'news_detail' pk=news.id %}"
+      >Leer Mas <i class="fas fa-angle-double-right"></i
+    ></a>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- third card -->
+<section class="cards-banner-tree">
+  <div class="content">
+    <h2>Noticas Neutrales.</h2>
+    <!-- lorem 30 -->
+    <p>Aqui podras encontrar noticas neutrales recientes.</p>
+    <a href="#" class="btn">Ver todas <i class="fas fa-chevron-right"></i></a>
+  </div>
+</section>
+
+<!-- NEWS CARDS -->
+<div class="news-cards">
+  {% for news in neutral_news %}
+  <div>
+    <img src="{{ news.img_url }}" alt="" />
+    <h3>{{ news.title }}</h3>
+
+    <a href="{% url 'news_detail' pk=news.id %}"
+      >Leer Mas <i class="fas fa-angle-double-right"></i
+    ></a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %} {% endblock %}
