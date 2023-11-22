@@ -864,3 +864,29 @@
   position: relative;
   overflow: visible;
 }
+
+/* Container */
+
+.container {
+  /* Ajusta el ancho según sea necesario */
+  width: 100%;
+}
+
+ul.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.news-list li {
+  display: inline-block; 
+  vertical-align: top; 
+  margin-right: 20px;
+}
+
+.atras, .adelante {
+  background-color: black;
+  cursor: pointer;
+}
+
+
