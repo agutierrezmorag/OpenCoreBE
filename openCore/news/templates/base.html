@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
     <link rel="stylesheet" href="{% static 'css/vars.css' %}" />
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
 
     <style>
       a,
@@ -29,7 +30,7 @@
         -webkit-font-smoothing: antialiased;
       }
     </style>
-    <title>Document</title>
+    <title>{% block title %}openCore{% endblock %}</title>
   </head>
   <body>
     <div class="header-v-19">
