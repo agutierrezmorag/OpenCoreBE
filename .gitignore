@@ -1,6 +1,7 @@
 *.pyc
 *.env
 *.json
+/venv
 !package.json
 !index_historical.json
 openCore/news/migrations/
