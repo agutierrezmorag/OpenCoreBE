@@ -118,4 +118,4 @@ def update_last_indexed_article(news_article):
     # Implement a method to update the 'indexed_on' field of the last indexed article
     # You can set 'indexed_on' to the current date and time using Django's timezone module
     news_article.indexed_on = timezone.now()
-
+    news_article.save()
