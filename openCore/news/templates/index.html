@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %} {% block news %}
+{% extends 'base.html' %} {% block content %} {% block news %} 
+{% load encode_decode %}
 <header class="showcase">
   <h2>NOTICIA DEL DIA</h2>
   <br />
@@ -16,7 +17,7 @@
   {% for news in recent_news %}
   <div>
     <img src="{{ news.img_url }}" alt="" />
-    <h3>{{ news.title }}</h3>
+    <h3>{{ news.title|encode_decode }}</h3>
 
     <a href="{{ news.link }}"
       >Leer Mas <i class="fas fa-angle-double-right"></i
@@ -39,7 +40,7 @@
   {% for news in negative_news %}
   <div>
     <img src="{{ news.img_url }}" alt="" />
-    <h3>{{ news.title }}</h3>
+    <h3>{{ news.title|encode_decode }}</h3>
 
     <a href="{{ news.link }}"
       >Leer Mas <i class="fas fa-angle-double-right"></i
@@ -63,7 +64,7 @@
   {% for news in positive_news %}
   <div>
     <img src="{{ news.img_url }}" alt="" />
-    <h3>{{ news.title }}</h3>
+    <h3>{{ news.title|encode_decode }}</h3>
 
     <a href="{{ news.link }}"
       >Leer Mas <i class="fas fa-angle-double-right"></i
@@ -87,7 +88,7 @@
   {% for news in neutral_news %}
   <div>
     <img src="{{ news.img_url }}" alt="" />
-    <h3>{{ news.title }}</h3>
+    <h3>{{ news.title|encode_decode }}</h3>
 
     <a href="{{ news.link }}"
       >Leer Mas <i class="fas fa-angle-double-right"></i

@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %} {% block query_results %}
+{% extends 'base.html' %} {% block content %} {% block query_results %} {% load encode_decode %}
+
 <div class="container">
   <div class="col-md-8">
     <h3 class="pb-4 mb-4 fst-italic border-bottom">Resultados encontrados</h3>
@@ -13,7 +14,7 @@
           class="text"
           href="{{ news.link }}"
           style="text-decoration: none; color: var(--bs-body-bg)"
-          >{{ news.title }}</a
+          >{{ news.title|encode_decode }}</a
         >
       </h5>
       <p class="card-text"></p>
