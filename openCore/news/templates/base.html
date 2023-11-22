@@ -3,200 +3,108 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}OpenCore{% endblock %}</title>
-    <!-- Font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-    />
-    <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vars.css' %}" />
+
+    <style>
+      a,
+      button,
+      input,
+      select,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      * {
+        margin: 0;
+        padding: 0;
+        border: none;
+        text-decoration: none;
+        appearance: none;
+        background: none;
+
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+    <title>Document</title>
   </head>
-
   <body>
-    <div class="menu-btn">
-      <i class="fas fa-bars fa-2x"></i>
-    </div>
-
-    <div class="container">
-      <!-- Navigation -->
-      <nav class="nav-main">
-        <!-- Brand -->
-        <img
-          src="{% static 'img/logo.png' %}"
-          alt="OpenCore Logo"
-          class="nav-brand"
-        />
-        <!-- Left Nav -->
-        <ul class="nav-menu">
-          <li>
-            <a href="#">Noticias Positivas</a>
-          </li>
-          <li>
-            <a href="#">Noticias Neutrales</a>
-          </li>
-          <li>
-            <a href="#">Noticias Negativas</a>
-          </li>
-          <li>
-            <a href="#">Sobre Sosotros</a>
-          </li>
-        </ul>
-
-        <!-- Right Nav -->
-        <ul class="nav-menu-right">
-          <li>
-            <form method="POST" action="{% url 'query_results' %}">
-              {% csrf_token %}
-              <input type="text" name="query" placeholder="Buscar...">
-              <button type="submit">
-                <i class="fas fa-search"></i>
-              </button>
-            </form>
-          </li>
-        </ul>
-      </nav>
-      
-      <hr />
-
-      {% block content %} {% endblock %}
-
-      <!-- Follow -->
-      <section class="social">
-        <p>Follow OpenCore</p>
-        <div class="links">
-          <a href="https://facebook.com">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="https://twitter.com">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://instagram.com">
-            <i class="fab fa-instagram"></i>
+    <div class="header-v-19">
+      <div class="header-left">
+        <div class="logo-full-dark">
+          <a href="{% url 'home' %}">
+            <div class="logo-full-dark">
+              <img
+                src="{% static 'img/logo.png' %}"
+                style="max-width: 300px"
+                alt="Your Logo Alt Text"
+              />
+            </div>
           </a>
         </div>
-      </section>
-    </div>
-
-    <!-- Footer Links -->
-    <div class="footer-links">
-      <div class="footer-container">
-        <ul>
-          <li>
-            <a href="#">
-              <h3>Title One</h3>
-            </a>
-          </li>
-          <li>
-            <a href="#">Blockchain</a>
-          </li>
-          <li>
-            <a href="#">Machine Learning</a>
-          </li>
-          <li>
-            <a href="#">Artificial Intelligence</a>
-          </li>
-          <li>
-            <a href="#">Quantum Computing</a>
-          </li>
-          <li>
-            <a href="#">Startup</a>
-          </li>
-          <li>
-            <a href="#">Cryptocurrencies</a>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <a href="#">
-              <h3>Title Two</h3>
-            </a>
-          </li>
-          <li>
-            <a href="#">Blockchain</a>
-          </li>
-          <li>
-            <a href="#">Machine Learning</a>
-          </li>
-          <li>
-            <a href="#">Artificial Intelligence</a>
-          </li>
-          <li>
-            <a href="#">Quantum Computing</a>
-          </li>
-          <li>
-            <a href="#">Startup</a>
-          </li>
-          <li>
-            <a href="#">Cryptocurrencies</a>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <a href="#">
-              <h3>Title Three</h3>
-            </a>
-          </li>
-          <li>
-            <a href="#">Blockchain</a>
-          </li>
-          <li>
-            <a href="#">Machine Learning</a>
-          </li>
-          <li>
-            <a href="#">Artificial Intelligence</a>
-          </li>
-          <li>
-            <a href="#">Quantum Computing</a>
-          </li>
-          <li>
-            <a href="#">Startup</a>
-          </li>
-          <li>
-            <a href="#">Cryptocurrencies</a>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <a href="#">
-              <h3>Title Four</h3>
-            </a>
-          </li>
-          <li>
-            <a href="#">Blockchain</a>
-          </li>
-          <li>
-            <a href="#">Machine Learning</a>
-          </li>
-          <li>
-            <a href="#">Artificial Intelligence</a>
-          </li>
-          <li>
-            <a href="#">Quantum Computing</a>
-          </li>
-          <li>
-            <a href="#">Startup</a>
-          </li>
-          <li>
-            <a href="#">Cryptocurrencies</a>
-          </li>
-        </ul>
+        <div class="nav-list">
+          <div class="link">
+            <a href="{% url 'home' %}" class="link-item">Home</a>
+          </div>
+          <div class="link">
+            <a href="#" class="link-item">Sobre nosotros</a>
+          </div>
+        </div>
+      </div>
+      <div class="header-right">
+        <form action="{% url 'query_results' %}" method="post">
+          {% csrf_token %}
+          <div class="input-text">
+            <div class="placeholder-wrapper">
+              <div class="placeholder">
+                <input
+                  type="text"
+                  name="query"
+                  placeholder="Search for..."
+                  required
+                />
+              </div>
+            </div>
+            <button type="submit">
+              <svg
+                class="line-rounded-search"
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_6_2489)">
+                  <path
+                    d="M11.1 11.0999L8.4621 8.46198M0.900024 5.29646C0.900024 2.86831 2.86843 0.899902 5.29658 0.899902C7.72474 0.899902 9.69313 2.86831 9.69313 5.29646C9.69313 7.72462 7.72474 9.69301 5.29658 9.69301C2.86843 9.69301 0.900024 7.72462 0.900024 5.29646Z"
+                    stroke="#6D758F"
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_6_2489">
+                    <rect width="12" height="12" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <h3>OpenCore Copyright</h3>
-    </footer>
-
-    <!-- Scroll Reveal -->
-    <script src="https://unpkg.com/scrollreveal"></script>
+    <div class="blog-cards-v-8">
+      <div class="grid">{% block content %} {% endblock %}</div>
+    </div>
+    <div class="footer-v-4">
+      <div class="logo-full-dark">
+        <img src="{% static 'img/logo.png' %}" style="max-width: 300px" />
+      </div>
+    </div>
     <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>

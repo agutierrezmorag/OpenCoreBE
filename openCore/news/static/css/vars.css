@@ -1,0 +1,28 @@
+/* Figma Styles of your File */
+:root {
+    /* Colors */
+    --neutral-10: #486284;
+    --neutral-9: #6b88ae;
+    --neutral-8: #7b95b7;
+    --neutral-7: #8ca2c0;
+    --neutral-6: #9cb0c9;
+    --neutral-5: #adbdd2;
+    --neutral-4: #bdcadb;
+    --neutral-3: #ced7e4;
+    --neutral-2: #dee5ed;
+    --neutral-1: #eff2f6;
+    --neutral-0: #ffffff;
+  
+    /* Fonts */
+    --display-large: 700 72px/72px "DmSans-Bold", sans-serif;
+    --title-large: 700 60px/76px "DmSans-Bold", sans-serif;
+    --title-small: 700 32px/40px "DmSans-Bold", sans-serif;
+    --subtitle-large: 500 28px/32px "DmSans-Medium", sans-serif;
+    --subtitle-small: 500 21px/22px "DmSans-Medium", sans-serif;
+    --body-large: 400 20px/32px "DmSans-Regular", sans-serif;
+    --body-medium: 400 18px/28px "AvenirLtStd-55Roman", sans-serif;
+    --body-small: 400 16px/24px "DmSans-Regular", sans-serif;
+  
+    /* Effects */
+  }
+  

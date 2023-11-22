@@ -1,28 +1,88 @@
-{% extends 'base.html' %} {% block content %} {% block query_results %} {% load encode_decode %}
+{% extends 'base.html' %} {% block content %} {% block query_results %} 
+{% load encode_decode %}
 
-<div class="container">
-  <div class="col-md-8">
-    <h3 class="pb-4 mb-4 fst-italic border-bottom">Resultados encontrados</h3>
-  </div>
-</div>
-{% for news in search_results %}
-<div class="container" style="margin-top: 20px; color: var(--bs-body-bg)">
-  <div class="container_results">
-    <div class="card-body">
-      <h5 class="card-title">
-        <a
-          class="text"
-          href="{{ news.link }}"
-          style="text-decoration: none; color: var(--bs-body-bg)"
-          >{{ news.title|encode_decode }}</a
-        >
-      </h5>
-      <p class="card-text"></p>
-      <p class="card-text" style="color: var(--bs-body-bg)">
-      </p>
+<div class="content-cards-v-16">
+  <div class="headings">
+    <div class="title">Resultados encontrados</div>
+    <div class="spacer">
+      <div class="_4-px"></div>
+      <div class="text">24</div>
     </div>
-    <img class="noticia-image" src="{{ news.img_url }}" />
   </div>
-  <div class="text-start" id="text-info" style="padding: 10px"></div>
+  <div class="spacer2">
+    <div class="_4-px"></div>
+    <div class="text2">48</div>
+  </div>
+  {% for news in search_results %}
+  <div class="cards-row">
+    <div class="card-v-10">
+      <div class="card-elements">
+        <div class="rectangle-5942">
+          <img src="{{ news.img_url }}" alt="{{ news.title }}">
+        </div>
+        <div class="card-content">
+          <div class="spacer">
+            <div class="_4-px"></div>
+            <div class="text">24</div>
+          </div>
+          <div class="web-design">{{ news.title }}</div>
+          <div class="spacer3">
+            <div class="_4-px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-v-10">
+      <div class="card-elements">
+        <div class="rectangle-5942">
+          <img src="{{ news.img_url }}" alt="{{ news.title }}">
+        </div>
+        <div class="card-content">
+          <div class="spacer">
+            <div class="_4-px"></div>
+            <div class="text">24</div>
+          </div>
+          <div class="web-design">{{ news.title }}</div>
+          <div class="spacer3">
+            <div class="_4-px"></div>
+          </div>
+          <div class="paragraph2">
+            Lorem ipsum dolor sit amet consecte tur quet adipiscing elit semper
+            dalaracc lacus vel ams facilisis.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-v-10">
+      <div class="card-elements">
+        <div class="rectangle-5942">
+          <img src="{{ news.img_url }}" alt="{{ news.title }}">
+        </div>
+        <div class="card-content">
+          <div class="spacer">
+            <div class="_4-px"></div>
+            <div class="text">24</div>
+          </div>
+          <div class="web-design">{{ news.title }}</div>
+          <div class="spacer3">
+            <div class="_4-px"></div>
+          </div>
+          <div class="paragraph2">
+            Lorem ipsum dolor sit amet consecte tur quet adipiscing elit semper
+            dalaracc lacus vel ams facilisis.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="spacer3">
+    <div class="_4-px"></div>
+  </div>
+  {% endfor %}
+  <div class="spacer">
+    <div class="_4-px"></div>
+    <div class="text">24</div>
+  </div>
 </div>
-{% endfor %} {% endblock %} {% endblock %}
+
+{% endblock %} {% endblock %}
