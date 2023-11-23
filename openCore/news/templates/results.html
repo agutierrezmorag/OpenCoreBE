@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 Busqueda
@@ -36,7 +37,7 @@ Busqueda
           </div>
           <div class="card-date2">{{ news.date_published }}</div>
           <div class="image-container">
-            <img src="ruta/de/la/imagen.png" alt="Descripción de la imagen" class="small-image">
+            <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}" class="small-image">
           </div>
         </div>
         <div class="spacer">

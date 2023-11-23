@@ -3,16 +3,11 @@
 
 <div class="headings">
   <div class="title">
-    slogan? idea: Revelamos la verdad en cada palabra, tu fuente confiable para
-    información sin filtros.
+    Revelamos la verdad en cada palabra, tu fuente confiable para información sin filtros.
   </div>
   <div class="spacer">
     <div class="_4-px"></div>
     <div class="text">24</div>
-  </div>
-  <div class="paragraph">
-    Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus
-    mollis sit aliquam sit nullam.
   </div>
 </div>
 <div class="spacer2">
@@ -34,7 +29,8 @@
         </div>
         <div class="card-date">{{ latest_news.date_published|date:"j \d\e F, Y" }}</div>
         <div class="image-container">
-          <img src="ruta/de/la/imagen.png" alt="Descripción de la imagen" class="small-image">
+          <img src="{% static 'img/source_logos/' %}{{ latest_news.website }}.png" alt="{{ latest_news.website }}"
+            class="small-image">
         </div>
       </div>
       <div class="spacer3">
@@ -99,9 +95,11 @@
                   <div class="card-title">{{ news.sentiment }}</div>
                 </div>
               </div>
-              <div class="card-date2">{{ news.date_published|date:"j \d\e F, Y" }}</div><div class="image-container">
-              <img src="ruta/de/la/imagen.png" alt="Descripción de la imagen" class="small-image">
-            </div>
+              <div class="card-date2">{{ news.date_published|date:"j \d\e F, Y" }}</div>
+              <div class="image-container">
+                <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}"
+                  class="small-image">
+              </div>
             </div>
             <div class="spacer">
               <div class="_4-px"></div>
@@ -163,6 +161,10 @@
               </div>
             </div>
             <div class="card-date2">{{ news.date_published|date:"j \d\e F, Y" }}</div>
+            <div class="image-container">
+              <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}"
+                class="small-image">
+            </div>
           </div>
           <div class="spacer">
             <div class="_4-px"></div>
@@ -206,28 +208,28 @@
   <div class="sub-title">Nuestras fuentes</div>
   <div class="logos-wrapper">
     <a href="">
-      <img src="{% static 'img/source_logos/adn.svg' %}" alt="ADN">
+      <img src="{% static 'img/source_logos/adn.png' %}" alt="ADN">
     </a>
     <a href="">
-      <img src="{% static 'img/source_logos/chv.svg' %}" alt="Chilevision">
+      <img src="{% static 'img/source_logos/chvn.png' %}" alt="Chilevision">
     </a>
     <a href="">
-      <img src="{% static 'img/source_logos/cnn.svg' %}" alt="CNN">
+      <img src="{% static 'img/source_logos/cnn.png' %}" alt="CNN">
     </a>
     <a href="">
-      <img src="{% static 'img/source_logos/eldinamo.webp' %}" alt="El dinamo">
+      <img src="{% static 'img/source_logos/dinamo.png' %}" alt="El dinamo">
     </a>
     <a href="">
-      <img src="{% static 'img/source_logos/elmostrador.webp' %}" alt="El mostrador">
+      <img src="{% static 'img/source_logos/elmostrador.png' %}" alt="El mostrador">
     </a>
     <a href="">
       <img src="{% static 'img/source_logos/latercera.png' %}" alt="La tercera">
     </a>
     <a href="">
-      <img src="{% static 'img/source_logos/mega.svg' %}" alt="Mega">
+      <img src="{% static 'img/source_logos/meganoticias.png' %}" alt="Mega">
     </a>
     <a href="">
-      <img src="{% static 'img/source_logos/t13.webp' %}" alt="T13">
+      <img src="{% static 'img/source_logos/t13.png' %}" alt="T13">
     </a>
   </div>
 </div>
