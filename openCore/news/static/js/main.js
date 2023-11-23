@@ -1,36 +1,26 @@
-const newsItems = document.querySelectorAll(".news-item");
-let currentIndex = 0;
-const itemsPerPage = 3;
+const prevRecent = document.getElementById("prev-btn-recent");
+const nextRecent = document.getElementById("next-btn-recent");
+const listRecent = document.getElementById("item-list-recent");
 
-function showItems(startIndex) {
-  for (let i = 0; i < newsItems.length; i++) {
-    if (i >= startIndex && i < startIndex + itemsPerPage) {
-      newsItems[i].style.display = "inline-block";
-    } else {
-      newsItems[i].style.display = "none";
-    }
-  }
-}
+const prevNeutral = document.getElementById("prev-btn-neutral");
+const nextNeutral = document.getElementById("next-btn-neutral");
+const listNeutral = document.getElementById("item-list-neutral");
 
-function showNextItems() {
-  const newIndex = Math.min(
-    currentIndex + itemsPerPage,
-    newsItems.length - itemsPerPage
-  );
-  currentIndex = newIndex;
-  showItems(currentIndex);
-}
+const itemWidth = 300;
+const padding = 20;
 
-function showPreviousItems() {
-  const newIndex = Math.max(currentIndex - itemsPerPage, 0);
-  currentIndex = newIndex;
-  showItems(currentIndex);
-}
+prevRecent.addEventListener("click", () => {
+  listRecent.scrollLeft -= itemWidth + padding;
+});
 
-document.addEventListener("DOMContentLoaded", () => {
-  showItems(currentIndex);
+nextRecent.addEventListener("click", () => {
+  listRecent.scrollLeft += itemWidth + padding;
+});
 
-  // Event listeners para los botones de flecha
-  document.querySelector(".adelante").addEventListener("click", showNextItems);
-  document.querySelector(".atras").addEventListener("click", showPreviousItems);
+prevNeutral.addEventListener("click", () => {
+  listNeutral.scrollLeft -= itemWidth + padding;
+});
+
+nextNeutral.addEventListener("click", () => {
+  listNeutral.scrollLeft += itemWidth + padding;
 });
