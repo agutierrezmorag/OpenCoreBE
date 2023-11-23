@@ -4,7 +4,7 @@
 Busqueda
 {% endblock %}
 
-{% block content %} {% block query_results %} 
+{% block content %} {% block query_results %}
 {% load encode_decode %}
 
 <div class="content-cards-v-16">
@@ -19,72 +19,56 @@ Busqueda
     <div class="_4-px"></div>
     <div class="text2">48</div>
   </div>
-  {% for news in search_results %}
-  <div class="cards-row">
-    <div class="card-v-10">
-      <div class="card-elements">
-        <div class="rectangle-5942">
-          <img src="{{ news.img_url }}" alt="{{ news.title }}">
+  <div class="horizontal-container">
+    {% for news in search_results %}
+    <div class="master-content-card2">
+      <div class="image-replace2">
+        <div class="image-bg2">
+          <img src="{{ news.img_url }}" alt="{{ news.title }}" />
         </div>
-        <div class="card-content">
-          <div class="spacer">
-            <div class="_4-px"></div>
-            <div class="text">24</div>
+      </div>
+      <div class="card-text-content">
+        <div class="date-category">
+          <div class="badge">
+            <div class="badge-text">
+              <div class="card-title">{{ news.sentiment }}</div>
+            </div>
           </div>
-          <div class="web-design">{{ news.title }}</div>
-          <div class="spacer3">
-            <div class="_4-px"></div>
+          <div class="card-date2">{{ news.date_published }}</div>
+          <div class="image-container">
+            <img src="ruta/de/la/imagen.png" alt="Descripción de la imagen" class="small-image">
+          </div>
+        </div>
+        <div class="spacer">
+          <div class="_4-px"></div>
+          <div class="text">24</div>
+        </div>
+        <div class="heading">{{ news.title|encode_decode}}</div>
+        <div class="spacer3">
+          <div class="_4-px"></div>
+          <div class="text3">32</div>
+        </div>
+        <div class="link">
+          <a href="{{ news.link }}" class="link-item">Leer mas</a>
+          <div class="line-rounded-arrow-rigth">
+            <svg class="arrow-rigth2" width="13" height="13" viewBox="0 0 13 13" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.35568 1.19324L11.7499 6.34225L6.35568 11.4913" stroke="#6D758F" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M11.7499 6.34229L1.24995 6.34229" stroke="#6D758F" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
           </div>
         </div>
       </div>
+      
     </div>
-    <div class="card-v-10">
-      <div class="card-elements">
-        <div class="rectangle-5942">
-          <img src="{{ news.img_url }}" alt="{{ news.title }}">
-        </div>
-        <div class="card-content">
-          <div class="spacer">
-            <div class="_4-px"></div>
-            <div class="text">24</div>
-          </div>
-          <div class="web-design">{{ news.title }}</div>
-          <div class="spacer3">
-            <div class="_4-px"></div>
-          </div>
-          <div class="paragraph2">
-            Lorem ipsum dolor sit amet consecte tur quet adipiscing elit semper
-            dalaracc lacus vel ams facilisis.
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card-v-10">
-      <div class="card-elements">
-        <div class="rectangle-5942">
-          <img src="{{ news.img_url }}" alt="{{ news.title }}">
-        </div>
-        <div class="card-content">
-          <div class="spacer">
-            <div class="_4-px"></div>
-            <div class="text">24</div>
-          </div>
-          <div class="web-design">{{ news.title }}</div>
-          <div class="spacer3">
-            <div class="_4-px"></div>
-          </div>
-          <div class="paragraph2">
-            Lorem ipsum dolor sit amet consecte tur quet adipiscing elit semper
-            dalaracc lacus vel ams facilisis.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="spacer3">
-    <div class="_4-px"></div>
-  </div>
+
+    {% if forloop.counter|divisibleby:3 %}
+      </div><div class="horizontal-container">
+    {% endif %}
   {% endfor %}
+</div>
   <div class="spacer">
     <div class="_4-px"></div>
     <div class="text">24</div>
