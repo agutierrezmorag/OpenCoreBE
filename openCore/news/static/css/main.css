@@ -43,8 +43,6 @@
 .link {
   display: flex;
   flex-direction: row;
-  gap: 6px;
-  align-items: center;
   justify-content: flex-start;
   flex-shrink: 0;
   position: relative;
@@ -412,6 +410,8 @@
   flex-shrink: 0;
   width: 1108px;
   position: relative;
+  max-width: 1800px;
+  width: 90vw;
 }
 .heading-h-2 {
   color: var(--neutralcolors-600, #6d758f);
