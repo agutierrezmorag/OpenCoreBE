@@ -3,7 +3,6 @@
 Proyecto openCore. Taller de sistemas. UNAP 2023.
 
 <!-- TOC -->
-- [openCore](#opencore)
 - [Primeros pasos](#primeros-pasos)
 - [Comandos creados](#comandos-creados)
 - [Tareas](#tareas)

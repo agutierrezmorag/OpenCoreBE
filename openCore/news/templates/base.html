@@ -7,7 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
     <link rel="stylesheet" href="{% static 'css/vars.css' %}" />
-    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="{% static 'img/favicon.ico' %}"
+      type="image/x-icon"
+    />
 
     <style>
       a,
@@ -64,7 +68,7 @@
                 <input
                   type="text"
                   name="query"
-                  placeholder="Search for..."
+                  placeholder="Buscar..."
                   required
                 />
               </div>
@@ -103,7 +107,9 @@
     </div>
     <div class="footer-v-4">
       <div class="logo-full-dark">
-        <img src="{% static 'img/logo.png' %}" style="max-width: 300px" />
+        <a href="{% url 'home' %}">
+          <img src="{% static 'img/logo.png' %}" style="max-width: 300px" />
+        </a>
       </div>
     </div>
     <script src="{% static 'js/main.js' %}"></script>

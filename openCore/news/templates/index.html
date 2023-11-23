@@ -1,8 +1,11 @@
-{% extends 'base.html' %} {% block content %} {% block news %} {% load encode_decode %}
+{% extends 'base.html' %} {% block content %} {% block news %}
+{% load encode_decode %}
 
 <div class="headings">
-  <div class="title">slogan? idea: Revelamos la verdad en cada palabra, tu fuente confiable para información sin
-    filtros.</div>
+  <div class="title">
+    slogan? idea: Revelamos la verdad en cada palabra, tu fuente confiable para
+    información sin filtros.
+  </div>
   <div class="spacer">
     <div class="_4-px"></div>
     <div class="text">24</div>
@@ -75,49 +78,47 @@
     <div class="_4-px"></div>
     <div class="text4">56px</div>
   </div>
-  <div id="news-carousel" class="owl-carousel">
-    <div class="cards-row">
-      {% for news in recent_news %}
-      <div class="master-content-card">
-        <div class="image-replace">
-          <div class="image-bg">
-            <img src="{{ news.img_url }}" alt="{{ news.title }}" />
-          </div>
+  <div class="cards-row">
+    {% for news in recent_news %}
+    <div class="master-content-card">
+      <div class="image-replace">
+        <div class="image-bg">
+          <img src="{{ news.img_url }}" alt="{{ news.title }}" />
         </div>
-        <div class="card-text-content">
-          <div class="date-category">
-            <div class="badge">
-              <div class="badge-text">
-                <div class="card-title">{{ news.sentiment }}</div>
-              </div>
+      </div>
+      <div class="card-text-content">
+        <div class="date-category">
+          <div class="badge">
+            <div class="badge-text">
+              <div class="card-title">{{ news.sentiment }}</div>
             </div>
-            <div class="card-date2">{{ news.date_published }}</div>
           </div>
-          <div class="spacer">
-            <div class="_4-px"></div>
-            <div class="text">24</div>
-          </div>
-          <div class="heading">{{ news.title|encode_decode}}</div>
-          <div class="spacer3">
-            <div class="_4-px"></div>
-            <div class="text3">32</div>
-          </div>
-          <div class="link">
-            <a href="{{ news.link }}" class="link-item">Leer mas</a>
-            <div class="line-rounded-arrow-rigth">
-              <svg class="arrow-rigth2" width="13" height="13" viewBox="0 0 13 13" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.35568 1.19324L11.7499 6.34225L6.35568 11.4913" stroke="#6D758F" stroke-width="1.5"
-                  stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M11.7499 6.34229L1.24995 6.34229" stroke="#6D758F" stroke-width="1.5" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </div>
+          <div class="card-date2">{{ news.date_published }}</div>
+        </div>
+        <div class="spacer">
+          <div class="_4-px"></div>
+          <div class="text">24</div>
+        </div>
+        <div class="heading">{{ news.title|encode_decode}}</div>
+        <div class="spacer3">
+          <div class="_4-px"></div>
+          <div class="text3">32</div>
+        </div>
+        <div class="link">
+          <a href="{{ news.link }}" class="link-item">Leer mas</a>
+          <div class="line-rounded-arrow-rigth">
+            <svg class="arrow-rigth2" width="13" height="13" viewBox="0 0 13 13" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.35568 1.19324L11.7499 6.34225L6.35568 11.4913" stroke="#6D758F" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M11.7499 6.34229L1.24995 6.34229" stroke="#6D758F" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
           </div>
         </div>
       </div>
-      {% endfor %}
     </div>
+    {% endfor %}
   </div>
   <div class="top">
     <div class="heading-h-2">Noticias neutras</div>
@@ -186,13 +187,12 @@
   </div>
 </div>
 
-
 <div class="container">
   <div class="slide">
     <ul class="news-list">
       {% for news in recent_news %}
       <li class="news-item">
-        <img src="{{ news.img_url }}" alt="{{ news.title }}">
+        <img src="{{ news.img_url }}" alt="{{ news.title }}" />
         <div class="texto">
           <h2>{{ news.title|encode_decode }}</h2>
           <div class="card-date2">{{ news.date_published }}</div>
@@ -208,6 +208,4 @@
   </div>
 </div>
 
-
-{% endblock %}
-{% endblock %}
+{% endblock %} {% endblock %}
