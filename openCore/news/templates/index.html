@@ -51,19 +51,19 @@
         <div class="text2">40</div>
       </div>
       <div class="link">
-        <a href="{{ latest_news.link }}" class="link-item">Leer mas</a>
-        <div class="line-rounded-arrow-rigth">
-          <svg class="arrow-rigth" width="13" height="12" viewBox="0 0 13 12" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M6.35568 0.851074L11.7499 6.00008L6.35568 11.1491" stroke="#6D758F" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M11.7499 6L1.24995 6" stroke="#6D758F" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </div>
+        <a href="{{ latest_news.link }}" class="link-item">Leer más
+          <div class="line-rounded-arrow-rigth">
+            <svg class="arrow-right" width="20" height="20" viewBox="0 0 20 20" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 10H15" stroke="#6D758F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M10 15L15 10L10 5" stroke="#6D758F" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+        </a>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 {% endif %}
@@ -80,9 +80,8 @@
   <div class="container">
     <div class="carousel-view">
       <button id="prev-btn-recent" class="prev-btn">
-        <svg viewBox="0 0 512 512" width="20" title="chevron-circle-left">
-          <path
-            d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zM142.1 273l135.5 135.5c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L226.9 256l101.6-101.6c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L142.1 239c-9.4 9.4-9.4 24.6 0 34z" />
+        <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
+          <path d="M10.605 12.727 5.656 7.776l4.949-4.948L7.777 0 0 7.776l7.777 7.779 2.828-2.828z" />
         </svg>
       </button>
       <div id="item-list-recent" class="item-list">
@@ -114,7 +113,68 @@
               <div class="text3">32</div>
             </div>
             <div class="link">
-              <a href="{{ news.link }}" class="link-item">Leer mas</a>
+              <a href="{{ news.link }}" class="link-item">Leer más
+                <div class="line-rounded-arrow-right">
+                  <svg class="arrow-right" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 10H15" stroke="#6D758F" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M10 15L15 10L10 5" stroke="#6D758F" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <button id="next-btn-recent" class="next-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
+        <path d="m2.828 15.555 7.777-7.779L2.828 0 0 2.828l4.949 4.948L0 12.727l2.828 2.828z" />
+      </svg>
+    </button>
+  </div>
+</div>
+<div class="top">
+  <div class="heading-h-2">Noticias neutras</div>
+  <div class="grid3"></div>
+</div>
+<div class="container">
+  <div class="carousel-view">
+    <button id="prev-btn-neutral" class="prev-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
+        <path d="M10.605 12.727 5.656 7.776l4.949-4.948L7.777 0 0 7.776l7.777 7.779 2.828-2.828z" />
+      </svg>
+    </button>
+    <div id="item-list-neutral" class="item-list">
+      {% for news in neutral_news %}
+      <div class="master-content-card">
+        <div class="image-replace">
+          <div class="image-bg">
+            <img src="{{ news.img_url }}" alt="{{ news.title }}" />
+          </div>
+        </div>
+        <div class="card-text-content">
+          <div class="date-category">
+            <div class="badge">
+              <div class="badge-text">
+                <div class="card-title">{{ news.sentiment }}</div>
+              </div>
+            </div>
+            <div class="card-date2">{{ news.date_published|date:"j \d\e F, Y" }}</div>
+          </div>
+          <div class="spacer">
+            <div class="_4-px"></div>
+            <div class="text">24</div>
+          </div>
+          <div class="heading">{{ news.title|encode_decode}}</div>
+          <div class="spacer3">
+            <div class="_4-px"></div>
+            <div class="text3">32</div>
+          </div>
+          <div class="link">
+            <a href="{{ news.link }}" class="link-item">Leer más
               <div class="line-rounded-arrow-right">
                 <svg class="arrow-right" width="20" height="20" viewBox="0 0 20 20" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
@@ -122,88 +182,24 @@
                   <path d="M10 15L15 10L10 5" stroke="#6D758F" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" />
                 </svg>
-              </div>
-            </div>
+            </a>
           </div>
         </div>
-        {% endfor %}
       </div>
-      <button id="next-btn-recent" class="next-btn">
-        <svg viewBox="0 0 512 512" width="20" title="chevron-circle-right">
-          <path
-            d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z" />
-        </svg>
-      </button>
     </div>
+    {% endfor %}
   </div>
-  <div class="top">
-    <div class="heading-h-2">Noticias neutras</div>
-    <div class="grid3"></div>
-  </div>
-  <div class="container">
-    <div class="carousel-view">
-      <button id="prev-btn-neutral" class="prev-btn">
-        <svg viewBox="0 0 512 512" width="20" title="chevron-circle-left">
-          <path
-            d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zM142.1 273l135.5 135.5c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L226.9 256l101.6-101.6c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L142.1 239c-9.4 9.4-9.4 24.6 0 34z" />
-        </svg>
-      </button>
-      <div id="item-list-neutral" class="item-list">
-        {% for news in neutral_news %}
-        <div class="master-content-card">
-          <div class="image-replace">
-            <div class="image-bg">
-              <img src="{{ news.img_url }}" alt="{{ news.title }}" />
-            </div>
-          </div>
-          <div class="card-text-content">
-            <div class="date-category">
-              <div class="badge">
-                <div class="badge-text">
-                  <div class="card-title">{{ news.sentiment }}</div>
-                </div>
-              </div>
-              <div class="card-date2">{{ news.date_published|date:"j \d\e F, Y" }}</div>
-              <div class="image-container">
-            <img src="ruta/de/la/imagen.png" alt="Descripción de la imagen" class="small-image">
-          </div>
-        </div>
-            <div class="spacer">
-              <div class="_4-px"></div>
-              <div class="text">24</div>
-            </div>
-            <div class="heading">{{ news.title|encode_decode}}</div>
-            <div class="spacer3">
-              <div class="_4-px"></div>
-              <div class="text3">32</div>
-            </div>
-            <div class="link">
-              <a href="{{ news.link }}" class="link-item">Leer mas</a>
-              <div class="line-rounded-arrow-right">
-                <svg class="arrow-right" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 10H15" stroke="#6D758F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M10 15L15 10L10 5" stroke="#6D758F" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-      <button id="next-btn-neutral" class="next-btn">
-        <svg viewBox="0 0 512 512" width="20" title="chevron-circle-right">
-          <path
-            d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z" />
-        </svg>
-      </button>
-    </div>
-  </div>
-  <div class="spacer2">
-    <div class="_4-px"></div>
-    <div class="text2">40</div>
-  </div>
+  <button id="next-btn-neutral" class="next-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
+      <path d="m2.828 15.555 7.777-7.779L2.828 0 0 2.828l4.949 4.948L0 12.727l2.828 2.828z" />
+    </svg>
+  </button>
+</div>
+</div>
+<div class="spacer2">
+  <div class="_4-px"></div>
+  <div class="text2">40</div>
+</div>
 </div>
 
 <div class="logo-strip-v-3">
