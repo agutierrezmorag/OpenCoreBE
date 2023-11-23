@@ -1,7 +1,4 @@
 /* HEADER */
-.logo {
-  font-family: Bowlby One SC;
-}
 
 .header-v-19,
 .header-v-19 * {
@@ -38,23 +35,6 @@
   flex-shrink: 0;
   position: relative;
 }
-
-.group-1 {
-  flex-shrink: 0;
-  width: 27.42px;
-  height: 28px;
-  position: relative;
-  overflow: visible;
-}
-
-.brix {
-  flex-shrink: 0;
-  width: 61.66px;
-  height: 25.31px;
-  position: relative;
-  overflow: visible;
-}
-
 .nav-list {
   display: flex;
   flex-direction: row;
@@ -78,18 +58,9 @@
 .link-item {
   color: var(--neutralcolors-600, #6d758f);
   text-align: center;
-  font: var(--display-3-regular, 400 16px/22px "Inter-Regular", sans-serif);
+  font: var(--display-3-semi-bold, 600 16px/22px "Inter-SemiBold", sans-serif);
   position: relative;
 }
-
-.line-rounded-chevron-down {
-  flex-shrink: 0;
-  width: 15px;
-  height: 15px;
-  position: relative;
-  overflow: visible;
-}
-
 .header-right {
   display: flex;
   flex-direction: row;
@@ -142,8 +113,6 @@
   position: relative;
   overflow: visible;
 }
-
-
 
 /* INDEX, BODY */
 .blog-cards-v-8,
@@ -274,15 +243,12 @@
   height: 560px;
   position: relative;
   overflow: hidden;
-  /* Ensure overflow is hidden to clip the image */
 }
-
 .image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 .image-wrapper::before {
   content: "";
   position: absolute;
@@ -291,7 +257,6 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  /* Adjust the last value (alpha) for transparency */
 }
 
 .frame-38620 {
@@ -347,7 +312,6 @@
   position: relative;
   overflow: hidden;
 }
-
 .card-title {
   color: var(--neutralcolors-100, #ffffff);
   text-align: center;
@@ -541,6 +505,9 @@
   top: 0px;
 }
 
+.image-bg img {
+  height: 100%;
+}
 .lines2 {
   width: 68.82px;
   height: 68.82px;
@@ -608,162 +575,6 @@
   overflow: visible;
 }
 
-.lines3 {
-  width: 68.82px;
-  height: 68.82px;
-  position: absolute;
-  left: -1.41px;
-  top: 0px;
-  overflow: visible;
-}
-
-.group-10000058363 {
-  width: 30.8px;
-  height: 30.8px;
-  position: absolute;
-  left: 17.6px;
-  top: 17.81px;
-  overflow: visible;
-}
-
-.arrow-rigth3 {
-  height: auto;
-  position: absolute;
-  right: 15%;
-  left: 15%;
-  width: 70%;
-  bottom: 15.67%;
-  top: 15.67%;
-  height: 68.65%;
-  transform: translate(-0.75px, -0.75px);
-  overflow: visible;
-}
-
-.lines4 {
-  width: 68.82px;
-  height: 68.82px;
-  position: absolute;
-  left: -1.41px;
-  top: 0px;
-  overflow: visible;
-}
-
-.group-10000058364 {
-  width: 30.8px;
-  height: 30.8px;
-  position: absolute;
-  left: 17.6px;
-  top: 17.81px;
-  overflow: visible;
-}
-
-.arrow-rigth4 {
-  height: auto;
-  position: absolute;
-  right: 15%;
-  left: 15%;
-  width: 70%;
-  bottom: 15.67%;
-  top: 15.67%;
-  height: 68.65%;
-  transform: translate(-0.75px, -0.75px);
-  overflow: visible;
-}
-
-.lines5 {
-  width: 68.82px;
-  height: 68.82px;
-  position: absolute;
-  left: -1.41px;
-  top: 0px;
-  overflow: visible;
-}
-
-.group-10000058365 {
-  width: 30.8px;
-  height: 30.8px;
-  position: absolute;
-  left: 17.6px;
-  top: 17.81px;
-  overflow: visible;
-}
-
-.arrow-rigth5 {
-  height: auto;
-  position: absolute;
-  right: 15%;
-  left: 15%;
-  width: 70%;
-  bottom: 15.67%;
-  top: 15.67%;
-  height: 68.65%;
-  transform: translate(-0.75px, -0.75px);
-  overflow: visible;
-}
-
-.lines6 {
-  width: 68.82px;
-  height: 68.82px;
-  position: absolute;
-  left: -1.41px;
-  top: 0px;
-  overflow: visible;
-}
-
-.group-10000058366 {
-  width: 30.8px;
-  height: 30.8px;
-  position: absolute;
-  left: 17.6px;
-  top: 17.81px;
-  overflow: visible;
-}
-
-.arrow-rigth6 {
-  height: auto;
-  position: absolute;
-  right: 15%;
-  left: 15%;
-  width: 70%;
-  bottom: 15.67%;
-  top: 15.67%;
-  height: 68.65%;
-  transform: translate(-0.75px, -0.75px);
-  overflow: visible;
-}
-
-.lines7 {
-  width: 68.82px;
-  height: 68.82px;
-  position: absolute;
-  left: -1.41px;
-  top: 0px;
-  overflow: visible;
-}
-
-.group-10000058367 {
-  width: 30.8px;
-  height: 30.8px;
-  position: absolute;
-  left: 17.6px;
-  top: 17.81px;
-  overflow: visible;
-}
-
-.arrow-rigth7 {
-  height: auto;
-  position: absolute;
-  right: 15%;
-  left: 15%;
-  width: 70%;
-  bottom: 15.67%;
-  top: 15.67%;
-  height: 68.65%;
-  transform: translate(-0.75px, -0.75px);
-  overflow: visible;
-}
-
-
 /* FOOTER */
 .footer-v-4,
 .footer-v-4 * {
@@ -784,33 +595,6 @@
   position: relative;
   overflow: hidden;
 }
-
-.logo-full-dark {
-  display: flex;
-  flex-direction: row;
-  gap: 5.62px;
-  align-items: center;
-  justify-content: flex-end;
-  flex-shrink: 0;
-  position: relative;
-}
-
-.group-1 {
-  flex-shrink: 0;
-  width: 27.42px;
-  height: 28px;
-  position: relative;
-  overflow: visible;
-}
-
-.brix {
-  flex-shrink: 0;
-  width: 61.66px;
-  height: 25.31px;
-  position: relative;
-  overflow: visible;
-}
-
 
 /* RESULTADOS */
 .card-v-10 {
@@ -915,7 +699,11 @@
   flex-shrink: 0;
   position: relative;
 }
-
+.logos-wrapper img {
+  max-width: 6em;
+  margin-right: 30px;
+  filter: grayscale(100%);
+}
 .logo {
   flex-shrink: 0;
   width: 96.77px;
@@ -971,4 +759,56 @@
 .image-bg2 img {
   max-width: 100%;
   height: auto;
+}
+/* Container */
+button {
+  border: none;
+  cursor: pointer;
+  color: white;
+  background: none;
+  transition: all 0.3s ease-in-out;
+}
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+.carousel-view {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.25s ease-in;
+}
+.carousel-view .item-list {
+  max-width: 1800px;
+  width: 90vw;
+  padding: 50px 10px;
+  display: flex;
+  gap: 48px;
+  scroll-behavior: smooth;
+  transition: all 0.25s ease-in;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+}
+.item-list::-webkit-scrollbar {
+  display: none;
+}
+.prev-btn {
+  background: none;
+  cursor: pointer;
+}
+.next-btn {
+  cursor: pointer;
+}
+.item {
+  scroll-snap-align: center;
+  min-width: 120px;
+  height: 120px;
+  background-color: deeppink;
+  border-radius: 8px;
 }

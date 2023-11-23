@@ -15,10 +15,10 @@ def read_json(filename, path):
 
 def home(request):
     latest_news = News.objects.order_by('-date_published').first()
-    recent_news = News.objects.order_by('-date_published')[1:5]
+    recent_news = News.objects.order_by('-date_published')[1:21]
     negative_news = News.objects.filter(sentiment='Negativo')[:4]
     positive_news = News.objects.filter(sentiment='Positivo')[:4]
-    neutral_news = News.objects.filter(sentiment='Neutro')[:4]
+    neutral_news = News.objects.filter(sentiment='Neutro')[:20]
 
     context = {
         'latest_news': latest_news,
