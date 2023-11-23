@@ -643,6 +643,11 @@
   flex-shrink: 0;
   position: relative;
 }
+.logos-wrapper img {
+  max-width: 6em;
+  margin-right: 30px;
+  filter: grayscale(100%);
+}
 .logo {
   flex-shrink: 0;
   width: 96.77px;
