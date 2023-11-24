@@ -150,7 +150,6 @@
   justify-content: flex-start;
   flex-shrink: 0;
   position: relative;
-  max-width: 70vw;
 }
 
 .title {
@@ -165,6 +164,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  max-width: 70vw;
 }
 
 .spacer {
