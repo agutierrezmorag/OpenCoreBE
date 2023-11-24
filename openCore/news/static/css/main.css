@@ -651,10 +651,3 @@ button {
 .item-list::-webkit-scrollbar {
   display: none;
 }
-.prev-btn {
-  background: none;
-  cursor: pointer;
-}
-.next-btn {
-  cursor: pointer;
-}
