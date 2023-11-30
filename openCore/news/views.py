@@ -36,14 +36,14 @@ def search(request):
     data = read_json('index_historical.json', path_to_json)
 
     total_articles = len(data[0]['importance_scores'])
-    
+
     idf_values = {word_data['word']: log(1 + (total_articles / word_data['frequency_global'])) for word_data in data}
-    
+
     for word_data in data:
         for score in word_data['importance_scores']:
             article_frequency = score['frequency']
             article_word_count = score['article_info']['word_count']
-            
+
             tf = article_frequency / article_word_count
             idf = idf_values[word_data['word']]
             tf_idf = tf * idf
@@ -51,7 +51,7 @@ def search(request):
 
     for word_data in data:
         word_data['importance_scores'] = sorted(word_data['importance_scores'], key=lambda x: x['tf_idf'], reverse=True)
-    
+
     query = request.POST.get('query', '')
     query_words = query.split()
 
@@ -60,8 +60,10 @@ def search(request):
         for word_tfidf in data:
             if query_word == word_tfidf['word']:
                 word_scores[query_word].extend(score['article_info']['article_id'] for score in word_tfidf['importance_scores'])
-    
+
     article_ids = [article_id for article_ids in word_scores.values() for article_id in article_ids]
     search_results = News.objects.filter(id__in=article_ids)
-    
-    return render(request, 'results.html', {'search_results': search_results})
+
+    total_results = len(search_results)
+
+    return render(request, 'results.html', {'search_results': search_results, 'total_results': total_results})

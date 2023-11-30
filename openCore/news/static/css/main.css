@@ -656,3 +656,63 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+/*
+.spacer5 {
+  opacity: 50;
+  flex-shrink: 0;
+  width: 30px;
+  height: 24px;
+  position: relative;
+}
+.text5 {
+  color: var(--neutralcolors-600, #6d758f);
+  text-align: center;
+  font: var(
+    --display-1-uppercase-semi-bold,
+    600 15px/18px "Inter-SemiBold",
+    sans-serif
+  );
+  text-transform: uppercase;
+  position: absolute;
+  right: 12.5%;
+  left: 5.67%;
+  width: 70.83%;
+  bottom: 33.33%;
+  top: 18.17%;
+  height: 37.5%;
+}
+*/
+.spacer5 {
+  opacity: 50;
+  flex-shrink: 0;
+  width: fit-content; /* or you can use "max-content" based on your needs */
+  height: 24px;
+  position: relative;
+  display: flex; /* For vertically aligning content */
+  align-items: center; /* To center the content vertically */
+}
+
+._5-px {
+  background: var(--neutralcolors-300, #f1f3f7);
+  border-style: solid;
+  border-color: var(--neutralcolors-600, #6d758f);
+  border-width: 1px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  top: 0;
+  height: 100%;
+}
+
+.text5 {
+  color: var(--neutralcolors-600, #6d758f);
+  text-align: center;
+  font: var(--display-1-uppercase-semi-bold, 600 15px/18px "Inter-SemiBold", sans-serif);
+  z-index: 1; /* Ensure the text is rendered above the background */
+  position: relative; /* Adjust the position property */
+}
+
+
