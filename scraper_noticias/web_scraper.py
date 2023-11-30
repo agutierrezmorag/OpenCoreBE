@@ -3,7 +3,7 @@ import re
 import datetime
 import requests
 from bs4 import BeautifulSoup
-from scraper_noticias.utils import link_compare, clean_html, check_in_links_inside
+from scraper_noticias.utils import link_compare, clean_html, check_in_links_inside, fix_encoding
 from scraper_noticias.selectors import tags, links, title_selector, content_selector, image_selector, links_inside
 
 def fetch_webpage(url):
@@ -311,8 +311,8 @@ def news_collector(html, depth, website):
                 news_content = extract_news_content(opened_container, website)
                 news_list.append({
                     'website': website.split('.')[0],
-                    'title': news_title,
-                    'content': news_content,
+                    'title': fix_encoding(news_title),
+                    'content': fix_encoding(news_content),
                     'image_url': news_image_url,
                     'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                     'link': link,

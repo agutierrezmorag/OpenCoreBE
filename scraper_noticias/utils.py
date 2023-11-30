@@ -1,6 +1,7 @@
 from urllib.parse import urlparse, urljoin
 from scraper_noticias.selectors import links_inside,links
 from bs4 import BeautifulSoup
+import ftfy
 
 def link_compare(website_link, new_link):
     '''
@@ -68,3 +69,9 @@ def clean_html(html):
             script.extract()
         return soup.prettify()
     return None
+
+def fix_encoding(text):
+    '''
+    Esta función recibe un string y retorna el mismo string pero con los caracteres codificados correctamente
+    '''
+    return ftfy.fix_text(text)
