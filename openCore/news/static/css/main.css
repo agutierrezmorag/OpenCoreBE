@@ -651,3 +651,8 @@ button {
 .item-list::-webkit-scrollbar {
   display: none;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
