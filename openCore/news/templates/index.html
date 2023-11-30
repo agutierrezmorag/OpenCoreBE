@@ -29,15 +29,17 @@
         </div>
         <div class="card-date">{{ latest_news.date_published|date:"j \d\e F, Y" }}</div>
         <div class="image-container">
-          <img src="{% static 'img/source_logos/' %}{{ latest_news.website }}.png" alt="{{ latest_news.website }}"
+          <a href="{{ latest_news.link }}">
+            <img src="{% static 'img/source_logos/' %}{{ latest_news.website }}.png" alt="{{ latest_news.website }}"
             class="small-image">
+          </a>
         </div>
       </div>
       <div class="spacer3">
         <div class="_4-px"></div>
         <div class="text3">32</div>
       </div>
-      <div class="article-title">{{ latest_news.title }}</div>
+      <div class="article-title"><a href="{{ latest_news.link }}">{{ latest_news.title }}</a></div>
       <div class="spacer">
         <div class="_4-px"></div>
         <div class="text">24</div>
@@ -85,7 +87,9 @@
         <div class="master-content-card">
           <div class="image-replace">
             <div class="image-bg">
-              <img src="{{ news.img_url }}" alt="{{ news.title }}" />
+              <a href="{{ news.link }}">
+                <img src="{{ news.img_url }}" alt="{{ news.title }}" />
+              </a>
             </div>
           </div>
           <div class="card-text-content">
@@ -105,7 +109,9 @@
               <div class="_4-px"></div>
               <div class="text">24</div>
             </div>
-            <div class="heading">{{ news.title|encode_decode}}</div>
+            <div class="heading">
+              <a href="{{ news.link }}">{{ news.title|encode_decode}}</a>
+            </div>
             <div class="spacer3">
               <div class="_4-px"></div>
               <div class="text3">32</div>
@@ -150,7 +156,9 @@
       <div class="master-content-card">
         <div class="image-replace">
           <div class="image-bg">
-            <img src="{{ news.img_url }}" alt="{{ news.title }}" />
+            <a href="{{ news.link }}">
+              <img src="{{ news.img_url }}" alt="{{ news.title }}" />
+            </a>
           </div>
         </div>
         <div class="card-text-content">
@@ -170,7 +178,9 @@
             <div class="_4-px"></div>
             <div class="text">24</div>
           </div>
-          <div class="heading">{{ news.title|encode_decode}}</div>
+          <div class="heading">
+            <a href=""{{ news.link }}>{{ news.title|encode_decode}}</a>
+          </div>
           <div class="spacer3">
             <div class="_4-px"></div>
             <div class="text3">32</div>
