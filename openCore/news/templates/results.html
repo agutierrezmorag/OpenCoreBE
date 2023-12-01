@@ -11,9 +11,9 @@ Busqueda
 <div class="content-cards-v-16">
   <div class="headings">
     <div class="title">Resultados encontrados</div>
-    <div class="spacer">
-      <div class="_4-px"></div>
-      <div class="text">24</div>
+    <div class="spacer5">
+      <div class="_5-px"></div>
+      <div class="text5">({{ total_results }})</div>
     </div>
   </div>
   <div class="spacer2">
@@ -42,7 +42,7 @@ Busqueda
         </div>
         <div class="spacer">
           <div class="_4-px"></div>
-          <div class="text">24</div>
+          <div class="text">{{ total_results }}</div>
         </div>
         <div class="heading">{{ news.title|encode_decode}}</div>
         <div class="spacer3">
@@ -62,7 +62,7 @@ Busqueda
           </div>
         </div>
       </div>
-      
+
     </div>
 
     {% if forloop.counter|divisibleby:3 %}
@@ -72,7 +72,7 @@ Busqueda
 </div>
   <div class="spacer">
     <div class="_4-px"></div>
-    <div class="text">24</div>
+    <div class="text">{{ total_results }}</div>
   </div>
 </div>
 
