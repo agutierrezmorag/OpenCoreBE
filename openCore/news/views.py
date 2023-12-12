@@ -6,7 +6,6 @@ from .models import News
 import json
 import os
 
-
 def read_json(filename, path):
     file_path = os.path.join(path, filename)
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -60,7 +59,6 @@ def search(request):
                 tf_idf = tf * idf
                 score['tf_idf'] = tf_idf
 
-        for word_data in data:
             word_data['importance_scores'] = sorted(word_data['importance_scores'], key=lambda x: x['tf_idf'], reverse=True)
         
         cache.set('search_data', data, timeout=3600)
@@ -68,19 +66,19 @@ def search(request):
     query = request.POST.get('query', '')
     query_words = set(query.lower().split())
 
-    # Crear conjuntos de palabras en los datos de TF-IDF
     tfidf_words = {word_data['word'] for word_data in data}
 
-    # Encontrar la intersección de conjuntos para obtener palabras relevantes
     relevant_words = query_words.intersection(tfidf_words)
 
     word_scores = defaultdict(list)
     for word_tfidf in data:
         if word_tfidf['word'] in relevant_words:
-            word_scores[word_tfidf['word']].extend(score['article_info']['article_id'] for score in word_tfidf['importance_scores'])
+            importance_scores = word_tfidf['importance_scores']
+            word_scores[word_tfidf['word']].extend(score['article_info']['article_id'] for score in importance_scores)
 
-    article_ids = set(article_id for article_ids in word_scores.values() for article_id in article_ids)
-    search_results = News.objects.filter(id__in=article_ids).distinct()
+    article_ids = set(article_id for ids in word_scores.values() for article_id in ids)
+
+    search_results = News.objects.filter(id__in=article_ids)
 
     total_results = len(search_results)
 
