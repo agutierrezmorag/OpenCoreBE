@@ -25,7 +25,7 @@ Busqueda
     <div class="master-content-card2">
       <div class="image-replace2">
         <div class="image-bg2">
-          <img src="{{ news.img_url }}" alt="{{ news.title }}" />
+          <img src="{% if news.img_url is not None %}{{ news.img_url }}{% else %}{% endif %}" alt="{{ news.title }}" loading="lazy"/>
         </div>
       </div>
       <div class="card-text-content">
