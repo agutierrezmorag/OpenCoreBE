@@ -9,6 +9,50 @@
     <div class="_4-px"></div>
     <div class="text">24</div>
   </div>
+  <form action="{% url 'query_results' %}" method="post">
+          {% csrf_token %}
+          <div class="input-text">
+            <div class="placeholder-wrapper">
+              <div class="placeholder">
+                <input
+                  type="text"
+                  name="query"
+                  placeholder="Buscar..."
+                  required
+                />
+              </div>
+            </div>
+            <button type="submit">
+              <svg
+                class="line-rounded-search"
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_6_2489)">
+                  <path
+                    d="M11.1 11.0999L8.4621 8.46198M0.900024 5.29646C0.900024 2.86831 2.86843 0.899902 5.29658 0.899902C7.72474 0.899902 9.69313 2.86831 9.69313 5.29646C9.69313 7.72462 7.72474 9.69301 5.29658 9.69301C2.86843 9.69301 0.900024 7.72462 0.900024 5.29646Z"
+                    stroke="#6D758F"
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_6_2489">
+                    <rect width="12" height="12" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </button>
+          </div>
+        </form>
+  <div class="spacer">
+    <div class="_4-px"></div>
+    <div class="text">24</div>
+  </div>
 </div>
 <div class="spacer2">
   <div class="_4-px"></div>
@@ -18,7 +62,7 @@
 {% if latest_news %}
 
 <div class="image-wrapper">
-  <img src="{{ latest_news.img_url }}" alt="{{ latest_news.title }}" />
+  <img src="{% if latest_news.img_url is not None %} {{ latest_news.img_url }} {% endif %}" alt="{{ latest_news.title }}" />
   <div class="frame-38620">
     <div class="text-content">
       <div class="date-category">
@@ -88,7 +132,7 @@
           <div class="image-replace">
             <div class="image-bg">
               <a href="{{ news.link }}">
-                <img src="{{ news.img_url }}" alt="{{ news.title }}" />
+                <img src="{% if news.img_url is not None %} {{ news.img_url }} {% endif %}" alt="{{ news.title }}" />
               </a>
             </div>
           </div>
@@ -157,7 +201,7 @@
         <div class="image-replace">
           <div class="image-bg">
             <a href="{{ news.link }}">
-              <img src="{{ news.img_url }}" alt="{{ news.title }}" />
+              <img src="{% if news.img_url is not None %} {{ news.img_url }} {% endif %}" alt="{{ news.title }}" />
             </a>
           </div>
         </div>
