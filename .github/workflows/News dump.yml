@@ -35,7 +35,7 @@ jobs:
 
       - name: Do analysis
         run: |
-          cd OpenCore
+          cd openCore
           python analisisSentimiento.py
 
       - name: Dump data
