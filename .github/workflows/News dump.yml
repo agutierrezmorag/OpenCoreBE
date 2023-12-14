@@ -28,9 +28,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt  
+          pip install -r requirements.txt
+          
       - name: Run scraper
         run: python main.py
+
+      - name: Do analysis
+        run: |
+          cd OpenCore
+          python analisisSentimiento.py
 
       - name: Dump data
         run: |
