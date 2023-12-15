@@ -27,11 +27,11 @@ def valorar(etiqueta_estrellas):
     
 def determinarValor(valor):
     if valor == 1:
-        return "NEGATIVE"
+        return "Negativo"
     elif valor == 4 or valor == 5:
-        return "POSITIVE"
+        return "Positivo"
     else:
-        return "NEUTRAL"
+        return "Neutro"
 
 def main():
     with open('newsdb.json', 'r', encoding='utf-8') as file:
