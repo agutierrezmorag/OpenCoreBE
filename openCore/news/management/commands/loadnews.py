@@ -32,6 +32,7 @@ class Command(BaseCommand):
                         website=item['website'],
                         link=item['link'],
                         img_url=item['image_url'],
+                        sentiment=item['sentiment'],
                     )
                     news_item.save()
 
