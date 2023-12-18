@@ -293,7 +293,6 @@
   position: relative;
   overflow: hidden;
 }
-
 .badge-positive {
   background: var(--positivecolors-600, #2dc628); 
 }
