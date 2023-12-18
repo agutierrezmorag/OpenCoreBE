@@ -282,7 +282,6 @@
   position: relative;
 }
 .badge {
-  background: var(--neutralcolors-600, #6d758f);
   border-radius: 3px;
   padding: 10px;
   display: flex;
@@ -293,6 +292,18 @@
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
+}
+
+.badge-positive {
+  background: var(--positivecolors-600, #2dc628); 
+}
+
+.badge-negative {
+  background: var(--negativecolors-600, #c62828);
+}
+
+.badge-neutral {
+  background: var(--neutralcolors-600, #6d758f);
 }
 .card-title {
   color: var(--neutralcolors-100, #ffffff);
