@@ -7,11 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
     <link rel="stylesheet" href="{% static 'css/vars.css' %}" />
-    <link
-      rel="icon"
-      href="{% static 'img/favicon.ico' %}"
-      type="image/x-icon"
-    />
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
 
     <style>
       a,
@@ -30,11 +26,15 @@
         text-decoration: none;
         appearance: none;
         background: none;
-
+      
         -webkit-font-smoothing: antialiased;
       }
     </style>
-    <title>{% block title %}openCore{% endblock %}</title>
+    <title>
+      {% block title %}
+        openCore
+      {% endblock %}
+    </title>
   </head>
   <body>
     <div class="header-v-19">
@@ -42,11 +42,7 @@
         <div class="logo-full-dark">
           <a href="{% url 'home' %}">
             <div class="logo-full-dark">
-              <img
-                src="{% static 'img/logo.png' %}"
-                style="max-width: 300px"
-                alt="Your Logo Alt Text"
-              />
+              <img src="{% static 'img/logo.png' %}" style="max-width: 300px" alt="Your Logo Alt Text" />
             </div>
           </a>
         </div>
@@ -60,7 +56,7 @@
         </div>
       </div>
       <div class="header-right">
-        <!--<form action="{% url 'query_results' %}" method="post">
+        <!--  <form action="{% url 'query_results' %}" method="post">
           {% csrf_token %}
           <div class="input-text">
             <div class="placeholder-wrapper">
@@ -99,17 +95,15 @@
               </svg>
             </button>
           </div>
-        </form>-->
+        </form>  -->
       </div>
     </div>
-    <div class="blog-cards-v-8">
-      <div class="grid">{% block content %} {% endblock %}</div>
-    </div>
+    {% block content %}
+
+    {% endblock %}
     <div class="footer-v-4">
       <div class="logo-full-dark">
-        <a href="{% url 'home' %}">
-          <img src="{% static 'img/logo.png' %}" style="max-width: 300px" />
-        </a>
+        <a href="{% url 'stats' %}"><img src="{% static 'img/logo.png' %}" style="max-width: 300px" /></a>
       </div>
     </div>
     <script src="{% static 'js/main.js' %}"></script>
