@@ -1,237 +1,102 @@
 {% extends 'base.html' %} {% load static %} {% block content %} {% block news %}
 {% load encode_decode %}
 
-<div class="headings">
-  <div class="title">
-    Revelamos la verdad en cada palabra, tu fuente confiable para información sin filtros.
-  </div>
-  <div class="spacer">
-    <div class="_4-px"></div>
-    <div class="text">24</div>
-  </div>
-  <form action="{% url 'query_results' %}" method="post">
-          {% csrf_token %}
-          <div class="input-text">
-            <div class="placeholder-wrapper">
-              <div class="placeholder">
-                <input
-                  type="text"
-                  name="query"
-                  placeholder="Buscar..."
-                  required
-                />
-              </div>
-            </div>
-            <button type="submit">
-              <svg
-                class="line-rounded-search"
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_6_2489)">
-                  <path
-                    d="M11.1 11.0999L8.4621 8.46198M0.900024 5.29646C0.900024 2.86831 2.86843 0.899902 5.29658 0.899902C7.72474 0.899902 9.69313 2.86831 9.69313 5.29646C9.69313 7.72462 7.72474 9.69301 5.29658 9.69301C2.86843 9.69301 0.900024 7.72462 0.900024 5.29646Z"
-                    stroke="#6D758F"
-                    stroke-width="1.2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_6_2489">
-                    <rect width="12" height="12" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </button>
-          </div>
-        </form>
-  <div class="spacer">
-    <div class="_4-px"></div>
-    <div class="text">24</div>
-  </div>
-</div>
-<div class="spacer2">
-  <div class="_4-px"></div>
-  <div class="text2">40</div>
-</div>
-
-{% if latest_news %}
-
-<div class="image-wrapper">
-  <img src="{{ latest_news.img_url }}" alt="{{ latest_news.title }}" />
-  <div class="frame-38620">
-    <div class="text-content">
-      <div class="date-category">
-        <div class="badge">
-          <div class="badge-text">
-            <div class="card-title">{{ latest_news.sentiment }}</div>
-          </div>
-        </div>
-        <div class="card-date">{{ latest_news.date_published|date:"j \d\e F, Y" }}</div>
-        <div class="image-container">
-          <a href="{{ latest_news.link }}">
-            <img src="{% static 'img/source_logos/' %}{{ latest_news.website }}.png" alt="{{ latest_news.website }}"
-            class="small-image">
-          </a>
-        </div>
+<div class="blog-cards-v-8">
+      <div class="grid">
+    <div class="headings">
+      <div class="title">
+        Revelamos la verdad en cada palabra, tu fuente confiable para información sin filtros.
       </div>
-      <div class="spacer3">
-        <div class="_4-px"></div>
-        <div class="text3">32</div>
-      </div>
-      <div class="article-title"><a href="{{ latest_news.link }}">{{ latest_news.title }}</a></div>
       <div class="spacer">
         <div class="_4-px"></div>
         <div class="text">24</div>
       </div>
-      <div class="spacer2">
-        <div class="_4-px"></div>
-        <div class="text2">40</div>
-      </div>
-      <div class="link">
-        <a href="{{ latest_news.link }}" class="link-item">Leer más
-          <div class="line-rounded-arrow-rigth">
-            <svg class="arrow-right" width="20" height="20" viewBox="0 0 20 20" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 10H15" stroke="#6D758F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M10 15L15 10L10 5" stroke="#6D758F" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-{% endif %}
-
-<div class="spacer4">
-  <div class="_4-px"></div>
-  <div class="text4">56px</div>
-</div>
-<div class="feed">
-  <div class="top">
-    <div class="heading-h-2">Noticias recientes</div>
-    <div class="grid3"></div>
-  </div>
-  <div class="container">
-    <div class="carousel-view">
-      <button id="prev-btn-recent" class="prev-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
-          <path d="M10.605 12.727 5.656 7.776l4.949-4.948L7.777 0 0 7.776l7.777 7.779 2.828-2.828z" />
-        </svg>
-      </button>
-      <div id="item-list-recent" class="item-list">
-        {% for news in recent_news %}
-        <div class="master-content-card">
-          <div class="image-replace">
-            <div class="image-bg">
-              <a href="{{ news.link }}">
-                <img src="{{ news.img_url }}" alt="{{ news.title }}" />
-              </a>
-            </div>
-          </div>
-          <div class="card-text-content">
-            <div class="date-category">
-              <div class="badge">
-                <div class="badge-text">
-                  <div class="card-title">{{ news.sentiment }}</div>
+      <form action="{% url 'query_results' %}" method="post">
+              {% csrf_token %}
+              <div class="input-text">
+                <div class="placeholder-wrapper">
+                  <div class="placeholder">
+                    <input
+                      type="text"
+                      name="query"
+                      placeholder="Buscar..."
+                      required
+                    />
+                  </div>
                 </div>
-              </div>
-              <div class="card-date2">{{ news.date_published|date:"j \d\e F, Y" }}</div>
-              <div class="image-container">
-                <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}"
-                  class="small-image">
-              </div>
-            </div>
-            <div class="spacer">
-              <div class="_4-px"></div>
-              <div class="text">24</div>
-            </div>
-            <div class="heading">
-              <a href="{{ news.link }}">{{ news.title|encode_decode}}</a>
-            </div>
-            <div class="spacer3">
-              <div class="_4-px"></div>
-              <div class="text3">32</div>
-            </div>
-            <div class="link">
-              <a href="{{ news.link }}" class="link-item">Leer más
-                <div class="line-rounded-arrow-right">
-                  <svg class="arrow-right" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 10H15" stroke="#6D758F" stroke-width="2" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                    <path d="M10 15L15 10L10 5" stroke="#6D758F" stroke-width="2" stroke-linecap="round"
-                      stroke-linejoin="round" />
+                <button type="submit">
+                  <svg
+                    class="line-rounded-search"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g clip-path="url(#clip0_6_2489)">
+                      <path
+                        d="M11.1 11.0999L8.4621 8.46198M0.900024 5.29646C0.900024 2.86831 2.86843 0.899902 5.29658 0.899902C7.72474 0.899902 9.69313 2.86831 9.69313 5.29646C9.69313 7.72462 7.72474 9.69301 5.29658 9.69301C2.86843 9.69301 0.900024 7.72462 0.900024 5.29646Z"
+                        stroke="#6D758F"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_6_2489">
+                        <rect width="12" height="12" fill="white" />
+                      </clipPath>
+                    </defs>
                   </svg>
+                </button>
+              </div>
+            </form>
+      <div class="spacer">
+        <div class="_4-px"></div>
+        <div class="text">24</div>
+      </div>
+    </div>
+    <div class="spacer2">
+      <div class="_4-px"></div>
+      <div class="text2">40</div>
+    </div>
+
+    {% if latest_news %}
+
+    <div class="image-wrapper">
+      <img src="{% if latest_news.img_url is not None %} {{ latest_news.img_url }} {% endif %}" alt="{{ latest_news.title }}" />
+      <div class="frame-38620">
+        <div class="text-content">
+          <div class="date-category">
+            <div class="badge {% if latest_news.sentiment == 'Positivo' %}badge-positive{% elif latest_news.sentiment == 'Negativo' %}badge-negative{% else %}badge-neutral{% endif %}">
+              <div class="badge-text">
+                <div class="card-title">{{ latest_news.sentiment }}</div>
+              </div>
+            </div>
+            <div class="card-date">{{ latest_news.date_published|date:"j \d\e F, Y" }}</div>
+            <div class="image-container">
+              <a href="{{ latest_news.link }}">
+                <img src="{% static 'img/source_logos/' %}{{ latest_news.website }}.png" alt="{{ latest_news.website }}"
+                class="small-image">
               </a>
             </div>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-    <button id="next-btn-recent" class="next-btn">
-      <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
-        <path d="m2.828 15.555 7.777-7.779L2.828 0 0 2.828l4.949 4.948L0 12.727l2.828 2.828z" />
-      </svg>
-    </button>
-  </div>
-</div>
-<div class="top">
-  <div class="heading-h-2">Noticias neutras</div>
-  <div class="grid3"></div>
-</div>
-<div class="container">
-  <div class="carousel-view">
-    <button id="prev-btn-neutral" class="prev-btn">
-      <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
-        <path d="M10.605 12.727 5.656 7.776l4.949-4.948L7.777 0 0 7.776l7.777 7.779 2.828-2.828z" />
-      </svg>
-    </button>
-    <div id="item-list-neutral" class="item-list">
-      {% for news in neutral_news %}
-      <div class="master-content-card">
-        <div class="image-replace">
-          <div class="image-bg">
-            <a href="{{ news.link }}">
-              <img src="{{ news.img_url }}" alt="{{ news.title }}" />
-            </a>
-          </div>
-        </div>
-        <div class="card-text-content">
-          <div class="date-category">
-            <div class="badge">
-              <div class="badge-text">
-                <div class="card-title">{{ news.sentiment }}</div>
-              </div>
-            </div>
-            <div class="card-date2">{{ news.date_published|date:"j \d\e F, Y" }}</div>
-            <div class="image-container">
-              <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}"
-                class="small-image">
-            </div>
-          </div>
-          <div class="spacer">
-            <div class="_4-px"></div>
-            <div class="text">24</div>
-          </div>
-          <div class="heading">
-            <a href=""{{ news.link }}>{{ news.title|encode_decode}}</a>
           </div>
           <div class="spacer3">
             <div class="_4-px"></div>
             <div class="text3">32</div>
           </div>
+          <div class="article-title"><a href="{{ latest_news.link }}">{{ latest_news.title }}</a></div>
+          <div class="spacer">
+            <div class="_4-px"></div>
+            <div class="text">24</div>
+          </div>
+          <div class="spacer2">
+            <div class="_4-px"></div>
+            <div class="text2">40</div>
+          </div>
           <div class="link">
-            <a href="{{ news.link }}" class="link-item">Leer más
-              <div class="line-rounded-arrow-right">
+            <a href="{{ latest_news.link }}" class="link-item">Leer más
+              <div class="line-rounded-arrow-rigth">
                 <svg class="arrow-right" width="20" height="20" viewBox="0 0 20 20" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path d="M5 10H15" stroke="#6D758F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -243,48 +108,187 @@
         </div>
       </div>
     </div>
-    {% endfor %}
-  </div>
-  <button id="next-btn-neutral" class="next-btn">
-    <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
-      <path d="m2.828 15.555 7.777-7.779L2.828 0 0 2.828l4.949 4.948L0 12.727l2.828 2.828z" />
-    </svg>
-  </button>
-</div>
-</div>
-<div class="spacer2">
-  <div class="_4-px"></div>
-  <div class="text2">40</div>
-</div>
-</div>
+    </div>
 
-<div class="logo-strip-v-3">
-  <div class="sub-title">Nuestras fuentes</div>
-  <div class="logos-wrapper">
-    <a href="https://www.adnradio.cl/">
-      <img src="{% static 'img/source_logos/adn.png' %}" alt="ADN">
-    </a>
-    <a href="https://www.chilevision.cl/">
-      <img src="{% static 'img/source_logos/chvn.png' %}" alt="Chilevision">
-    </a>
-    <a href="https://www.cnnchile.com/">
-      <img src="{% static 'img/source_logos/cnn.png' %}" alt="CNN">
-    </a>
-    <a href="https://www.eldinamo.cl/">
-      <img src="{% static 'img/source_logos/dinamo.png' %}" alt="El dinamo">
-    </a>
-    <a href="https://www.elmostrador.cl/">
-      <img src="{% static 'img/source_logos/elmostrador.png' %}" alt="El mostrador">
-    </a>
-    <a href="https://www.latercera.com/">
-      <img src="{% static 'img/source_logos/latercera.png' %}" alt="La tercera">
-    </a>
-    <a href="https://www.meganoticias.cl/">
-      <img src="{% static 'img/source_logos/meganoticias.png' %}" alt="Mega">
-    </a>
-    <a href="https://www.t13.cl/">
-      <img src="{% static 'img/source_logos/t13.png' %}" alt="T13">
-    </a>
+    {% endif %}
+
+    <div class="spacer4">
+      <div class="_4-px"></div>
+      <div class="text4">56px</div>
+    </div>
+    <div class="feed">
+      <div class="top">
+        <div class="heading-h-2">Noticias recientes</div>
+        <div class="grid3"></div>
+      </div>
+      <div class="container">
+        <div class="carousel-view">
+          <button id="prev-btn-recent" class="prev-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
+              <path d="M10.605 12.727 5.656 7.776l4.949-4.948L7.777 0 0 7.776l7.777 7.779 2.828-2.828z" />
+            </svg>
+          </button>
+          <div id="item-list-recent" class="item-list">
+            {% for news in recent_news %}
+            <div class="master-content-card">
+              <div class="image-replace">
+                <div class="image-bg">
+                  <a href="{{ news.link }}">
+                    <img src="{% if news.img_url is not None %} {{ news.img_url }} {% endif %}" alt="{{ news.title }}" />
+                  </a>
+                </div>
+              </div>
+              <div class="card-text-content">
+                <div class="date-category">
+                  <div class="badge {% if news.sentiment == 'Positivo' %}badge-positive{% elif news.sentiment == 'Negativo' %}badge-negative{% else %}badge-neutral{% endif %}">
+                    <div class="badge-text">
+                      <div class="card-title">{{ news.sentiment }}</div>
+                    </div>
+                  </div>
+                  <div class="card-date2">{{ news.date_published|date:"j \d\e F, Y" }}</div>
+                  <div class="image-container">
+                    <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}"
+                      class="small-image">
+                  </div>
+                </div>
+                <div class="spacer">
+                  <div class="_4-px"></div>
+                  <div class="text">24</div>
+                </div>
+                <div class="heading">
+                  <a href="{{ news.link }}">{{ news.title|encode_decode}}</a>
+                </div>
+                <div class="spacer3">
+                  <div class="_4-px"></div>
+                  <div class="text3">32</div>
+                </div>
+                <div class="link">
+                  <a href="{{ news.link }}" class="link-item">Leer más
+                    <div class="line-rounded-arrow-right">
+                      <svg class="arrow-right" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 10H15" stroke="#6D758F" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                        <path d="M10 15L15 10L10 5" stroke="#6D758F" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                      </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <button id="next-btn-recent" class="next-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
+            <path d="m2.828 15.555 7.777-7.779L2.828 0 0 2.828l4.949 4.948L0 12.727l2.828 2.828z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="top">
+      <div class="heading-h-2">Noticias neutras</div>
+      <div class="grid3"></div>
+    </div>
+    <div class="container">
+      <div class="carousel-view">
+        <button id="prev-btn-neutral" class="prev-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
+            <path d="M10.605 12.727 5.656 7.776l4.949-4.948L7.777 0 0 7.776l7.777 7.779 2.828-2.828z" />
+          </svg>
+        </button>
+        <div id="item-list-neutral" class="item-list">
+          {% for news in neutral_news %}
+          <div class="master-content-card">
+            <div class="image-replace">
+              <div class="image-bg">
+                <a href="{{ news.link }}">
+                  <img src="{% if news.img_url is not None %} {{ news.img_url }} {% endif %}" alt="{{ news.title }}" />
+                </a>
+              </div>
+            </div>
+            <div class="card-text-content">
+              <div class="date-category">
+                <div class="badge {% if news.sentiment == 'Positivo' %}badge-positive{% elif news.sentiment == 'Negativo' %}badge-negative{% else %}badge-neutral{% endif %}">
+                  <div class="badge-text">
+                    <div class="card-title">{{ news.sentiment }}</div>
+                  </div>
+                </div>
+                <div class="card-date2">{{ news.date_published|date:"j \d\e F, Y" }}</div>
+                <div class="image-container">
+                  <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}"
+                    class="small-image">
+                </div>
+              </div>
+              <div class="spacer">
+                <div class="_4-px"></div>
+                <div class="text">24</div>
+              </div>
+              <div class="heading">
+                <a href=""{{ news.link }}>{{ news.title|encode_decode}}</a>
+              </div>
+              <div class="spacer3">
+                <div class="_4-px"></div>
+                <div class="text3">32</div>
+              </div>
+              <div class="link">
+                <a href="{{ news.link }}" class="link-item">Leer más
+                  <div class="line-rounded-arrow-right">
+                    <svg class="arrow-right" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 10H15" stroke="#6D758F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      <path d="M10 15L15 10L10 5" stroke="#6D758F" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <button id="next-btn-neutral" class="next-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
+          <path d="m2.828 15.555 7.777-7.779L2.828 0 0 2.828l4.949 4.948L0 12.727l2.828 2.828z" />
+        </svg>
+      </button>
+    </div>
+    </div>
+    <div class="spacer2">
+      <div class="_4-px"></div>
+      <div class="text2">40</div>
+    </div>
+    </div>
+
+    <div class="logo-strip-v-3">
+      <div class="sub-title">Nuestras fuentes</div>
+      <div class="logos-wrapper">
+        <a href="https://www.adnradio.cl/">
+          <img src="{% static 'img/source_logos/adn.png' %}" alt="ADN">
+        </a>
+        <a href="https://www.chilevision.cl/">
+          <img src="{% static 'img/source_logos/chvn.png' %}" alt="Chilevision">
+        </a>
+        <a href="https://www.cnnchile.com/">
+          <img src="{% static 'img/source_logos/cnn.png' %}" alt="CNN">
+        </a>
+        <a href="https://www.eldinamo.cl/">
+          <img src="{% static 'img/source_logos/dinamo.png' %}" alt="El dinamo">
+        </a>
+        <a href="https://www.elmostrador.cl/">
+          <img src="{% static 'img/source_logos/elmostrador.png' %}" alt="El mostrador">
+        </a>
+        <a href="https://www.latercera.com/">
+          <img src="{% static 'img/source_logos/latercera.png' %}" alt="La tercera">
+        </a>
+        <a href="https://www.meganoticias.cl/">
+          <img src="{% static 'img/source_logos/meganoticias.png' %}" alt="Mega">
+        </a>
+        <a href="https://www.t13.cl/">
+          <img src="{% static 'img/source_logos/t13.png' %}" alt="T13">
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 

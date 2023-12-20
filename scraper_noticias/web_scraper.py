@@ -316,5 +316,6 @@ def news_collector(html, depth, website):
                     'image_url': news_image_url,
                     'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                     'link': link,
+                    'sentiment': None,
                 })
     return news_list

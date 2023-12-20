@@ -8,71 +8,155 @@ Busqueda
 {% block content %} {% block query_results %}
 {% load encode_decode %}
 
-<div class="content-cards-v-16">
-  <div class="headings">
-    <div class="title">Resultados encontrados</div>
-    <div class="spacer5">
-      <div class="_5-px"></div>
-      <div class="text5">({{ total_results }})</div>
-    </div>
-  </div>
-  <div class="spacer2">
-    <div class="_4-px"></div>
-    <div class="text2">48</div>
-  </div>
-  <div class="horizontal-container">
-    {% for news in search_results %}
-    <div class="master-content-card2">
-      <div class="image-replace2">
-        <div class="image-bg2">
-          <img src="{{ news.img_url }}" alt="{{ news.title }}" />
+<div class="blog-cards-v-8">
+  <div class="grid">
+    <div class="content-cards-v-16">
+      <div class="headings">
+        <div class="title">Resultados encontrados</div>
+        <div class="spacer5">
+          <div class="_5-px"></div>
+          <div class="text5">({{ total_results }})</div>
         </div>
       </div>
-      <div class="card-text-content">
-        <div class="date-category">
-          <div class="badge">
-            <div class="badge-text">
-              <div class="card-title">{{ news.sentiment }}</div>
+      <div class="spacer2">
+        <div class="_4-px"></div>
+        <div class="text2">48</div>
+      </div>
+      <div class="center-container">
+        <form action="{% url 'query_results' %}" method="post" class="input-text">
+          {% csrf_token %}
+          <div class="placeholder-wrapper">
+            <div class="placeholder">
+              <input
+                type="text"
+                name="query"
+                placeholder="Buscar..."
+                required
+              />
             </div>
           </div>
-          <div class="card-date2">{{ news.date_published }}</div>
-          <div class="image-container">
-            <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}" class="small-image">
-          </div>
-        </div>
-        <div class="spacer">
-          <div class="_4-px"></div>
-          <div class="text">{{ total_results }}</div>
-        </div>
-        <div class="heading">{{ news.title|encode_decode}}</div>
-        <div class="spacer3">
-          <div class="_4-px"></div>
-          <div class="text3">32</div>
-        </div>
-        <div class="link">
-          <a href="{{ news.link }}" class="link-item">Leer mas</a>
-          <div class="line-rounded-arrow-rigth">
-            <svg class="arrow-rigth2" width="13" height="13" viewBox="0 0 13 13" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path d="M6.35568 1.19324L11.7499 6.34225L6.35568 11.4913" stroke="#6D758F" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M11.7499 6.34229L1.24995 6.34229" stroke="#6D758F" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
+          <button type="submit">
+            <svg
+              class="line-rounded-search"
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_6_2489)">
+                <path
+                  d="M11.1 11.0999L8.4621 8.46198M0.900024 5.29646C0.900024 2.86831 2.86843 0.899902 5.29658 0.899902C7.72474 0.899902 9.69313 2.86831 9.69313 5.29646C9.69313 7.72462 7.72474 9.69301 5.29658 9.69301C2.86843 9.69301 0.900024 7.72462 0.900024 5.29646Z"
+                  stroke="#6D758F"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_6_2489">
+                  <rect width="12" height="12" fill="white" />
+                </clipPath>
+              </defs>
             </svg>
-          </div>
+          </button>
         </div>
       </div>
+      </form>
+      <br>
+      <div class="center-container checkbox-container">
+        <div class="column">
+          <label>
+            <input type="checkbox" name="adn"><img src="{% static "img/source_logos/adn.png" %}" alt="adn" class="small-image">
+          </label>
+          <label>
+            <input type="checkbox" name="chvn"><img src="{% static "img/source_logos/chvn.png" %}" alt="chvn" class="small-image">
+          </label>
+        </div>
+        <div class="column">
+          <label>
+            <input type="checkbox" name="cnn"><img src="{% static "img/source_logos/cnn.png" %}" alt="cnn" class="small-image">
+          </label>
+          <label>
+            <input type="checkbox" name="dinamo"><img src="{% static "img/source_logos/dinamo.png" %}" alt="dinamo" class="small-image">
+          </label>
+        </div>
+        <div class="column">
+          <label>
+            <input type="checkbox" name="mostrador"><img src="{% static "img/source_logos/elmostrador.png" %}" alt="mostrador" class="small-image">
+          </label>
+          <label>
+            <input type="checkbox" name="latercera"><img src="{% static "img/source_logos/latercera.png" %}" alt="latercera" class="small-image">
+          </label>
+        </div>
+        <div class="column">
+          <label>
+            <input type="checkbox" name="meganoticias"><img src="{% static "img/source_logos/meganoticias.png" %}" alt="meganoticias" class="small-image">
+          </label>
+          <label>
+            <input type="checkbox" name="t13"><img src="{% static "img/source_logos/t13.png" %}" alt="t13" class="small-image">
+          </label>
+        </div>
+      </div>
+      <div class="center-container">
+        <button type="button" class="filter-button">Filtrar</button>
+      </div>
+      
+      <div class="horizontal-container">
+        {% for news in search_results %}
+        <div class="master-content-card2">
+          <div class="image-replace2">
+            <div class="image-bg2">
+              <img src="{% if news.img_url is not None %}{{ news.img_url }}{% else %}{% endif %}" alt="{{ news.title }}" loading="lazy"/>
+            </div>
+          </div>
+          <div class="card-text-content">
+            <div class="date-category">
+              <div class="badge">
+                <div class="badge-text">
+                  <div class="card-title">{{ news.sentiment }}</div>
+                </div>
+              </div>
+              <div class="card-date2">{{ news.date_published }}</div>
+              <div class="image-container">
+                <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}" class="small-image">
+              </div>
+            </div>
+            <div class="spacer">
+              <div class="_4-px"></div>
+              <div class="text">{{ total_results }}</div>
+            </div>
+            <div class="heading">{{ news.title|encode_decode}}</div>
+            <div class="spacer3">
+              <div class="_4-px"></div>
+              <div class="text3">32</div>
+            </div>
+            <div class="link">
+              <a href="{{ news.link }}" class="link-item">Leer mas</a>
+              <div class="line-rounded-arrow-rigth">
+                <svg class="arrow-rigth2" width="13" height="13" viewBox="0 0 13 13" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.35568 1.19324L11.7499 6.34225L6.35568 11.4913" stroke="#6D758F" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M11.7499 6.34229L1.24995 6.34229" stroke="#6D758F" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+          </div>
 
+        </div>
+
+        {% if forloop.counter|divisibleby:3 %}
+          </div><div class="horizontal-container">
+        {% endif %}
+      {% endfor %}
     </div>
-
-    {% if forloop.counter|divisibleby:3 %}
-      </div><div class="horizontal-container">
-    {% endif %}
-  {% endfor %}
-</div>
-  <div class="spacer">
-    <div class="_4-px"></div>
-    <div class="text">{{ total_results }}</div>
+      <div class="spacer">
+        <div class="_4-px"></div>
+        <div class="text">{{ total_results }}</div>
+      </div>
+    </div>
   </div>
 </div>
 

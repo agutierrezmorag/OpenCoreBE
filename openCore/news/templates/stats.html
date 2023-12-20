@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Estadisticas
+{% endblock %}
+
+{% block content %}
+  <style>
+    html,
+    body,
+    #content {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
+  <iframe id="content" src="https://opencore-stats.streamlit.app/?embed=true&embed_options=light_theme" style="height:100%;width:100%;border:none;"></iframe>
+{% endblock %}
