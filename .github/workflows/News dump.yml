@@ -2,7 +2,7 @@ name: Scrap and load
 
 on:
   schedule:
-    - cron: '0 20 * * *' # Runs at 13:00 UTC every day
+    - cron: '0 14 * * *' # Runs at 14:00 UTC every day
   workflow_dispatch:  
 
 jobs:
