@@ -63,6 +63,45 @@ Busqueda
         </div>
       </div>
       </form>
+      <br>
+      <div class="center-container checkbox-container">
+        <div class="column">
+          <label>
+            <input type="checkbox" name="adn"><img src="{% static "img/source_logos/adn.png" %}" alt="adn" class="small-image">
+          </label>
+          <label>
+            <input type="checkbox" name="chvn"><img src="{% static "img/source_logos/chvn.png" %}" alt="chvn" class="small-image">
+          </label>
+        </div>
+        <div class="column">
+          <label>
+            <input type="checkbox" name="cnn"><img src="{% static "img/source_logos/cnn.png" %}" alt="cnn" class="small-image">
+          </label>
+          <label>
+            <input type="checkbox" name="dinamo"><img src="{% static "img/source_logos/dinamo.png" %}" alt="dinamo" class="small-image">
+          </label>
+        </div>
+        <div class="column">
+          <label>
+            <input type="checkbox" name="mostrador"><img src="{% static "img/source_logos/elmostrador.png" %}" alt="mostrador" class="small-image">
+          </label>
+          <label>
+            <input type="checkbox" name="latercera"><img src="{% static "img/source_logos/latercera.png" %}" alt="latercera" class="small-image">
+          </label>
+        </div>
+        <div class="column">
+          <label>
+            <input type="checkbox" name="meganoticias"><img src="{% static "img/source_logos/meganoticias.png" %}" alt="meganoticias" class="small-image">
+          </label>
+          <label>
+            <input type="checkbox" name="t13"><img src="{% static "img/source_logos/t13.png" %}" alt="t13" class="small-image">
+          </label>
+        </div>
+      </div>
+      <div class="center-container">
+        <button type="button" class="filter-button">Filtrar</button>
+      </div>
+      
       <div class="horizontal-container">
         {% for news in search_results %}
         <div class="master-content-card2">
