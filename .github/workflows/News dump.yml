@@ -3,6 +3,10 @@ name: Scrap and load
 on:
   schedule:
     - cron: '0 14 * * *' # Runs at 14:00 UTC every day
+    #cron to run at 11:00 UTC every day
+    - cron: '0 11 * * *' # Runs at 11:00 UTC every day
+    #cron to run at 00:00 UTC every day
+    - cron: '0 0 * * *' # Runs at 00:00 UTC every day
   workflow_dispatch:  
 
 jobs:
