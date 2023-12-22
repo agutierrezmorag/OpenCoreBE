@@ -64,7 +64,7 @@
     {% if latest_news %}
 
     <div class="image-wrapper">
-      <img src="{% if latest_news.img_url is not None %} {{ latest_news.img_url }} {% endif %}" alt="{{ latest_news.title }}" />
+      <img src="{% if news.img_url is not None %}{{ news.img_url }}{% else %}{% static 'img/logo.png' %}{% endif %}" alt="{{ news.title }}"/>
       <div class="frame-38620">
         <div class="text-content">
           <div class="date-category">
@@ -134,7 +134,7 @@
               <div class="image-replace">
                 <div class="image-bg">
                   <a href="{{ news.link }}">
-                    <img src="{% if news.img_url is not None %} {{ news.img_url }} {% endif %}" alt="{{ news.title }}" />
+                    <img src="{% if news.img_url is not None %}{{ news.img_url }}{% else %}{% static 'img/logo.png' %}{% endif %}" alt="{{ news.title }}" loading="lazy"/>
                   </a>
                 </div>
               </div>
@@ -203,7 +203,7 @@
             <div class="image-replace">
               <div class="image-bg">
                 <a href="{{ news.link }}">
-                  <img src="{% if news.img_url is not None %} {{ news.img_url }} {% endif %}" alt="{{ news.title }}" />
+                  <img src="{% if news.img_url is not None %}{{ news.img_url }}{% else %}{% static 'img/logo.png' %}{% endif %}" alt="{{ news.title }}" loading="lazy"/>
                 </a>
               </div>
             </div>
