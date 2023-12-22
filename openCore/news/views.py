@@ -1,35 +1,78 @@
 import json
 import os
 from collections import defaultdict
+from datetime import timedelta
 
 import numpy as np
 from django.core.cache import cache
 from django.shortcuts import render
+from django.utils import timezone
 
 from .models import News
-import json
-import os
-from django.utils import timezone
-from datetime import timedelta
+
 
 def read_json(filename, path):
+    """
+    Read and parse a JSON file.
+
+    Args:
+        filename (str): The name of the JSON file.
+        path (str): The path to the directory containing the JSON file.
+
+    Returns:
+        dict: The parsed JSON data.
+
+    Raises:
+        FileNotFoundError: If the specified file does not exist.
+        JSONDecodeError: If the file is not a valid JSON file.
+    """
     file_path = os.path.join(path, filename)
     with open(file_path, "r", encoding="utf-8") as file:
         data = json.load(file)
     return data
 
 
+def get_news(sentiment=None, limit=None):
+    """
+    Retrieve news articles based on optional filters.
+
+    Args:
+        sentiment (str, optional): The sentiment of the news articles. Defaults to None.
+        limit (int, optional): The maximum number of news articles to retrieve. Defaults to None.
+
+    Returns:
+        QuerySet: A queryset of news articles filtered by sentiment and limited by the specified limit.
+    """
+    two_weeks_ago = timezone.now() - timedelta(weeks=2)
+    news = News.objects.filter(date_published__gte=two_weeks_ago).order_by(
+        "-date_published"
+    )
+    if sentiment:
+        news = news.filter(sentiment=sentiment)
+    if limit:
+        news = news[:limit]
+    return news
+
+
 def home(request):
+    """
+    Renders the home page with news data.
+
+    Parameters:
+    - request: The HTTP request object.
+
+    Returns:
+    - A rendered HTML template with news data.
+    """
     cached_data = cache.get("home_data")
     if cached_data:
         return render(request, "index.html", cached_data)
 
-    latest_news = News.objects.order_by("-date_published").first()
-    two_weeks_ago = timezone.now() - timedelta(weeks=2)
-    recent_news = News.objects.filter(date_published__gte=two_weeks_ago).order_by("-date_published")[1:20]
-    negative_news = News.objects.filter(sentiment="Negativo")[:4]
-    positive_news = News.objects.filter(sentiment="Positivo")[:4]
-    neutral_news = News.objects.filter(sentiment="Neutro")[:20]
+    latest_news = get_news().first()
+    recent_news = get_news(limit=20)[1:]
+    negative_news = get_news(sentiment="Negativo", limit=4)
+    positive_news = get_news(sentiment="Positivo", limit=4)
+    neutral_news = get_news(sentiment="Neutro", limit=20)
 
     context = {
         "latest_news": latest_news,
@@ -45,6 +88,15 @@ def home(request):
 
 
 def search(request):
+    """
+    Perform a search based on the user's query and return the search results.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response containing the search results.
+    """
     path_to_json = "../indexador/results"
     data = cache.get("search_data")
 
@@ -93,7 +145,7 @@ def search(request):
 
     article_ids = set(article_id for ids in word_scores.values() for article_id in ids)
 
-    search_results = News.objects.filter(id__in=article_ids)
+    search_results = get_news().filter(id__in=article_ids)
 
     total_results = len(search_results)
 
