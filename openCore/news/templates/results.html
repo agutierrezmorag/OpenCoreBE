@@ -112,7 +112,7 @@ Busqueda
           </div>
           <div class="card-text-content">
             <div class="date-category">
-              <div class="badge">
+              <div class="badge {% if news.sentiment == 'Positivo' %}badge-positive{% elif news.sentiment == 'Negativo' %}badge-negative{% else %}badge-neutral{% endif %}">
                 <div class="badge-text">
                   <div class="card-title">{{ news.sentiment }}</div>
                 </div>
