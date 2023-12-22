@@ -1,15 +1,33 @@
-from transformers import pipeline
 import json
 import os
+from collections import Counter
+
+from transformers import pipeline
 
 
 def initialize_sentiment_analyzer():
+    """
+    Initializes the sentiment analyzer by loading the pre-trained model.
+
+    Returns:
+        A sentiment analysis pipeline object.
+    """
     return pipeline(
-        "sentiment-analysis", model="nlptown/bert-base-multilingual-uncased-sentiment"
+        model="lxyuan/distilbert-base-multilingual-cased-sentiments-student"
     )
 
 
 def analizar_sentimientos_transformers(texto, clasificador_sentimientos):
+    """
+    Analyzes the sentiment of a given text using a sentiment classifier.
+
+    Args:
+        texto (str): The text to be analyzed.
+        clasificador_sentimientos: The sentiment classifier.
+
+    Returns:
+        list: A list of sentiment labels for each fragment of the text.
+    """
     resultado = []
     for fragmento in texto.split("."):
         if len(fragmento) != 0:
@@ -22,20 +40,23 @@ def analizar_sentimientos_transformers(texto, clasificador_sentimientos):
     return resultado
 
 
-def valorar(etiqueta_estrellas):
-    estrellas = {"5 stars": 5, "4 stars": 4, "3 stars": 3, "2 stars": 2, "1 star": 1}
-    total_estrellas = sum(estrellas.get(etiqueta, 0) for etiqueta in etiqueta_estrellas)
-    promedio = total_estrellas / len(etiqueta_estrellas)
-    promedio_redondeado = round(promedio)
+def most_common(lst):
+    """
+    Returns the most common sentiment in a list.
 
-    return promedio_redondeado
+    Parameters:
+    lst (list): A list of sentiments.
 
-
-def determinarValor(valor):
-    if valor == 1 or valor == 2:
-        return "Negativo"
-    elif valor == 4 or valor == 5:
+    Returns:
+    str: The most common sentiment. Returns "Positivo" if the most common sentiment is "positive",
+        "Negativo" if the most common sentiment is "negative", and "Neutro" otherwise.
+    """
+    data = Counter(lst)
+    sentiment = data.most_common(1)[0][0]
+    if sentiment == "positive":
         return "Positivo"
+    elif sentiment == "negative":
+        return "Negativo"
     else:
         return "Neutro"
 
@@ -50,17 +71,14 @@ def main():
         print("------------------------------")
         print(f"Titulo: {item['title']} ")
         texto = item["content"]
-        # Analizar sentimientos
         resultado_sentimientos_transformers = analizar_sentimientos_transformers(
             texto, clasificador_sentimientos
         )
-        promedio = valorar(resultado_sentimientos_transformers)
+        item["sentiment"] = most_common(resultado_sentimientos_transformers)
+        print(f"Sentimiento: {item['sentiment']} ")
 
-        item["sentiment"] = determinarValor(promedio)
-        print(f"El análisis de sentimientos es: {determinarValor(promedio)}")
-
-    with open("newsdb.json", "w") as f:
-        json.dump(data, f)
+    with open("newsdb.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":
