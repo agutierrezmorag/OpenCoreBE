@@ -7,7 +7,10 @@ from django.core.cache import cache
 from django.shortcuts import render
 
 from .models import News
-
+import json
+import os
+from django.utils import timezone
+from datetime import timedelta
 
 def read_json(filename, path):
     file_path = os.path.join(path, filename)
@@ -22,7 +25,8 @@ def home(request):
         return render(request, "index.html", cached_data)
 
     latest_news = News.objects.order_by("-date_published").first()
-    recent_news = News.objects.order_by("-date_published")[1:21]
+    two_weeks_ago = timezone.now() - timedelta(weeks=2)
+    recent_news = News.objects.filter(date_published__gte=two_weeks_ago).order_by("-date_published")[1:20]
     negative_news = News.objects.filter(sentiment="Negativo")[:4]
     positive_news = News.objects.filter(sentiment="Positivo")[:4]
     neutral_news = News.objects.filter(sentiment="Neutro")[:20]
