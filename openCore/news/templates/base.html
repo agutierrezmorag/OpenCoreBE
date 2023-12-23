@@ -62,7 +62,10 @@
     <div class="search-container">
       <div class="search-bar">
         <div class="search-bar-placeholder-wrapper">
-          <input type="text" name="query" class="placeholder" placeholder="Buscar...">
+          <form action="{% url 'query_results' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="query" class="placeholder" placeholder="Buscar...">
+          </form>
         </div>
         <svg
           class="line-rounded-search"
@@ -93,6 +96,7 @@
         </svg>
       </div>
     </div>
+    <div class="spacer"></div>
     {% block content %}
 
     {% endblock %}
