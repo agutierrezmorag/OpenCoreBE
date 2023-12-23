@@ -648,7 +648,7 @@
 }
 
 .small-image {
-  max-width: 80px;
+  max-width: 5em;
   height: auto;
 }
 
@@ -874,11 +874,4 @@ label {
   max-width: 100%;
   height: auto;
   margin-bottom: 5px;
-}
-
-.small-image {
-  width: 200px;
-  height: auto;
-
-
 }
