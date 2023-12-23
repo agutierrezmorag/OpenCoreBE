@@ -55,11 +55,9 @@
         </div>
       </div>
     </div>
-    <div class="grid">
-      {% block content %}
+    {% block content %}
 
-      {% endblock %}
-    </div>
+    {% endblock %}
     <div class="footer-v-4">
       <div class="logo-full-dark">
         <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" style="max-width: 300px" /></a>

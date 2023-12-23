@@ -2,71 +2,109 @@
 {% block news %}
 {% load encode_decode %}
 
-<div class="latest-news-grid">
-  <div class="latest-news-principal">
-    <div class="image-wrapper-principal">
-      <img src="{{ latest_news.0.img_url }}" alt="{{ latest_news.0.title }}" class="image-principal" />
-    </div>
-    <div class="content-principal">
-      <div class="heading-h-2">{{ latest_news.0.title }}</div>
-      <div class="spacer">
-        <div class="_4-px"></div>
-        <div class="text">24</div>
+<div class="hero-grid">
+  <div class="latest-news-grid">
+    <div class="latest-news-principal">
+      <div class="image-wrapper-principal">
+        <img src="{{ latest_news.0.img_url }}" alt="{{ latest_news.0.title }}" class="image-principal" />
       </div>
-      <div class="divider"></div>
-      <div class="spacer">
-        <div class="_4-px"></div>
-        <div class="text">24</div>
-      </div>
-      <div class="top">
-        <div class="author-wrapper">
-          <div class="circle-avatar">
-            <div class="avatar-frame-principal">
-              <img src="{% static 'img/source_logos/' %}{{ latest_news.0.website }}.png"
-                alt="{{ latest_news.0.website }}">
+      <div class="content-principal">
+        <div class="heading-h-2">{{ latest_news.0.title }}</div>
+        <div class="spacer">
+          <div class="_4-px"></div>
+          <div class="text">24</div>
+        </div>
+        <div class="divider"></div>
+        <div class="spacer"></div>
+        <div class="top">
+          <div class="author-wrapper">
+            <div class="circle-avatar">
+              <div class="avatar-frame-principal">
+                <img src="{% static 'img/source_logos/' %}{{ latest_news.0.website }}.png"
+                  alt="{{ latest_news.0.website }}">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="card-date">
-          <a href="{{ latest_news.0.link }}">Leer más</a>
-        </div>
-        <div class="card-date2">
-          {{ latest_news.0.date_published|date:"j \d\e F, Y" }}
+          <div class="card-date">
+            <a href="{{ latest_news.0.link }}">Leer más</a>
+          </div>
+          <div class="card-date2">
+            {{ latest_news.0.date_published|date:"j \d\e F, Y" }}
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="grid-1-col">
-  {% for news in latest_news|slice:"1:" %}
-  <div class="blog-card-v-5-mini">
-    <div class="image-wrapper-mini">
-      <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-mini" />
-    </div>
-    <div class="content-mini">
-      <div class="heading-h-2-mini">{{ news.title }}</div>
-      <div class="spacer2">
+  <div class="grid-1-col">
+    {% for news in latest_news|slice:"1:" %}
+    <div class="blog-card-v-5-mini">
+      <div class="image-wrapper-mini">
+        <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-mini" />
       </div>
-      <div class="top-mini">
-        <div class="author-wrapper-mini">
-          <div class="circle-avatar2">
-            <div class="avatar-frame-mini">
-              <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}">
+      <div class="content-mini">
+        <div class="heading-h-2-mini">{{ news.title }}</div>
+        <div class="spacer2"></div>
+        <div class="top-mini">
+          <div class="author-wrapper-mini">
+            <div class="circle-avatar2">
+              <div class="avatar-frame-mini">
+                <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}">
+              </div>
+            </div>
+            <div class="card-date3">
+              <a href="{{ news.link }}">Leer más</a>
             </div>
           </div>
-          <div class="card-date3">
-            <a href="{{ news.link }}">Leer más</a>
+          <div class="card-date-mini">
+            {{ news.date_published|date:"j \d\e F, Y" }}
           </div>
         </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 
-        <div class="card-date-mini">
-          {{ news.date_published|date:"j \d\e F, Y" }}
+<div class="spacer"></div>
+
+<div class="recent-news-grid">
+  <div class="recent-news-grid2">
+    <div class="heading-h-2">Highly effective solutions</div>
+    <div class="spacer"></div>
+    <div class="paragraph">
+      Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus
+      mollis sit aliquam sit nullam neque ultrices.
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="_4-col-grid">
+    <div class="item">
+      <div class="image-replace"></div>
+      <div class="spacer"></div>
+      <div class="heading-h-3">Web design</div>
+      <div class="spacer"></div>
+      <div class="paragraph2">
+        Lorem ipsum dolor sit amet dolor sit dolor siet consectetur dolorsel
+        adipiscing eli mattis sit.
+      </div>
+      <div class="spacer"></div>
+      <div class="link">
+        <div class="link-item">Learn more</div>
+        <div class="line-rounded-arrow-rigth">
+          <svg class="arrow-rigth" width="13" height="13" viewBox="0 0 13 13" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.35938 1.35059L11.7536 6.4996L6.35938 11.6486" stroke="#6D758F" stroke-width="1.125"
+              stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M11.7499 6.5L1.25 6.5" stroke="#6D758F" stroke-width="1.125" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </div>
       </div>
     </div>
   </div>
-  {% endfor %}
 </div>
+
+
 
 {% endblock %}
 {% endblock %}
