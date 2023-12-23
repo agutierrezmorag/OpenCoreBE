@@ -64,35 +64,12 @@
         <div class="search-bar-placeholder-wrapper">
           <form action="{% url 'query_results' %}" method="POST">
             {% csrf_token %}
-            <input type="text" name="query" class="placeholder" placeholder="Buscar...">
+            <input type="text" name="query" class="placeholder" placeholder="Buscar..." required value={{ query }}>
           </form>
         </div>
-        <svg
-          class="line-rounded-search"
-          width="11"
-          height="11"
-          viewBox="0 0 11 11"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g clip-path="url(#clip0_5707_14082)">
-            <path
-              d="M9.80469 9.70349L7.60641 7.50522M1.30469 4.86729C1.30469 2.84383 2.94502 1.20349 4.96848 1.20349C6.99195 1.20349 8.63228 2.84383 8.63228 4.86729C8.63228 6.89076 6.99195 8.53108 4.96848 8.53108C2.94502 8.53108 1.30469 6.89076 1.30469 4.86729Z"
-              stroke="#6D758F"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </g>
-          <defs>
-            <clipPath id="clip0_5707_14082">
-              <rect
-                width="10"
-                height="10"
-                fill="white"
-                transform="translate(0.554688 0.453491)"
-              />
-            </clipPath>
-          </defs>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
       </div>
     </div>
@@ -100,6 +77,7 @@
     {% block content %}
 
     {% endblock %}
+    <div class="spacer"></div>
     <div class="footer">
       <div class="logo-footer">
         <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" style="max-width: 300px" alt="openCore" /></a>
