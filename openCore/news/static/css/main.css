@@ -678,15 +678,14 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 100rem;
+  width: 90vw;
   position: relative;
   box-shadow: var(--neutral-shadow-02-box-shadow,
       0rem 0.0625rem 0.25rem 0rem rgba(25, 33, 61, 0.08));
 }
 
 .search-bar-placeholder-wrapper {
-  display: flex;
-  width: 99%;
+  width: 100%;
 }
 
 .placeholder input-text input {
@@ -701,7 +700,7 @@
   font-family: var(--display-1-regular-font-family, "Inter-Regular", sans-serif);
   font-size: var(--display-1-semi-bold-line-height);
   line-height: var(--display-1-regular-line-height, 1.125rem);
-  width: 99rem;
+  width: 100%;
 }
 
 .line-rounded-search {
