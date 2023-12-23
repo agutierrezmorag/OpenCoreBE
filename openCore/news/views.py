@@ -74,6 +74,8 @@ def home(request):
     positive_news = get_news(sentiment="Positivo", limit=4)
     neutral_news = get_news(sentiment="Neutro", limit=20)
     
+    print(len(recent_news))
+    
     context = {
         "latest_news": latest_news,
         "recent_news": recent_news,

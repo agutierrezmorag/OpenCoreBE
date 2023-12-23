@@ -1,11 +1,5 @@
-$(document).ready(function(){
-  $('.carousel').slick({
-    slidesToShow: 5,
-    slidesToScroll: 5,
-    autoplay: false,
-    infinite: false,
-    draggable: true,
-    dots: true,
-    arrows: false,
-  });
-});
+new Glide('.glide').mount();new Glide('.glide', {
+  type: 'carousel',
+  startAt: 0,
+  perView: 5,
+}).mount();

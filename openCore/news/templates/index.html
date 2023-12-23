@@ -77,45 +77,95 @@
     </div>
     <div class="spacer"></div>
   </div>
-  <div class="_4-col-grid">
-    <div class="carousel">
-      <div class="item-container">
+  <div class="glide">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
         {% for news in recent_news %}
-        <div class="item">
-          <div class="image-replace">
-            <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
-          </div>
-          <div class="spacer"></div>
-          <div class="heading-h-3">{{ news.title|truncatechars:60 }}</div>
-          <div class="spacer"></div>
-          <div class="paragraph2">
-            {{ news.sentiment }}
-          </div>
-          <div class="spacer"></div>
-          <div class="link">
-            <div class="link-item">
+        <li class="glide__slide">
+          <div class="item">
+            <div class="image-replace">
+              <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+            </div>
+            <div class="spacer"></div>
+            <div class="heading-h-3">
               <a href="{{ news.link }}">
-                Leer más
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6.35938 1.35059L11.7536 6.4996L6.35938 11.6486" stroke="#6D758F" stroke-width="1.125"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M11.7499 6.5L1.25 6.5" stroke="#6D758F" stroke-width="1.125" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
+                {{ news.title|truncatechars:60 }}
               </a>
             </div>
+            <div class="spacer"></div>
+            <div class="sentiment-tag {{ news.sentiment|lower }}">
+              <div class="button-text">{{ news.sentiment }}</div>
+            </div>
+            <div class="spacer"></div>
+            <div class="top-mini">
+              <div class="card-avatar">
+                <div class="card-avatar-mini">
+                  <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}">
+                </div>
+              </div>
+              <div class="card-date-mini">
+                {{ news.date_published|date:"j \d\e F, Y" }}
+              </div>
+            </div>
           </div>
-        </div>
-        {% if forloop.counter|divisibleby:2 %}
-      </div>
-      <div class="item-container">
-        {% endif %}
+        </li>
         {% endfor %}
-      </div>
+      </ul>
+    </div>
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">Prev</button>
+      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">Next</button>
     </div>
   </div>
+</div>
+</div>
+
+<div class="spacer"></div>
+
+<div class="stats">
+  <div class="title">Numbers that showcase our success</div>
+  <div class="spacer">
+    <div class="_4-px"></div>
+    <div class="text">40</div>
+  </div>
+  <div class="stats-content">
+    <div class="stat">
+      <div class="big-number">200+</div>
+      <div class="spacer2">
+        <div class="_4-px"></div>
+        <div class="text2">24</div>
+      </div>
+      <div class="heading-h-3">Websites build</div>
+    </div>
+    <div class="stat">
+      <div class="big-number">97%</div>
+      <div class="spacer2">
+        <div class="_4-px"></div>
+        <div class="text2">24</div>
+      </div>
+      <div class="heading-h-3">Client satisfaction</div>
+    </div>
+    <div class="stat">
+      <div class="big-number">34+</div>
+      <div class="spacer2">
+        <div class="_4-px"></div>
+        <div class="text2">24</div>
+      </div>
+      <div class="heading-h-3">Team members</div>
+    </div>
+    <div class="stat">
+      <div class="big-number">100+</div>
+      <div class="spacer2">
+        <div class="_4-px"></div>
+        <div class="text2">24</div>
+      </div>
+      <div class="heading-h-3">Amazing clients</div>
+    </div>
+  </div>
+</div>
 
 
 
-  {% endblock %}
-  {% endblock %}
+
+{% endblock %}
+{% endblock %}

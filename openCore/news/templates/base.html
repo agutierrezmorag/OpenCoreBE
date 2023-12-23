@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vars.css' %}" />
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.theme.min.css" />
 
     <style>
       a,
@@ -59,13 +61,7 @@
     {% block content %}
 
     {% endblock %}
-    <div class="footer-v-4">
-      <div class="logo-full-dark">
-        <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" style="max-width: 300px" /></a>
-      </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1"></script>
     <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>
