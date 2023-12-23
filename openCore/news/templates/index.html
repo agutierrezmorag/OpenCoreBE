@@ -78,33 +78,42 @@
     <div class="spacer"></div>
   </div>
   <div class="_4-col-grid">
-    <div class="item">
-      <div class="image-replace"></div>
-      <div class="spacer"></div>
-      <div class="heading-h-3">Web design</div>
-      <div class="spacer"></div>
-      <div class="paragraph2">
-        Lorem ipsum dolor sit amet dolor sit dolor siet consectetur dolorsel
-        adipiscing eli mattis sit.
-      </div>
-      <div class="spacer"></div>
-      <div class="link">
-        <div class="link-item">Learn more</div>
-        <div class="line-rounded-arrow-rigth">
-          <svg class="arrow-rigth" width="13" height="13" viewBox="0 0 13 13" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M6.35938 1.35059L11.7536 6.4996L6.35938 11.6486" stroke="#6D758F" stroke-width="1.125"
-              stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M11.7499 6.5L1.25 6.5" stroke="#6D758F" stroke-width="1.125" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
+    <div class="item-container">
+      {% for news in recent_news %}
+      <div class="item">
+        <div class="image-replace">
+          <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+        </div>
+        <div class="spacer"></div>
+        <div class="heading-h-3">{{ news.title|truncatechars:60 }}</div>
+        <div class="spacer"></div>
+        <div class="paragraph2">
+          {{ news.sentiment }}
+        </div>
+        <div class="spacer"></div>
+        <div class="link">
+          <div class="link-item">
+            <a href="{{ news.link }}">
+              Leer más
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.35938 1.35059L11.7536 6.4996L6.35938 11.6486" stroke="#6D758F" stroke-width="1.125"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M11.7499 6.5L1.25 6.5" stroke="#6D758F" stroke-width="1.125" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
+      {% if forloop.counter|divisibleby:2 %}
+    </div>
+    <div class="item-container">
+      {% endif %}
+      {% endfor %}
     </div>
   </div>
-</div>
 
 
 
-{% endblock %}
-{% endblock %}
+  {% endblock %}
+  {% endblock %}

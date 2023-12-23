@@ -481,6 +481,13 @@
   position: relative;
 }
 
+.item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 16rem;
+}
+
 .item {
   display: flex;
   flex-direction: column;
@@ -489,6 +496,7 @@
   justify-content: flex-start;
   flex-shrink: 0;
   position: relative;
+  margin-bottom: 2em;
 }
 
 .image-replace {
@@ -501,17 +509,22 @@
   overflow: hidden;
 }
 
+.image-replace img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .heading-h-3 {
   color: var(--neutralcolors-600, #6d758f);
   text-align: left;
   font-family: var(--display-4-extra-bold-font-family,
       "Inter-ExtraBold",
       sans-serif);
-  font-size: var(--display-4-extra-bold-font-size, 1.125rem);
+  font-size: var(--display-4-extra-bold-font-size, 0.95rem);
   line-height: var(--display-4-extra-bold-line-height, 1.5rem);
   font-weight: var(--display-4-extra-bold-font-weight, 800);
   position: relative;
-  width: 16.1875rem;
 }
 
 .paragraph2 {
@@ -566,66 +579,6 @@
   line-height: var(--display-3-extra-bold-line-height, 1.375rem);
   font-weight: var(--display-3-extra-bold-font-weight, 800);
   position: relative;
-}
-
-.line-rounded-arrow-rigth {
-  flex-shrink: 0;
-  width: 0.9375rem;
-  height: 0.9375rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.arrow-rigth {
-  height: auto;
-  position: absolute;
-  right: 15%;
-  left: 15%;
-  width: 70%;
-  bottom: 15.67%;
-  top: 15.67%;
-  height: 68.65%;
-  transform: translate(-0.035rem, -0.035rem);
-  overflow: visible;
-}
-
-.arrow-rigth2 {
-  height: auto;
-  position: absolute;
-  right: 15%;
-  left: 15%;
-  width: 70%;
-  bottom: 15.67%;
-  top: 15.67%;
-  height: 68.65%;
-  transform: translate(-0.035rem, -0.035rem);
-  overflow: visible;
-}
-
-.arrow-rigth3 {
-  height: auto;
-  position: absolute;
-  right: 15%;
-  left: 15%;
-  width: 70%;
-  bottom: 15.67%;
-  top: 15.67%;
-  height: 68.65%;
-  transform: translate(-0.035rem, -0.035rem);
-  overflow: visible;
-}
-
-.arrow-rigth4 {
-  height: auto;
-  position: absolute;
-  right: 15%;
-  left: 15%;
-  width: 70%;
-  bottom: 15.67%;
-  top: 15.67%;
-  height: 68.65%;
-  transform: translate(-0.035rem, -0.035rem);
-  overflow: visible;
 }
 
 /* RECENT NEWS */

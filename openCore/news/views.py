@@ -69,11 +69,11 @@ def home(request):
         return render(request, "index.html", cached_data)
 
     latest_news = get_news(limit=4)
-    recent_news = get_news(limit=20)[1:]
+    recent_news = get_news(limit=20)[4:]
     negative_news = get_news(sentiment="Negativo", limit=4)
     positive_news = get_news(sentiment="Positivo", limit=4)
     neutral_news = get_news(sentiment="Neutro", limit=20)
-
+    
     context = {
         "latest_news": latest_news,
         "recent_news": recent_news,
@@ -83,7 +83,6 @@ def home(request):
     }
 
     cache.set("home_data", context, timeout=3600)
-    print(latest_news)
 
     return render(request, "index.html", context)
 
