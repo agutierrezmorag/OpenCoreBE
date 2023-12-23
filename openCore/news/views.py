@@ -87,6 +87,26 @@ def home(request):
     return render(request, "index.html", context)
 
 
+def filter_results(request, search_results):
+    """
+    Apply filters to the search results based on the user's selections.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        search_results (QuerySet): The search results to filter.
+
+    Returns:
+        QuerySet: The filtered search results.
+    """
+    sources = request.POST.getlist('source')
+    if sources:
+        search_results = search_results.filter(website__in=sources)
+    sentiment = request.POST.getlist('sentiment')
+    if sentiment:
+        search_results = search_results.filter(sentiment=sentiment)
+    return search_results
+
+
 def search(request):
     """
     Perform a search based on the user's query and return the search results.
@@ -145,14 +165,14 @@ def search(request):
 
     article_ids = set(article_id for ids in word_scores.values() for article_id in ids)
 
-    search_results = get_news().filter(id__in=article_ids)
-
+    search_results = News.objects.filter(id__in=article_ids)
+    search_results = filter_results(request, search_results)
     total_results = len(search_results)
 
     return render(
         request,
         "results.html",
-        {"search_results": search_results, "total_results": total_results},
+        {"search_results": search_results, "total_results": total_results, "query": query},
     )
 
 
