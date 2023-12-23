@@ -35,31 +35,31 @@
     </title>
   </head>
   <body>
-    <div class="header-v-19">
-      <div class="header-left">
-        <div class="logo-full-dark">
-          <a href="{% url 'home' %}">
-            <div class="logo-full-dark">
-              <img src="{% static 'img/logo.png' %}" style="max-width: 300px" alt="Your Logo Alt Text" />
-            </div>
-          </a>
+    <div class="nav-bar">
+      <div class="logo">
+        <a href="{% url 'home' %}">
+          <div class="logo-full-dark">
+            <img src="{% static 'img/logo.png' %}" style="max-width: 300px" alt="Your Logo Alt Text" />
+          </div>
+        </a>
+      </div>
+      <div class="nav-list">
+        <div class="link">
+          <a href="{% url 'home' %}" class="link-item">Home</a>
         </div>
-        <div class="nav-list">
-          <div class="link">
-            <a href="{% url 'home' %}" class="link-item">Home</a>
-          </div>
-          <div class="link">
-            <a href="#" class="link-item">Sobre nosotros</a>
-          </div>
-          <div class="link">
-            <a href="{% url 'stats' %}" class="link-item">Estadisticas</a>
-          </div>
+        <div class="link">
+          <a href="#" class="link-item">Sobre nosotros</a>
+        </div>
+        <div class="link">
+          <a href="{% url 'stats' %}" class="link-item">Estadisticas</a>
         </div>
       </div>
     </div>
-    {% block content %}
+    <div class="grid">
+      {% block content %}
 
-    {% endblock %}
+      {% endblock %}
+    </div>
     <div class="footer-v-4">
       <div class="logo-full-dark">
         <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" style="max-width: 300px" /></a>

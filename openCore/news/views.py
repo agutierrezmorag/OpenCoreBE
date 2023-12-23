@@ -68,7 +68,7 @@ def home(request):
     if cached_data:
         return render(request, "index.html", cached_data)
 
-    latest_news = get_news().first()
+    latest_news = get_news(limit=4)
     recent_news = get_news(limit=20)[1:]
     negative_news = get_news(sentiment="Negativo", limit=4)
     positive_news = get_news(sentiment="Positivo", limit=4)
@@ -83,6 +83,7 @@ def home(request):
     }
 
     cache.set("home_data", context, timeout=3600)
+    print(latest_news)
 
     return render(request, "index.html", context)
 

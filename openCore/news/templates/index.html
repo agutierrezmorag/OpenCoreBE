@@ -1,295 +1,153 @@
-{% extends 'base.html' %} {% load static %} {% block content %} {% block news %}
+{% extends 'base.html' %} {% load static %} {% block content %}
+{% block news %}
 {% load encode_decode %}
 
-<div class="blog-cards-v-8">
-      <div class="grid">
-    <div class="headings">
-      <div class="title">
-        Revelamos la verdad en cada palabra, tu fuente confiable para información sin filtros.
+<div class="latest-news-grid">
+  <div class="latest-news-principal">
+    <div class="image-wrapper-principal">
+      <img src="{{ latest_news.0.img_url }}" alt="" class="image-principal" />
+    </div>
+    <div class="content-principal">
+      <div class="heading-h-2">{{ latest_news.0.title }}</div>
+      <div class="spacer">
+        <div class="_4-px"></div>
+        <div class="text">24</div>
+      </div>
+      <div class="paragraph">
+        {{ latest_news.0.content|safe|truncatechars:200 }}
       </div>
       <div class="spacer">
         <div class="_4-px"></div>
         <div class="text">24</div>
       </div>
-      <form action="{% url 'query_results' %}" method="post">
-              {% csrf_token %}
-              <div class="input-text">
-                <div class="placeholder-wrapper">
-                  <div class="placeholder">
-                    <input
-                      type="text"
-                      name="query"
-                      placeholder="Buscar..."
-                      required
-                    />
-                  </div>
-                </div>
-                <button type="submit">
-                  <svg
-                    class="line-rounded-search"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 12 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clip-path="url(#clip0_6_2489)">
-                      <path
-                        d="M11.1 11.0999L8.4621 8.46198M0.900024 5.29646C0.900024 2.86831 2.86843 0.899902 5.29658 0.899902C7.72474 0.899902 9.69313 2.86831 9.69313 5.29646C9.69313 7.72462 7.72474 9.69301 5.29658 9.69301C2.86843 9.69301 0.900024 7.72462 0.900024 5.29646Z"
-                        stroke="#6D758F"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_6_2489">
-                        <rect width="12" height="12" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                </button>
-              </div>
-            </form>
+      <div class="divider"></div>
       <div class="spacer">
         <div class="_4-px"></div>
         <div class="text">24</div>
       </div>
-    </div>
-    <div class="spacer2">
-      <div class="_4-px"></div>
-      <div class="text2">40</div>
-    </div>
-
-    {% if latest_news %}
-
-    <div class="image-wrapper">
-      <img src="{% if latest_news.img_url is not None %}{{ latest_news.img_url }}{% else %}{% static 'img/logo.png' %}{% endif %}" alt="{{ latest_news.title }}"/>
-      <div class="frame-38620">
-        <div class="text-content">
-          <div class="date-category">
-            <div class="badge {% if latest_news.sentiment == 'Positivo' %}badge-positive{% elif latest_news.sentiment == 'Negativo' %}badge-negative{% else %}badge-neutral{% endif %}">
-              <div class="badge-text">
-                <div class="card-title">{{ latest_news.sentiment }}</div>
-              </div>
-            </div>
-            <div class="card-date">{{ latest_news.date_published|date:"j \d\e F, Y" }}</div>
-            <div class="image-container">
-              <a href="{{ latest_news.link }}">
-                <img src="{% static 'img/source_logos/' %}{{ latest_news.website }}.png" alt="{{ latest_news.website }}"
-                class="small-image">
-              </a>
-            </div>
-          </div>
-          <div class="spacer3">
-            <div class="_4-px"></div>
-            <div class="text3">32</div>
-          </div>
-          <div class="article-title"><a href="{{ latest_news.link }}">{{ latest_news.title }}</a></div>
-          <div class="spacer">
-            <div class="_4-px"></div>
-            <div class="text">24</div>
-          </div>
-          <div class="spacer2">
-            <div class="_4-px"></div>
-            <div class="text2">40</div>
-          </div>
-          <div class="link">
-            <a href="{{ latest_news.link }}" class="link-item">Leer más
-              <div class="line-rounded-arrow-rigth">
-                <svg class="arrow-right" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 10H15" stroke="#6D758F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M10 15L15 10L10 5" stroke="#6D758F" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-
-    {% endif %}
-
-    <div class="spacer4">
-      <div class="_4-px"></div>
-      <div class="text4">56px</div>
-    </div>
-    <div class="feed">
       <div class="top">
-        <div class="heading-h-2">Noticias recientes</div>
-        <div class="grid3"></div>
-      </div>
-      <div class="container">
-        <div class="carousel-view">
-          <button id="prev-btn-recent" class="prev-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
-              <path d="M10.605 12.727 5.656 7.776l4.949-4.948L7.777 0 0 7.776l7.777 7.779 2.828-2.828z" />
-            </svg>
-          </button>
-          <div id="item-list-recent" class="item-list">
-            {% for news in recent_news %}
-            <div class="master-content-card">
-              <div class="image-replace">
-                <div class="image-bg">
-                  <a href="{{ news.link }}">
-                    <img src="{% if news.img_url is not None %}{{ news.img_url }}{% else %}{% static 'img/logo.png' %}{% endif %}" alt="{{ news.title }}" loading="lazy"/>
-                  </a>
-                </div>
-              </div>
-              <div class="card-text-content">
-                <div class="date-category">
-                  <div class="badge {% if news.sentiment == 'Positivo' %}badge-positive{% elif news.sentiment == 'Negativo' %}badge-negative{% else %}badge-neutral{% endif %}">
-                    <div class="badge-text">
-                      <div class="card-title">{{ news.sentiment }}</div>
-                    </div>
-                  </div>
-                  <div class="card-date2">{{ news.date_published|date:"j \d\e F, Y" }}</div>
-                  <div class="image-container">
-                    <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}"
-                      class="small-image">
-                  </div>
-                </div>
-                <div class="spacer">
-                  <div class="_4-px"></div>
-                  <div class="text">24</div>
-                </div>
-                <div class="heading">
-                  <a href="{{ news.link }}">{{ news.title|encode_decode}}</a>
-                </div>
-                <div class="spacer3">
-                  <div class="_4-px"></div>
-                  <div class="text3">32</div>
-                </div>
-                <div class="link">
-                  <a href="{{ news.link }}" class="link-item">Leer más
-                    <div class="line-rounded-arrow-right">
-                      <svg class="arrow-right" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 10H15" stroke="#6D758F" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                        <path d="M10 15L15 10L10 5" stroke="#6D758F" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-        <button id="next-btn-recent" class="next-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
-            <path d="m2.828 15.555 7.777-7.779L2.828 0 0 2.828l4.949 4.948L0 12.727l2.828 2.828z" />
-          </svg>
-        </button>
-      </div>
-    </div>
-    <div class="top">
-      <div class="heading-h-2">Noticias neutras</div>
-      <div class="grid3"></div>
-    </div>
-    <div class="container">
-      <div class="carousel-view">
-        <button id="prev-btn-neutral" class="prev-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
-            <path d="M10.605 12.727 5.656 7.776l4.949-4.948L7.777 0 0 7.776l7.777 7.779 2.828-2.828z" />
-          </svg>
-        </button>
-        <div id="item-list-neutral" class="item-list">
-          {% for news in neutral_news %}
-          <div class="master-content-card">
-            <div class="image-replace">
-              <div class="image-bg">
-                <a href="{{ news.link }}">
-                  <img src="{% if news.img_url is not None %}{{ news.img_url }}{% else %}{% static 'img/logo.png' %}{% endif %}" alt="{{ news.title }}" loading="lazy"/>
-                </a>
-              </div>
-            </div>
-            <div class="card-text-content">
-              <div class="date-category">
-                <div class="badge {% if news.sentiment == 'Positivo' %}badge-positive{% elif news.sentiment == 'Negativo' %}badge-negative{% else %}badge-neutral{% endif %}">
-                  <div class="badge-text">
-                    <div class="card-title">{{ news.sentiment }}</div>
-                  </div>
-                </div>
-                <div class="card-date2">{{ news.date_published|date:"j \d\e F, Y" }}</div>
-                <div class="image-container">
-                  <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}"
-                    class="small-image">
-                </div>
-              </div>
-              <div class="spacer">
-                <div class="_4-px"></div>
-                <div class="text">24</div>
-              </div>
-              <div class="heading">
-                <a href=""{{ news.link }}>{{ news.title|encode_decode}}</a>
-              </div>
-              <div class="spacer3">
-                <div class="_4-px"></div>
-                <div class="text3">32</div>
-              </div>
-              <div class="link">
-                <a href="{{ news.link }}" class="link-item">Leer más
-                  <div class="line-rounded-arrow-right">
-                    <svg class="arrow-right" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 10H15" stroke="#6D758F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                      <path d="M10 15L15 10L10 5" stroke="#6D758F" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    </svg>
-                </a>
-              </div>
+        <div class="author-wrapper">
+          <div class="circle-avatar">
+            <div class="frame-38619">
+              <img src="{% static 'img/source_logos/' %}{{ latest_news.0.website }}.png"
+                alt="{{ latest_news.0.website }}" class="small-image">
             </div>
           </div>
         </div>
-        {% endfor %}
-      </div>
-      <button id="next-btn-neutral" class="next-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555">
-          <path d="m2.828 15.555 7.777-7.779L2.828 0 0 2.828l4.949 4.948L0 12.727l2.828 2.828z" />
-        </svg>
-      </button>
-    </div>
-    </div>
-    <div class="spacer2">
-      <div class="_4-px"></div>
-      <div class="text2">40</div>
-    </div>
-    </div>
-
-    <div class="logo-strip-v-3">
-      <div class="sub-title">Nuestras fuentes</div>
-      <div class="logos-wrapper">
-        <a href="https://www.adnradio.cl/">
-          <img src="{% static 'img/source_logos/adn.png' %}" alt="ADN">
-        </a>
-        <a href="https://www.chilevision.cl/">
-          <img src="{% static 'img/source_logos/chvn.png' %}" alt="Chilevision">
-        </a>
-        <a href="https://www.cnnchile.com/">
-          <img src="{% static 'img/source_logos/cnn.png' %}" alt="CNN">
-        </a>
-        <a href="https://www.eldinamo.cl/">
-          <img src="{% static 'img/source_logos/dinamo.png' %}" alt="El dinamo">
-        </a>
-        <a href="https://www.elmostrador.cl/">
-          <img src="{% static 'img/source_logos/elmostrador.png' %}" alt="El mostrador">
-        </a>
-        <a href="https://www.latercera.com/">
-          <img src="{% static 'img/source_logos/latercera.png' %}" alt="La tercera">
-        </a>
-        <a href="https://www.meganoticias.cl/">
-          <img src="{% static 'img/source_logos/meganoticias.png' %}" alt="Mega">
-        </a>
-        <a href="https://www.t13.cl/">
-          <img src="{% static 'img/source_logos/t13.png' %}" alt="T13">
-        </a>
+        <div class="card-date">
+          <a href="{{ latest_news.0.link }}">Leer más</a>
+        </div>
+        <div class="card-date2">
+          {{ latest_news.0.date_published|date:"j \d\e F, Y" }}
+        </div>
       </div>
     </div>
   </div>
 </div>
+<div class="grid-1-col">
+  <div class="blog-card-v-5-mini">
+    <div class="image-wrapper-mini"></div>
+    <div class="content-mini">
+      <div class="heading-h-2-mini">Typography in web design: enhancing UI/UX</div>
+      <div class="spacer2">
+        <div class="_4-px"></div>
+      </div>
+      <div class="top-mini">
+        <div class="author-wrapper-mini">
+          <div class="circle-avatar2">
+            <div class="frame-386192">
+              <svg class="group-1000005837" width="6" height="8" viewBox="0 0 6 8" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M2.99853 1.43981C2.44024 1.43981 1.98766 1.89239 1.98766 2.45068C1.98766 3.00896 2.44024 3.46155 2.99853 3.46155C3.55683 3.46155 4.00941 3.00896 4.00941 2.45068C4.00941 1.89239 3.55683 1.43981 2.99853 1.43981ZM1.49219 2.45068C1.49219 1.61875 2.1666 0.944336 2.99853 0.944336C3.83046 0.944336 4.50488 1.61875 4.50488 2.45068C4.50488 3.28261 3.83046 3.95702 2.99853 3.95702C2.1666 3.95702 1.49219 3.28261 1.49219 2.45068Z"
+                  fill="#6D758F" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M1.10887 4.97661C1.56159 4.70637 2.17411 4.52637 2.99857 4.52637C3.82303 4.52637 4.43554 4.70637 4.88826 4.97661C5.34118 5.24696 5.61969 5.59899 5.78938 5.92026L5.78938 5.92028C5.94122 6.20781 5.89154 6.50614 5.71919 6.72256C5.55342 6.93072 5.2836 7.05497 4.99395 7.05497H1.00319C0.713534 7.05497 0.443709 6.93072 0.277938 6.72255C0.105592 6.50613 0.055917 6.2078 0.207775 5.92027C0.377448 5.599 0.655959 5.24696 1.10887 4.97661ZM1.36283 5.40205C0.999667 5.61883 0.780005 5.89772 0.645896 6.15165L0.645895 6.15166C0.591238 6.25514 0.608625 6.34245 0.665528 6.41391C0.729005 6.49362 0.850613 6.5595 1.00319 6.5595H4.99395C5.14652 6.5595 5.26813 6.49362 5.33161 6.4139C5.38851 6.34245 5.4059 6.25514 5.35126 6.15166C5.21714 5.89772 4.99747 5.61883 4.63431 5.40205C4.27096 5.18516 3.7495 5.02184 2.99857 5.02184C2.24764 5.02184 1.72618 5.18516 1.36283 5.40205Z"
+                  fill="#6D758F" />
+              </svg>
+            </div>
+          </div>
+          <div class="card-date3">Brian Clark</div>
+        </div>
+        <svg class="divier-mini" width="14" height="2" viewBox="0 0 14 2" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 0.5C0.723858 0.5 0.5 0.723858 0.5 1C0.5 1.27614 0.723858 1.5 1 1.5V0.5ZM1 1.5H13.84V0.5H1V1.5Z"
+            fill="#E1E4ED" />
+        </svg>
 
-{% endblock %} {% endblock %}
+        <div class="card-date-mini">Jan 24, 2024</div>
+      </div>
+    </div>
+  </div>
+  <div class="blog-card-v-5-mini">
+    <div class="image-wrapper-mini"></div>
+    <div class="content-mini">
+      <div class="heading-h-2-mini">Typography in web design: enhancing UI/UX</div>
+      <div class="spacer2">
+        <div class="_4-px"></div>
+      </div>
+      <div class="top-mini">
+        <div class="author-wrapper-mini">
+          <div class="circle-avatar2">
+            <div class="frame-386192">
+              <svg class="group-1000005837" width="6" height="8" viewBox="0 0 6 8" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M2.99853 1.43981C2.44024 1.43981 1.98766 1.89239 1.98766 2.45068C1.98766 3.00896 2.44024 3.46155 2.99853 3.46155C3.55683 3.46155 4.00941 3.00896 4.00941 2.45068C4.00941 1.89239 3.55683 1.43981 2.99853 1.43981ZM1.49219 2.45068C1.49219 1.61875 2.1666 0.944336 2.99853 0.944336C3.83046 0.944336 4.50488 1.61875 4.50488 2.45068C4.50488 3.28261 3.83046 3.95702 2.99853 3.95702C2.1666 3.95702 1.49219 3.28261 1.49219 2.45068Z"
+                  fill="#6D758F" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M1.10887 4.97661C1.56159 4.70637 2.17411 4.52637 2.99857 4.52637C3.82303 4.52637 4.43554 4.70637 4.88826 4.97661C5.34118 5.24696 5.61969 5.59899 5.78938 5.92026L5.78938 5.92028C5.94122 6.20781 5.89154 6.50614 5.71919 6.72256C5.55342 6.93072 5.2836 7.05497 4.99395 7.05497H1.00319C0.713534 7.05497 0.443709 6.93072 0.277938 6.72255C0.105592 6.50613 0.055917 6.2078 0.207775 5.92027C0.377448 5.599 0.655959 5.24696 1.10887 4.97661ZM1.36283 5.40205C0.999667 5.61883 0.780005 5.89772 0.645896 6.15165L0.645895 6.15166C0.591238 6.25514 0.608625 6.34245 0.665528 6.41391C0.729005 6.49362 0.850613 6.5595 1.00319 6.5595H4.99395C5.14652 6.5595 5.26813 6.49362 5.33161 6.4139C5.38851 6.34245 5.4059 6.25514 5.35126 6.15166C5.21714 5.89772 4.99747 5.61883 4.63431 5.40205C4.27096 5.18516 3.7495 5.02184 2.99857 5.02184C2.24764 5.02184 1.72618 5.18516 1.36283 5.40205Z"
+                  fill="#6D758F" />
+              </svg>
+            </div>
+          </div>
+          <div class="card-date3">Brian Clark</div>
+        </div>
+        <svg class="divier-mini" width="14" height="2" viewBox="0 0 14 2" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 0.5C0.723858 0.5 0.5 0.723858 0.5 1C0.5 1.27614 0.723858 1.5 1 1.5V0.5ZM1 1.5H13.84V0.5H1V1.5Z"
+            fill="#E1E4ED" />
+        </svg>
+
+        <div class="card-date-mini">Jan 24, 2024</div>
+      </div>
+    </div>
+  </div>
+  <div class="blog-card-v-5-mini">
+    <div class="image-wrapper-mini"></div>
+    <div class="content-mini">
+      <div class="heading-h-2-mini">Typography in web design: enhancing UI/UX</div>
+      <div class="spacer2">
+        <div class="_4-px"></div>
+      </div>
+      <div class="top-mini">
+        <div class="author-wrapper-mini">
+          <div class="circle-avatar2">
+            <div class="frame-386192">
+              <svg class="group-1000005837" width="6" height="8" viewBox="0 0 6 8" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M2.99853 1.43981C2.44024 1.43981 1.98766 1.89239 1.98766 2.45068C1.98766 3.00896 2.44024 3.46155 2.99853 3.46155C3.55683 3.46155 4.00941 3.00896 4.00941 2.45068C4.00941 1.89239 3.55683 1.43981 2.99853 1.43981ZM1.49219 2.45068C1.49219 1.61875 2.1666 0.944336 2.99853 0.944336C3.83046 0.944336 4.50488 1.61875 4.50488 2.45068C4.50488 3.28261 3.83046 3.95702 2.99853 3.95702C2.1666 3.95702 1.49219 3.28261 1.49219 2.45068Z"
+                  fill="#6D758F" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M1.10887 4.97661C1.56159 4.70637 2.17411 4.52637 2.99857 4.52637C3.82303 4.52637 4.43554 4.70637 4.88826 4.97661C5.34118 5.24696 5.61969 5.59899 5.78938 5.92026L5.78938 5.92028C5.94122 6.20781 5.89154 6.50614 5.71919 6.72256C5.55342 6.93072 5.2836 7.05497 4.99395 7.05497H1.00319C0.713534 7.05497 0.443709 6.93072 0.277938 6.72255C0.105592 6.50613 0.055917 6.2078 0.207775 5.92027C0.377448 5.599 0.655959 5.24696 1.10887 4.97661ZM1.36283 5.40205C0.999667 5.61883 0.780005 5.89772 0.645896 6.15165L0.645895 6.15166C0.591238 6.25514 0.608625 6.34245 0.665528 6.41391C0.729005 6.49362 0.850613 6.5595 1.00319 6.5595H4.99395C5.14652 6.5595 5.26813 6.49362 5.33161 6.4139C5.38851 6.34245 5.4059 6.25514 5.35126 6.15166C5.21714 5.89772 4.99747 5.61883 4.63431 5.40205C4.27096 5.18516 3.7495 5.02184 2.99857 5.02184C2.24764 5.02184 1.72618 5.18516 1.36283 5.40205Z"
+                  fill="#6D758F" />
+              </svg>
+            </div>
+          </div>
+          <div class="card-date3">Brian Clark</div>
+        </div>
+        <svg class="divier-mini" width="14" height="2" viewBox="0 0 14 2" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 0.5C0.723858 0.5 0.5 0.723858 0.5 1C0.5 1.27614 0.723858 1.5 1 1.5V0.5ZM1 1.5H13.84V0.5H1V1.5Z"
+            fill="#E1E4ED" />
+        </svg>
+
+        <div class="card-date-mini">Jan 24, 2024</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
+{% endblock %}
