@@ -69,7 +69,7 @@ def home(request):
         return render(request, "index.html", cached_data)
 
     latest_news = get_news(limit=4)
-    recent_news = get_news(limit=20)[4:]
+    recent_news = get_news(limit=54)[4:]
     negative_news = get_news(sentiment="Negativo", limit=4)
     positive_news = get_news(sentiment="Positivo", limit=4)
     neutral_news = get_news(sentiment="Neutro", limit=20)
