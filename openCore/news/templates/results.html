@@ -59,42 +59,45 @@ Busqueda
             </button>
           </div>
           <br>
-          <div class="checkbox-container">
-              <div class="column">
-                <label>
-                  <input type="checkbox" name="source" value="adn"><img src="{% static "img/source_logos/adn.png" %}" alt="adn" class="small-image">
-                </label>
-                <label>
-                  <input type="checkbox" name="source" value="chvn"><img src="{% static "img/source_logos/chvn.png" %}" alt="chvn" class="small-image">
-                </label>
-              </div>
-              <div class="column">
-                <label>
-                  <input type="checkbox" name="source" value="cnn"><img src="{% static "img/source_logos/cnn.png" %}" alt="cnn" class="small-image">
-                </label>
-                <label>
-                  <input type="checkbox" name="source" value="dinamo"><img src="{% static "img/source_logos/dinamo.png" %}" alt="dinamo" class="small-image">
-                </label>
-              </div>
-              <div class="column">
-                <label>
-                  <input type="checkbox" name="source" value="mostrador"><img src="{% static "img/source_logos/elmostrador.png" %}" alt="mostrador" class="small-image">
-                </label>
-                <label>
-                  <input type="checkbox" name="source" value="latercera"><img src="{% static "img/source_logos/latercera.png" %}" alt="latercera" class="small-image">
-                </label>
-              </div>
-              <div class="column">
-                <label>
-                  <input type="checkbox" name="source" value="meganoticias"><img src="{% static "img/source_logos/meganoticias.png" %}" alt="meganoticias" class="small-image">
-                </label>
-                <label>
-                  <input type="checkbox" name="source" value="t13"><img src="{% static "img/source_logos/t13.png" %}" alt="t13" class="small-image">
-                </label>
-              </div>
-          </div>
-          <div class="center-container">
-            <button type="submit" class="filter-button">Filtrar</button>
+          <button id="toggle-filters" type="button">Filtros</button>
+          <div id="filters" style="display: none;">
+              <div class="checkbox-container">
+                <div class="column">
+                  <label>
+                    <input type="checkbox" name="source" value="adn"><img src="{% static "img/source_logos/adn.png" %}" alt="adn" class="filter-image">
+                  </label>
+                  <label>
+                    <input type="checkbox" name="source" value="chvn"><img src="{% static "img/source_logos/chvn.png" %}" alt="chvn" class="filter-image">
+                  </label>
+                </div>
+                <div class="column">
+                  <label>
+                    <input type="checkbox" name="source" value="cnn"><img src="{% static "img/source_logos/cnn.png" %}" alt="cnn" class="filter-image">
+                  </label>
+                  <label>
+                    <input type="checkbox" name="source" value="dinamo"><img src="{% static "img/source_logos/dinamo.png" %}" alt="dinamo" class="filter-image">
+                  </label>
+                </div>
+                <div class="column">
+                  <label>
+                    <input type="checkbox" name="source" value="mostrador"><img src="{% static "img/source_logos/elmostrador.png" %}" alt="mostrador" class="filter-image">
+                  </label>
+                  <label>
+                    <input type="checkbox" name="source" value="latercera"><img src="{% static "img/source_logos/latercera.png" %}" alt="latercera" class="filter-image">
+                  </label>
+                </div>
+                <div class="column">
+                  <label>
+                    <input type="checkbox" name="source" value="meganoticias"><img src="{% static "img/source_logos/meganoticias.png" %}" alt="meganoticias" class="filter-image">
+                  </label>
+                  <label>
+                    <input type="checkbox" name="source" value="t13"><img src="{% static "img/source_logos/t13.png" %}" alt="t13" class="filter-image">
+                  </label>
+                </div>
+            </div>
+            <div class="center-container">
+              <button type="submit" class="filter-button">Filtrar</button>
+            </div>
           </div>
       </form>
       </div>

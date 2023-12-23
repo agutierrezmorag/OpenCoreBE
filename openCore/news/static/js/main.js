@@ -1,3 +1,14 @@
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('toggle-filters').addEventListener('click', function() {
+    var filters = document.getElementById('filters');
+    if (filters.style.display === 'none') {
+      filters.style.display = 'block';
+    } else {
+      filters.style.display = 'none';
+    }
+  });
+});
+
 const prevRecent = document.getElementById("prev-btn-recent");
 const nextRecent = document.getElementById("next-btn-recent");
 const listRecent = document.getElementById("item-list-recent");

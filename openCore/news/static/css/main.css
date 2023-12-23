@@ -797,7 +797,6 @@ label {
   justify-content: center;
 }
 
-
 .checkbox-container label {
   flex: 0 0 calc(33.33% - 16px);
   box-sizing: border-box;
@@ -820,7 +819,6 @@ label {
   font-size: 14px;
   line-height: 16px;
   color: hsl(235, 100%, 36%);
-  /* Color cuando está marcado */
 }
 
 .checkbox-container input[type="checkbox"]::before {
@@ -874,4 +872,38 @@ label {
   max-width: 100%;
   height: auto;
   margin-bottom: 5px;
+}
+
+#filters {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.column {
+  flex: 1 0 21%;
+  margin: 5px;
+}
+
+.column label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.filter-image {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-left: 10px;
+}
+
+#toggle-filters {
+  color: black;
 }
