@@ -218,12 +218,12 @@
   overflow: hidden;
 }
 
-.frame-38619 {
+.avatar-frame-principal {
   background: var(--neutralcolors-300, #f1f3f7);
   width: 7rem;
 }
 
-.frame-38619 img {
+.avatar-frame-principal img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -359,14 +359,14 @@
   overflow: hidden;
 }
 
-.frame-386192 {
+.avatar-frame-mini {
   background: var(--neutralcolors-300, #f1f3f7);
   width: 3rem;
   height: 1.5rem;
   overflow: hidden;
 }
 
-.frame-386192 img {
+.avatar-frame-mini img {
   width: 100%;
   height: 100%;
   object-fit: contain;
