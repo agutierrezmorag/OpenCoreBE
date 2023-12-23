@@ -626,7 +626,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: #f7f7f7;
+  background: #f1f3f7;
 }
 
 .stats-row {
@@ -655,19 +655,6 @@
   font-size: var(--display-9-semi-bold-font-size, 3rem);
   line-height: var(--display-9-semi-bold-line-height, 3rem);
   font-weight: var(--display-9-semi-bold-font-weight, 600);
-  position: relative;
-  align-self: stretch;
-}
-
-.heading-h-3 {
-  color: var(--neutralcolors-600, #6d758f);
-  text-align: center;
-  font-family: var(--display-4-semi-bold-font-family,
-      "Inter-SemiBold",
-      sans-serif);
-  font-size: var(--display-4-semi-bold-font-size, 1.125rem);
-  line-height: var(--display-4-semi-bold-line-height, 1.5rem);
-  font-weight: var(--display-4-semi-bold-font-weight, 600);
   position: relative;
   align-self: stretch;
 }
