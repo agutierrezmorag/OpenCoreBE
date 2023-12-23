@@ -12,6 +12,90 @@ Busqueda
   <div class="search-results-grid2">
     <div class="heading-h-2">Resultados encontrados: {{ total_results }}</div>
     <div class="spacer"></div>
+    <form action="{% url 'query_results' %}" method="POST">
+      {% csrf_token %}
+      <div class="search-container">
+        <div class="search-bar">
+          <div class="search-bar-placeholder-wrapper">
+            <input type="text" name="query" class="placeholder" placeholder="Buscar..." required value={{ query }}>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-search">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </div>
+      </div>
+      <div class="spacer"></div>
+      <div class="checkbox-container">
+        <div class="row">
+          <label>
+            <input type="checkbox" name="source" value="adn">
+            <img src="{% static 'img/source_logos/adn.png' %}" alt="adn" class="filter-image">
+          </label>
+          <label>
+            <input type="checkbox" name="source" value="chvn">
+            <img src="{% static 'img/source_logos/chvn.png' %}" alt=" chvn" class="filter-image">
+          </label>
+          <label>
+            <input type="checkbox" name="source" value="cnn">
+            <img src="{% static 'img/source_logos/cnn.png' %}" alt="cnn" class="filter-image">
+          </label>
+          <label>
+            <input type="checkbox" name="source" value="dinamo">
+            <img src="{% static 'img/source_logos/dinamo.png' %}" alt="dinamo" class="filter-image">
+          </label>
+          <label>
+            <input type="checkbox" name="source" value="mostrador">
+            <img src="{% static 'img/source_logos/elmostrador.png' %}" alt="mostrador" class="filter-image">
+          </label>
+          <label>
+            <input type="checkbox" name="source" value="latercera">
+            <img src="{% static 'img/source_logos/latercera.png' %}" alt="latercera" class="filter-image">
+          </label>
+          <label>
+            <input type="checkbox" name="source" value="meganoticias">
+            <img src="{% static 'img/source_logos/meganoticias.png' %}" alt="meganoticias" class="filter-image">
+          </label>
+          <label>
+            <input type="checkbox" name="source" value="t13">
+            <img src="{% static 'img/source_logos/t13.png' %}" alt="t13" class="filter-image">
+          </label>
+        </div>
+        <div class="spacer"></div>
+        <div class="divider"></div>
+        <div class="row">
+          <label>
+            <input type="checkbox" name="sentiment" value="Positivo">
+            <div class="sentiment-tag positivo">
+              <div class="button-text">Positivo</div>
+            </div>
+          </label>
+          <label>
+            <input type="checkbox" name="sentiment" value="Negativo">
+            <div class="sentiment-tag negativo">
+              <div class="button-text">Negativo</div>
+            </div>
+          </label>
+          <label>
+            <input type="checkbox" name="sentiment" value="Neutro">
+            <div class="sentiment-tag neutro">
+              <div class="button-text">Neutral</div>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="spacer"></div>
+      <div class="filter-button-container">
+        <button type="submit">
+          <div class="filter-button">
+            <div class="filter-button-text">Filtrar</div>
+          </div>
+        </button>
+      </div>
+    </form>
+    <div class="spacer"></div>
   </div>
   <div class="search-cards-grid">
     {% for news in search_results %}
