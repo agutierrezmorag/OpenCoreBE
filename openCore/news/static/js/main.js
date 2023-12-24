@@ -1,4 +1,4 @@
-new Glide('.glide', {
+const options = {
   type: 'carousel',
   startAt: 0,
   perView: 5,
@@ -16,4 +16,8 @@ new Glide('.glide', {
       perView: 1
     }
   }
-}).mount();
+};
+
+new Glide('#glide-recent', options).mount();
+new Glide('#glide-negative', options).mount();
+new Glide('#glide-positive', options).mount();

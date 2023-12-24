@@ -7,8 +7,7 @@
     <div class="search-bar-placeholder-wrapper">
       <form action="{% url 'query_results' %}" method="POST">
         {% csrf_token %}
-        <input type="text" name="query" class="placeholder" placeholder="Buscar una noticia..." value={{ query }}
-          required>
+        <input type="text" name="query" class="placeholder" placeholder="Buscar una noticia..." required>
       </form>
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -93,7 +92,7 @@
     </div>
     <div class="spacer"></div>
   </div>
-  <div class="glide">
+  <div class="glide" id="glide-recent">
     <div class="glide__track" data-glide-el="track">
       <ul class="glide__slides">
         {% for news in recent_news %}
@@ -173,6 +172,110 @@
       <div class="spacer"></div>
     </div>
   </div>
+</div>
+
+<div class="spacer"></div>
+
+<div class="recent-news-grid">
+  <div class="recent-news-grid2">
+    <div class="heading-h-2">Noticias positivas</div>
+    <div class="spacer"></div>
+  </div>
+  <div class="glide" id="glide-positive">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+        {% for news in positive_news %}
+        <li class="glide__slide">
+          <div class="item">
+            <div class="image-replace">
+              <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+            </div>
+            <div class="spacer"></div>
+            <div class="heading-h-3">
+              <a href="{{ news.link }}">
+                {{ news.title|truncatechars:60 }}
+              </a>
+            </div>
+            <div class="spacer"></div>
+            <div class="sentiment-tag {{ news.sentiment|lower }}">
+              <div class="button-text">
+                {{ news.sentiment }}
+              </div>
+            </div>
+            <div class="spacer"></div>
+            <div class="top-mini">
+              <div class="card-avatar">
+                <div class="card-avatar-mini">
+                  <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}">
+                </div>
+              </div>
+              <div class="card-date-mini">
+                {{ news.date_published|date:"j \d\e F, Y" }}
+              </div>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">&larr;</button>
+      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">&rarr;</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="spacer"></div>
+
+<div class="recent-news-grid">
+  <div class="recent-news-grid2">
+    <div class="heading-h-2">Noticias negativas</div>
+    <div class="spacer"></div>
+  </div>
+  <div class="glide" id="glide-negative">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+        {% for news in negative_news %}
+        <li class="glide__slide">
+          <div class="item">
+            <div class="image-replace">
+              <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+            </div>
+            <div class="spacer"></div>
+            <div class="heading-h-3">
+              <a href="{{ news.link }}">
+                {{ news.title|truncatechars:60 }}
+              </a>
+            </div>
+            <div class="spacer"></div>
+            <div class="sentiment-tag {{ news.sentiment|lower }}">
+              <div class="button-text">
+                {{ news.sentiment }}
+              </div>
+            </div>
+            <div class="spacer"></div>
+            <div class="top-mini">
+              <div class="card-avatar">
+                <div class="card-avatar-mini">
+                  <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}">
+                </div>
+              </div>
+              <div class="card-date-mini">
+                {{ news.date_published|date:"j \d\e F, Y" }}
+              </div>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">&larr;</button>
+      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">&rarr;</button>
+    </div>
+  </div>
+</div>
 </div>
 
 <div class="spacer"></div>
