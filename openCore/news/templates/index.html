@@ -25,7 +25,11 @@
         <img src="{{ latest_news.0.img_url }}" alt="{{ latest_news.0.title }}" class="image-principal" />
       </div>
       <div class="content-principal">
-        <div class="heading-h-2">{{ latest_news.0.title }}</div>
+        <div class="heading-h-2">
+          <a href="{{ latest_news.0.link }}">
+            {{ latest_news.0.title }}
+          </a>
+        </div>
         <div class="spacer">
           <div class="_4-px"></div>
           <div class="text">24</div>
@@ -41,9 +45,6 @@
               </div>
             </div>
           </div>
-          <div class="card-date">
-            <a href="{{ latest_news.0.link }}">Leer más</a>
-          </div>
           <div class="card-date2">
             {{ latest_news.0.date_published|date:"j \d\e F, Y" }}
           </div>
@@ -58,7 +59,11 @@
         <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-mini" />
       </div>
       <div class="content-mini">
-        <div class="heading-h-2-mini">{{ news.title }}</div>
+        <div class="heading-h-2-mini">
+          <a href="{{ news.link }}">
+            {{ news.title }}
+          </a>
+        </div>
         <div class="spacer2"></div>
         <div class="top-mini">
           <div class="author-wrapper-mini">
@@ -66,9 +71,6 @@
               <div class="avatar-frame-mini">
                 <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}">
               </div>
-            </div>
-            <div class="card-date3">
-              <a href="{{ news.link }}">Leer más</a>
             </div>
           </div>
           <div class="card-date-mini">
@@ -147,7 +149,7 @@
     oportunos. Los números que se presentarán a continuación son un testimonio de nuestro compromiso, ayudándote a
     entender mejor el panorama mediático y a tomar decisiones informadas.
   </div>
-  <div class="spacer"></div>
+  <div class="spacer2"></div>
   <div class="stats-row">
     <div class="stat-card">
       <div class="big-number">
