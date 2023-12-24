@@ -1,74 +1,164 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/vars.css' %}" />
-    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.theme.min.css" />
 
-    <style>
-      a,
-      button,
-      input,
-      select,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      * {
-        margin: 0;
-        padding: 0;
-        border: none;
-        text-decoration: none;
-        background: none;
-      
-        -webkit-font-smoothing: antialiased;
-      }
-    </style>
-    <title>
-      {% block title %}
-        openCore
-      {% endblock %}
-    </title>
-  </head>
-  <body>
-    <div class="nav-bar">
-      <div class="logo">
-        <a href="{% url 'home' %}">
-          <div class="logo-full-dark">
-            <img src="{% static 'img/logo.png' %}" style="max-width: 300px" alt="Your Logo Alt Text" />
-          </div>
-        </a>
-      </div>
-      <div class="nav-list">
-        <div class="link">
-          <a href="{% url 'home' %}" class="link-item">Home</a>
-        </div>
-        <div class="link">
-          <a href="#" class="link-item">Sobre nosotros</a>
-        </div>
-        <div class="link">
-          <a href="{% url 'stats' %}" class="link-item">Estadisticas</a>
-        </div>
-      </div>
-    </div>
-    <div class="spacer"></div>
-    {% block content %}
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/vars.css' %}" />
+  <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.theme.min.css" />
 
+  <style>
+    a,
+    button,
+    input,
+    select,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    * {
+      margin: 0;
+      padding: 0;
+      border: none;
+      text-decoration: none;
+      background: none;
+
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+  <title>
+    {% block title %}
+    openCore
     {% endblock %}
-    <div class="footer">
-      <div class="logo-footer">
-        <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" style="max-width: 300px" alt="openCore" /></a>
+  </title>
+</head>
+
+<body>
+  <div class="nav-bar">
+    <div class="logo">
+      <a href="{% url 'home' %}">
+        <div class="logo-full-dark">
+          <img src="{% static 'img/logo.png' %}" style="max-width: 300px" alt="Your Logo Alt Text" />
+        </div>
+      </a>
+    </div>
+    <div class="nav-list">
+      <div class="link">
+        <a href="{% url 'home' %}" class="link-item">Home</a>
+      </div>
+      <div class="link">
+        <a href="#" class="link-item">Sobre nosotros</a>
+      </div>
+      <div class="link">
+        <a href="{% url 'stats' %}" class="link-item">Estadisticas</a>
       </div>
     </div>
+  </div>
+  <div class="spacer"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-  </body>
+  <div class="search-results-grid">
+    <div class="search-results-grid2">
+      <div class="heading-h-2">
+        {% block results_count %}
+        Revelamos la verdad en cada palabra, tu fuente confiable para información sin filtros.
+        {% endblock %}
+      </div>
+      <div class="spacer"></div>
+      <form action="{% url 'query_results' %}" method="POST">
+        {% csrf_token %}
+        <div class="search-container">
+          <div class="search-bar">
+            <div class="search-bar-placeholder-wrapper">
+              <input type="text" name="query" class="placeholder" placeholder="Buscar una noticia..." required>
+            </div>
+            <button id="toggleButton" type="button" class="filter-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="filter-container" id="toggleSection">
+          <div class="checkbox-container">
+            <div class="row">
+              <label>
+                <input type="checkbox" name="source" value="adn">
+                <img src="{% static 'img/source_logos/adn.png' %}" alt="adn" class="filter-image">
+              </label>
+              <label>
+                <input type="checkbox" name="source" value="chvn">
+                <img src="{% static 'img/source_logos/chvn.png' %}" alt=" chvn" class="filter-image">
+              </label>
+              <label>
+                <input type="checkbox" name="source" value="cnn">
+                <img src="{% static 'img/source_logos/cnn.png' %}" alt="cnn" class="filter-image">
+              </label>
+              <label>
+                <input type="checkbox" name="source" value="dinamo">
+                <img src="{% static 'img/source_logos/dinamo.png' %}" alt="dinamo" class="filter-image">
+              </label>
+              <label>
+                <input type="checkbox" name="source" value="mostrador">
+                <img src="{% static 'img/source_logos/elmostrador.png' %}" alt="mostrador" class="filter-image">
+              </label>
+              <label>
+                <input type="checkbox" name="source" value="latercera">
+                <img src="{% static 'img/source_logos/latercera.png' %}" alt="latercera" class="filter-image">
+              </label>
+              <label>
+                <input type="checkbox" name="source" value="meganoticias">
+                <img src="{% static 'img/source_logos/meganoticias.png' %}" alt="meganoticias" class="filter-image">
+              </label>
+              <label>
+                <input type="checkbox" name="source" value="t13">
+                <img src="{% static 'img/source_logos/t13.png' %}" alt="t13" class="filter-image">
+              </label>
+            </div>
+            <div class="row">
+              <label>
+                <input type="checkbox" name="sentiment" value="Positivo">
+                <div class="sentiment-tag positivo">
+                  <div class="button-text">Positivo</div>
+                </div>
+              </label>
+              <label>
+                <input type="checkbox" name="sentiment" value="Negativo">
+                <div class="sentiment-tag negativo">
+                  <div class="button-text">Negativo</div>
+                </div>
+              </label>
+              <label>
+                <input type="checkbox" name="sentiment" value="Neutro">
+                <div class="sentiment-tag neutro">
+                  <div class="button-text">Neutro</div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="spacer"></div>
+  {% block content %}
+
+  {% endblock %}
+  <div class="footer">
+    <div class="logo-footer">
+      <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" style="max-width: 300px" alt="openCore" /></a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/filter-button.js' %}"></script>
+</body>
+
 </html>
