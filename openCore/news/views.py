@@ -70,8 +70,8 @@ def home(request):
 
     latest_news = get_news(limit=4)
     recent_news = get_news(limit=54)[4:]
-    negative_news = get_news(sentiment="Negativo", limit=4)
-    positive_news = get_news(sentiment="Positivo", limit=4)
+    negative_news = get_news(sentiment="Negativo", limit=20)
+    positive_news = get_news(sentiment="Positivo", limit=20)
     neutral_news = get_news(sentiment="Neutro", limit=20)
         
     context = {
