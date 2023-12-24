@@ -648,7 +648,7 @@
 .stats-row {
   display: flex;
   flex-flow: wrap;
-  justify-content: space-between;
+  align-content: center;
 }
 
 .stat-card {
