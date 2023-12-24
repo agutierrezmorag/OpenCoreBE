@@ -614,10 +614,12 @@
 
 .sentiment-tag.negativo {
   background: var(--primarypalette-red);
+  color: var(--neutralcolors-400);
 }
 
 .sentiment-tag.positivo {
   background: var(--primarypalette-green);
+  color: var(--neutralcolors-400);
 }
 
 .sentiment-tag.neutro {
