@@ -104,6 +104,7 @@
   box-shadow: var(--neutral-shadow-02-box-shadow,
       0rem 0.0625rem 0.25rem 0rem rgba(25, 33, 61, 0.08));
   overflow: hidden;
+  width: 52vw;
   max-width: 60rem;
 }
 
@@ -572,6 +573,19 @@
 
 .glide {
   max-width: 100rem;
+}
+
+.glide__arrow {
+  top: 42% !important;
+  background-color: black !important;
+}
+
+.glide__arrow--left {
+  left: 0 !important;
+}
+
+.glide__arrow--right {
+  right: 0 !important;
 }
 
 /* RECENT NEWS */
