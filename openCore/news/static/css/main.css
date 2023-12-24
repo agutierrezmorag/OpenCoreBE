@@ -671,8 +671,16 @@
   max-width: 100rem;
 }
 
+.search-bar:focus-within {
+  border-color: var(--primarypalette-blue);
+}
+
 .search-bar-placeholder-wrapper {
   width: 100%;
+}
+
+input:focus {
+  outline: none;
 }
 
 .placeholder input-text input {
