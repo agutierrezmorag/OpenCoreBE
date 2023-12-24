@@ -755,7 +755,7 @@
   line-height: var(--paragraph-medium-regular-line-height, 1.5rem);
   font-weight: var(--paragraph-medium-regular-font-weight, 400);
   position: relative;
-  width: 25.794375rem;
+  width: 80vw;
 }
 
 /* SOURCES */

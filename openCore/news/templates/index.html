@@ -7,7 +7,8 @@
     <div class="search-bar-placeholder-wrapper">
       <form action="{% url 'query_results' %}" method="POST">
         {% csrf_token %}
-        <input type="text" name="query" class="placeholder" placeholder="Buscar..." required value={{ query }}>
+        <input type="text" name="query" class="placeholder" placeholder="Buscar una noticia..." value={{ query }}
+          required>
       </form>
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -141,7 +142,13 @@
 
 <div class="stats">
   <div class="heading-h-2">Nuestros numeros</div>
-  <div class="spacer2"></div>
+  <div class="spacer"></div>
+  <div class="footer-description">
+    Hasta la fecha, hemos trabajado incansablemente para proporcionarte análisis de sentimientos de noticias precisos y
+    oportunos. Los números que se presentarán a continuación son un testimonio de nuestro compromiso, ayudándote a
+    entender mejor el panorama mediático y a tomar decisiones informadas.
+  </div>
+  <div class="spacer"></div>
   <div class="stats-row">
     <div class="stat-card">
       <div class="big-number">
@@ -150,10 +157,6 @@
       <div class="spacer"></div>
       <div class="heading-h-3">Noticias</div>
       <div class="spacer"></div>
-      <div class="paragraph">
-        Lorem ipsum dolor sit amet consectetur adipiscing elitolmel aliquam
-        mauris sed ma
-      </div>
     </div>
     <div class="stat-card">
       <div class="big-number">
@@ -162,20 +165,12 @@
       <div class="spacer"></div>
       <div class="heading-h-3">Palabras</div>
       <div class="spacer"></div>
-      <div class="paragraph">
-        Tortor condimentum vestibulum nunc velit. Ipsum urna tempor vitae risus
-        nec diam bibend.
-      </div>
     </div>
     <div class="stat-card">
       <div class="big-number">8</div>
       <div class="spacer"></div>
       <div class="heading-h-3">Fuentes</div>
       <div class="spacer"></div>
-      <div class="paragraph">
-        Amet neque pellentesque dui amet massa facilisi volutpat id gravida
-        scelerisque habit.
-      </div>
     </div>
   </div>
 </div>
@@ -185,6 +180,10 @@
 <div class="source-logos-container">
   <div class="source-logos-content">
     <div class="heading-h-2">Nuestras fuentes</div>
+    <div class="spacer"></div>
+    <div class="footer-description">
+      Trabajamos con fuentes de noticias confiables para proporcionar la información más precisa y actualizada.
+    </div>
     <div class="spacer"></div>
     <div class="logos-wrapper">
       <a href="https://www.adnradio.cl/">
@@ -213,10 +212,6 @@
       </a>
     </div>
     <div class="spacer"></div>
-    <div class="footer-description">
-      Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam mauris sed
-      ma
-    </div>
   </div>
 </div>
 
