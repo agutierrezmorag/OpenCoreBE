@@ -868,7 +868,7 @@ input:focus {
 
 .checkbox-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 1em;
   align-items: center;
   justify-content: center;
