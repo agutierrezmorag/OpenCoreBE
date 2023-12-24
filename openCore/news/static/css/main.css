@@ -417,7 +417,7 @@
 
 .heading-h-1 {
   color: var(--neutralcolors-600, #6d758f);
-  text-align: left;
+  text-align: center;
   font-family: var(--display-7-semi-bold-font-family, "Inter-SemiBold", sans-serif);
   font-size: var(--display-9-semi-bold-font-size, 1.875rem);
   line-height: var(--display-7-semi-bold-line-height, 2.25rem);
