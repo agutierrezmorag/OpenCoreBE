@@ -6,13 +6,20 @@
 
 .nav-bar {
   background: var(--neutralcolors-300, #f1f3f7);
-  padding: 1.5rem 10.4375rem 1.5rem 10.4375rem;
+  padding: 2rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   position: relative;
   overflow: hidden;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .nav-bar {
+    justify-content: center;
+  }
 }
 
 .logo {
@@ -78,16 +85,6 @@
 
 /* LATEST NEWS */
 
-.latest-news-grid {
-  display: flex;
-  flex-direction: row;
-  gap: 1.375rem;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
-}
-
 .latest-news-principal {
   background: var(--neutralcolors-100, #ffffff);
   border-radius: 0.5rem;
@@ -97,15 +94,10 @@
   display: flex;
   flex-direction: column;
   gap: 1.875rem;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
   position: relative;
-  box-shadow: var(--neutral-shadow-02-box-shadow,
-      0rem 0.0625rem 0.25rem 0rem rgba(25, 33, 61, 0.08));
-  overflow: hidden;
-  width: 52vw;
+  box-shadow: var(--neutral-shadow-02-box-shadow, 0rem 0.0625rem 0.25rem 0rem rgba(25, 33, 61, 0.08));
   max-width: 60rem;
+  height: 100%;
 }
 
 .image-wrapper-principal {
@@ -217,18 +209,6 @@
   object-fit: contain;
 }
 
-.card-date {
-  color: var(--neutralcolors-600, #6d758f);
-  text-align: left;
-  font-family: var(--display-2-semi-bold-font-family,
-      "Inter-SemiBold",
-      sans-serif);
-  font-size: var(--display-2-semi-bold-font-size, 0.875rem);
-  line-height: var(--display-2-semi-bold-line-height, 1.25rem);
-  font-weight: var(--display-2-semi-bold-font-weight, 600);
-  position: relative;
-}
-
 .card-date2 {
   color: var(--neutralcolors-600, #6d758f);
   text-align: right;
@@ -249,6 +229,7 @@
   flex-shrink: 0;
   position: relative;
   width: 40rem;
+  max-width: 90vw;
 }
 
 .blog-card-v-5-mini {
@@ -356,18 +337,6 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-.card-date3 {
-  color: var(--neutralcolors-600, #6d758f);
-  text-align: left;
-  font-family: var(--display-1-regular-font-family,
-      "Inter-Regular",
-      sans-serif);
-  font-size: var(--display-1-regular-font-size, 0.75rem);
-  line-height: var(--display-1-regular-line-height, 1.125rem);
-  font-weight: var(--display-1-regular-font-weight, 400);
-  position: relative;
 }
 
 .card-date-mini {
@@ -482,7 +451,6 @@
 .item {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   border-radius: 0.5rem;
   border-style: solid;
   border-color: var(--neutralcolors-400, #e1e4ed);
@@ -610,6 +578,7 @@
 .sentiment-tag {
   border-radius: 0.5rem;
   padding: 0.5rem;
+  width: max-content;
 }
 
 .sentiment-tag.negativo {
@@ -649,6 +618,7 @@
   display: flex;
   flex-flow: wrap;
   align-content: center;
+  justify-content: center;
 }
 
 .stat-card {
