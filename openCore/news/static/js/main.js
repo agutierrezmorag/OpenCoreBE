@@ -1,7 +1,7 @@
 const options = {
   type: 'carousel',
-  startAt: 0,
   perView: 5,
+  animationDuration: 200,
   breakpoints: {
     1200: {
       perView: 4
