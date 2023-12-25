@@ -7,6 +7,11 @@
     <div class="latest-news-principal">
       <div class="image-wrapper-principal">
         <img src="{{ latest_news.0.img_url }}" alt="{{ latest_news.0.title }}" class="image-principal" />
+        <div class="sentiment-tag {{ latest_news.0.sentiment|lower }}">
+          <div class="button-text">
+            {{ latest_news.0.sentiment }}
+          </div>
+        </div>
       </div>
       <div class="content-principal">
         <div class="heading-h-2">
@@ -41,6 +46,11 @@
     <div class="blog-card-v-5-mini">
       <div class="image-wrapper-mini">
         <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-mini" />
+        <div class="sentiment-tag {{ news.sentiment|lower }}">
+          <div class="button-text">
+            {{ news.sentiment }}
+          </div>
+        </div>
       </div>
       <div class="content-mini">
         <div class="heading-h-2-mini">
