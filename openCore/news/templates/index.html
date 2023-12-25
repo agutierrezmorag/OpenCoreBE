@@ -6,7 +6,11 @@
   <div class="latest-news-grid">
     <div class="latest-news-principal">
       <div class="image-wrapper-principal">
-        <img src="{{ latest_news.0.img_url }}" alt="{{ latest_news.0.title }}" class="image-principal" />
+        {% if latest_news.0.img_url %}
+        <img src="{{ latest_news.0.img_url }}" alt="{{ latest_news.0.title }}" class="image-replace" />
+        {% else %}
+        <img src="{% static 'img/logo.png' %}" alt="{{ latest_news.0.title }}" class="image-replace-placeholder" />
+        {% endif %}
         <div class="sentiment-tag {{ latest_news.0.sentiment|lower }}">
           <div class="button-text">
             {{ latest_news.0.sentiment }}
@@ -45,7 +49,11 @@
     {% for news in latest_news|slice:"1:" %}
     <div class="blog-card-v-5-mini">
       <div class="image-wrapper-mini">
-        <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-mini" />
+        {% if news.img_url %}
+        <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+        {% else %}
+        <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" />
+        {% endif %}
         <div class="sentiment-tag {{ news.sentiment|lower }}">
           <div class="button-text">
             {{ news.sentiment }}
@@ -93,7 +101,11 @@
         <li class="glide__slide">
           <div class="item">
             <div class="image-replace">
+              {% if news.img_url %}
               <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+              {% else %}
+              <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" />
+              {% endif %}
               <div class="sentiment-tag {{ news.sentiment|lower }}">
                 <div class="button-text">
                   {{ news.sentiment }}
@@ -181,7 +193,11 @@
         <li class="glide__slide">
           <div class="item">
             <div class="image-replace">
+              {% if news.img_url %}
               <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+              {% else %}
+              <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" />
+              {% endif %}
               <div class="sentiment-tag {{ news.sentiment|lower }}">
                 <div class="button-text">
                   {{ news.sentiment }}
@@ -231,7 +247,11 @@
         <li class="glide__slide">
           <div class="item">
             <div class="image-replace">
+              {% if news.img_url %}
               <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+              {% else %}
+              <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" />
+              {% endif %}
               <div class="sentiment-tag {{ news.sentiment|lower }}">
                 <div class="button-text">
                   {{ news.sentiment }}

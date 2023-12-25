@@ -491,6 +491,10 @@
   object-fit: cover;
 }
 
+.image-replace-placeholder {
+  object-fit: contain !important;
+}
+
 .heading-h-3 {
   color: var(--neutralcolors-600, #6d758f);
   text-align: left;
