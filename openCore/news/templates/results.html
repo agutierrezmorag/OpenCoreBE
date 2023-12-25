@@ -6,15 +6,14 @@ Busqueda
 {% endblock %}
 
 {% block results_count %}
-Resultados encontrados: {{ total_results }}
+Resultados: {{ total_results }}
 {% endblock %}
 
 {% block content %}
 {% load encode_decode %}
 
 <div class="search-results-grid">
-  <div class="search-cards-grid">
-    <form action="{% url 'query_results' %}" method="GET">
+    <form id="sort-form" action="{% url 'query_results' %}" method="GET">
       <input type="hidden" name="query" value="{{ query }}">
       {% for source in sources %}
       <input type="hidden" name="source" value="{{ source }}">
@@ -22,14 +21,21 @@ Resultados encontrados: {{ total_results }}
       {% for sentiment in sentiments %}
       <input type="hidden" name="sentiment" value="{{ sentiment }}">
       {% endfor %}
-      <label for="sort">Sort by:</label>
-      <select id="sort" name="sort">
-        <option value="newest" {% if sort == "newest" %}selected{% endif %}>Newest to Oldest</option>
-        <option value="oldest" {% if sort == "oldest" %}selected{% endif %}>Oldest to Newest</option>
-        <option value="relevance" {% if sort == "relevance" %}selected{% endif %}>Relevance</option>
-      </select>
-      <input type="submit" value="Sort">
+      <div class="search-sort">
+        <div class="sort-label">
+          <label for="sort">Ordenar por:</label>
+        </div>
+        <div class="sorting-options">
+          <select id="sort" name="sort" onchange="document.getElementById('sort-form').submit()">
+            <option value="newest" {% if sort == "newest" %}selected{% endif %}>Más reciente</option>
+            <option value="oldest" {% if sort == "oldest" %}selected{% endif %}>Más antiguo</option>
+            <option value="relevance" {% if sort == "relevance" %}selected{% endif %}>Relevancia</option>
+          </select>
+        </div>
+      </div>
     </form>
+  <div class="spacer"></div>
+  <div class="search-cards-grid">
     {% for news in page_obj.object_list %}
     <div class="search-item">
       <div class="image-replace">
