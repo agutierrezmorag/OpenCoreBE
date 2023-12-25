@@ -68,8 +68,8 @@ def home(request):
     if cached_data:
         return render(request, "index.html", cached_data)
 
-    latest_news = get_news(limit=4)
-    recent_news = get_news(limit=54)[4:]
+    latest_news = get_news(limit=5)
+    recent_news = get_news(limit=54)[5:]
     negative_news = get_news(sentiment="Negativo", limit=20)
     positive_news = get_news(sentiment="Positivo", limit=20)
     neutral_news = get_news(sentiment="Neutro", limit=20)

@@ -50,11 +50,9 @@
         </div>
         <div class="spacer2"></div>
         <div class="top-mini">
-          <div class="author-wrapper-mini">
-            <div class="circle-avatar2">
-              <div class="avatar-frame-mini">
-                <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}">
-              </div>
+          <div class="card-avatar">
+            <div class="card-avatar-mini">
+              <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}">
             </div>
           </div>
           <div class="card-date-mini">
@@ -86,19 +84,18 @@
           <div class="item">
             <div class="image-replace">
               <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+              <div class="sentiment-tag {{ news.sentiment|lower }}">
+                <div class="button-text">
+                  {{ news.sentiment }}
+                </div>
+              </div>
             </div>
-            <div class="spacer"></div>
             <div class="heading-h-3">
               <a href="{{ news.link }}">
                 {{ news.title|truncatechars:60 }}
               </a>
             </div>
             <div class="spacer"></div>
-            <div class="sentiment-tag {{ news.sentiment|lower }}">
-              <div class="button-text">
-                {{ news.sentiment }}
-              </div>
-            </div>
             <div class="spacer"></div>
             <div class="top-mini">
               <div class="card-avatar">
@@ -175,18 +172,16 @@
           <div class="item">
             <div class="image-replace">
               <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+              <div class="sentiment-tag {{ news.sentiment|lower }}">
+                <div class="button-text">
+                  {{ news.sentiment }}
+                </div>
+              </div>
             </div>
-            <div class="spacer"></div>
             <div class="heading-h-3">
               <a href="{{ news.link }}">
                 {{ news.title|truncatechars:60 }}
               </a>
-            </div>
-            <div class="spacer"></div>
-            <div class="sentiment-tag {{ news.sentiment|lower }}">
-              <div class="button-text">
-                {{ news.sentiment }}
-              </div>
             </div>
             <div class="spacer"></div>
             <div class="top-mini">
@@ -227,18 +222,16 @@
           <div class="item">
             <div class="image-replace">
               <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+              <div class="sentiment-tag {{ news.sentiment|lower }}">
+                <div class="button-text">
+                  {{ news.sentiment }}
+                </div>
+              </div>
             </div>
-            <div class="spacer"></div>
             <div class="heading-h-3">
               <a href="{{ news.link }}">
                 {{ news.title|truncatechars:60 }}
               </a>
-            </div>
-            <div class="spacer"></div>
-            <div class="sentiment-tag {{ news.sentiment|lower }}">
-              <div class="button-text">
-                {{ news.sentiment }}
-              </div>
             </div>
             <div class="spacer"></div>
             <div class="top-mini">
