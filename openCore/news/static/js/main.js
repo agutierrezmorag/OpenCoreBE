@@ -19,5 +19,6 @@ const options = {
 };
 
 new Glide('#glide-recent', options).mount();
+new Glide('#glide-neutral', options).mount();
 new Glide('#glide-negative', options).mount();
 new Glide('#glide-positive', options).mount();
