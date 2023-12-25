@@ -5,6 +5,7 @@ from datetime import timedelta
 
 import numpy as np
 from django.core.cache import cache
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from django.utils import timezone
 
@@ -148,7 +149,7 @@ def search(request):
 
         cache.set("search_data", data, timeout=3600)
 
-    query = request.POST.get("query", "")
+    query = request.GET.get("query", "")
     query_words = set(query.lower().split())
 
     tfidf_words = {word_data["word"] for word_data in data}
@@ -168,11 +169,21 @@ def search(request):
     search_results = News.objects.filter(id__in=article_ids)
     search_results = filter_results(request, search_results)
     total_results = len(search_results)
+    
+    page_number = request.GET.get('page', 1)
+    paginator = Paginator(search_results, 25)
+    
+    try:
+        page_obj = paginator.page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
 
     return render(
         request,
         "results.html",
-        {"search_results": search_results, "total_results": total_results, "query": query},
+        {"page_obj": page_obj, "total_results": total_results, "query": query},
     )
 
 

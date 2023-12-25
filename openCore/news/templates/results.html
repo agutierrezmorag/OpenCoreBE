@@ -14,7 +14,7 @@ Resultados encontrados: {{ total_results }}
 
 <div class="search-results-grid">
   <div class="search-cards-grid">
-    {% for news in search_results %}
+    {% for news in page_obj.object_list %}
     <div class="search-item">
       <div class="image-replace">
         <a href="{{ news.link }}">
@@ -48,6 +48,17 @@ Resultados encontrados: {{ total_results }}
       </div>
     </div>
     {% endfor %}
+  </div>
+  <div class="pagination">
+    {% if page_obj.has_previous %}
+    <a href="?query={{ query|urlencode }}&page={{ page_obj.previous_page_number }}">&larr;</a>
+    {% endif %}
+
+    <span>Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+    <a href="?query={{ query|urlencode }}&page={{ page_obj.next_page_number }}">&rarr;</a>
+    {% endif %}
   </div>
 </div>
 
