@@ -191,7 +191,7 @@ def search(request):
 
     search_results = filter_results(request, search_results)
 
-    total_results = len(search_results)
+    total_results = search_results.count()
     page_number = request.GET.get("page", 1)
     paginator = Paginator(search_results, 25)
 
