@@ -1,5 +1,3 @@
-from urllib.parse import quote, unquote
-
 import ftfy
 from django import template
 
