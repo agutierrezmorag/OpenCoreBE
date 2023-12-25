@@ -147,20 +147,6 @@ def search(request):
             for word_data in data
         }
 
-        for word_data in data:
-            for score in word_data["importance_scores"]:
-                article_frequency = score["frequency"]
-                article_word_count = score["article_info"]["word_count"]
-
-                tf = article_frequency / article_word_count
-                idf = idf_values[word_data["word"]]
-                tf_idf = tf * idf
-                score["tf_idf"] = tf_idf
-
-            word_data["importance_scores"] = sorted(
-                word_data["importance_scores"], key=lambda x: x["tf_idf"], reverse=True
-            )
-
         cache.set("search_data", data, timeout=3600)
 
     query = request.GET.get("query", "")
@@ -177,6 +163,15 @@ def search(request):
         for word_tfidf in data:
             if word_tfidf["word"] in relevant_words:
                 importance_scores = word_tfidf["importance_scores"]
+                for score in importance_scores:
+                    article_frequency = score["frequency"]
+                    article_word_count = score["article_info"]["word_count"]
+
+                    tf = article_frequency / article_word_count
+                    idf = idf_values[word_tfidf["word"]]
+                    tf_idf = tf * idf
+                    score["tf_idf"] = tf_idf
+
                 word_scores[word_tfidf["word"]].extend(
                     score["article_info"]["article_id"] for score in importance_scores
                 )
