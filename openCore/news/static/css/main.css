@@ -604,17 +604,26 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
-.sentiment-tag.negativo {
+.sentiment-tag-filters {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  width: max-content;
+}
+
+.sentiment-tag.negativo,
+.sentiment-tag-filters.negativo {
   background: var(--primarypalette-red);
   color: white;
 }
 
-.sentiment-tag.positivo {
+.sentiment-tag.positivo,
+.sentiment-tag-filters.positivo {
   background: var(--primarypalette-green);
   color: white;
 }
 
-.sentiment-tag.neutro {
+.sentiment-tag.neutro,
+.sentiment-tag-filters.neutro {
   background: var(--neutralcolors-300);
   color: #252e40;
 }
