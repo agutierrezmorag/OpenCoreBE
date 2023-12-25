@@ -19,9 +19,9 @@ Resultados encontrados: {{ total_results }}
       <div class="image-replace">
         <a href="{{ news.link }}">
           {% if news.img_url %}
-          <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" loading="lazy" />
+          <img src="{{ news.img_url }}" alt="{{ news.title|encode_decode }}" class="image-replace" loading="lazy" />
           {% else %} 
-          <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" />
+          <img src="{% static 'img/logo.png' %}" alt="{{ news.title|encode_decode }}" class="image-replace-placeholder" />
           {% endif %}
         </a>
         <div class="sentiment-tag {{ news.sentiment|lower }}">
@@ -32,7 +32,7 @@ Resultados encontrados: {{ total_results }}
       </div>
       <div class="heading-h-3">
         <a href="{{ news.link }}">
-          {{ news.title|truncatechars:60 }}
+          {{ news.title|encode_decode|truncatechars:60 }}
         </a>
       </div>
       <div class="spacer"></div>
@@ -54,7 +54,13 @@ Resultados encontrados: {{ total_results }}
     <a href="?query={{ query|urlencode }}&page={{ page_obj.previous_page_number }}">&larr; </a>
     {% endif %}
 
-    <span>Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+    {% for i in page_obj.paginator.page_range %}
+      {% if page_obj.number == i %}
+        <span>{{ i }}</span>
+      {% else %}
+        <a href="?query={{ query|urlencode }}&page={{ i }}">{{ i }}</a>
+      {% endif %}
+    {% endfor %}
 
     {% if page_obj.has_next %}
     <a href="?query={{ query|urlencode }}&page={{ page_obj.next_page_number }}"> &rarr;</a>
