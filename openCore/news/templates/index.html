@@ -8,9 +8,9 @@
       <div class="image-wrapper-principal">
         <a href="{{ latest_news.0.link  }}">
           {% if latest_news.0.img_url %}
-          <img src="{{ latest_news.0.img_url }}" alt="{{ latest_news.0.title }}" class="image-replace" />
+          <img src="{{ latest_news.0.img_url }}" alt="{{ latest_news.0.title }}" class="image-replace" loading="lazy"/>
           {% else %}
-          <img src="{% static 'img/logo.png' %}" alt="{{ latest_news.0.title }}" class="image-replace-placeholder" />
+          <img src="{% static 'img/logo.png' %}" alt="{{ latest_news.0.title }}" class="image-replace-placeholder" loading="lazy"/>
           {% endif %}
         </a>
         <div class="sentiment-tag {{ latest_news.0.sentiment|lower }}">
@@ -50,9 +50,9 @@
       <div class="image-wrapper-mini">
         <a href="{{ news.link }}">
           {% if news.img_url %}
-          <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+          <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" loading="lazy"/>
           {% else %}
-          <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" />
+          <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" loading="lazy"/>
           {% endif %}
         </a>
         <div class="sentiment-tag {{ news.sentiment|lower }}">
@@ -104,9 +104,9 @@
             <div class="image-replace">
               <a href="{{ news.link }}">
                 {% if news.img_url %}
-                <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+                <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" loading="lazy"/>
                 {% else %}
-                <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" />
+                <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" loading="lazy"/>
                 {% endif %}
               </a>
               <div class="sentiment-tag {{ news.sentiment|lower }}">
@@ -198,65 +198,9 @@
             <div class="image-replace">
               <a href="{{ news.link }}">
                 {% if news.img_url %}
-                <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+                <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" loading="lazy"/>
                 {% else %}
-                <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" />
-                {% endif %}
-              </a>
-              <div class="sentiment-tag {{ news.sentiment|lower }}">
-                <div class="button-text">
-                  {{ news.sentiment }}
-                </div>
-              </div>
-            </div>
-            <div class="heading-h-3">
-              <a href="{{ news.link }}">
-                {{ news.title|truncatechars:60 }}
-              </a>
-            </div>
-            <div class="spacer"></div>
-            <div class="top-mini">
-              <div class="card-avatar">
-                <div class="card-avatar-mini">
-                  <img src="{% static 'img/source_logos/' %}{{ news.website }}.png" alt="{{ news.website }}">
-                </div>
-              </div>
-              <div class="card-date-mini">
-                {{ news.date_published|date:"j \d\e F, Y" }}
-              </div>
-            </div>
-          </div>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="glide__arrows" data-glide-el="controls">
-      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">&larr;</button>
-      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">&rarr;</button>
-    </div>
-  </div>
-</div>
-</div>
-
-<div class="spacer"></div>
-
-<div class="recent-news-grid">
-  <div class="recent-news-grid2">
-    <div class="heading-h-2">Noticias neutrales</div>
-    <div class="spacer"></div>
-  </div>
-  <div class="glide" id="glide-neutral">
-    <div class="glide__track" data-glide-el="track">
-      <ul class="glide__slides">
-        {% for news in neutral_news %}
-        <li class="glide__slide">
-          <div class="item">
-            <div class="image-replace">
-              <a href="{{ news.link }}">
-                {% if news.img_url %}
-                <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
-                {% else %}
-                <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" />
+                <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" loading="lazy"/>
                 {% endif %}
               </a>
               <div class="sentiment-tag {{ news.sentiment|lower }}">
@@ -310,9 +254,9 @@
             <div class="image-replace">
               <a href="{{ news.link }}">
                 {% if news.img_url %}
-                <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+                <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" loading="lazy" />
                 {% else %}
-                <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" />
+                <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" loading="lazy" />
                 {% endif %}
               </a>
               <div class="sentiment-tag {{ news.sentiment|lower }}">
@@ -323,7 +267,6 @@
             </div>
             <div class="heading-h-3">
               <a href="{{ news.link }}">
-                {{ news.title|truncatechars:60 }}
               </a>
             </div>
             <div class="spacer"></div>
