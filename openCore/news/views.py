@@ -211,10 +211,6 @@ def search(request):
         "sort": request.GET.get("sort", "relevance"),
     }
 
-    print(context["sources"])
-    print(context["sentiment"])
-    print(context["sort"])
-
     return render(
         request,
         "results.html",
