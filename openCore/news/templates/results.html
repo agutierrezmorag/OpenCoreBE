@@ -51,13 +51,13 @@ Resultados encontrados: {{ total_results }}
   </div>
   <div class="pagination">
     {% if page_obj.has_previous %}
-    <a href="?query={{ query|urlencode }}&page={{ page_obj.previous_page_number }}">&larr;</a>
+    <a href="?query={{ query|urlencode }}&page={{ page_obj.previous_page_number }}">&larr; </a>
     {% endif %}
 
     <span>Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
 
     {% if page_obj.has_next %}
-    <a href="?query={{ query|urlencode }}&page={{ page_obj.next_page_number }}">&rarr;</a>
+    <a href="?query={{ query|urlencode }}&page={{ page_obj.next_page_number }}"> &rarr;</a>
     {% endif %}
   </div>
 </div>
