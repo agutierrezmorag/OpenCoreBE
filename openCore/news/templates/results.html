@@ -9,7 +9,7 @@ Busqueda
 Resultados encontrados: {{ total_results }}
 {% endblock %}
 
-{% block content %} {% block query_results %}
+{% block content %}
 {% load encode_decode %}
 
 <div class="search-results-grid">
@@ -20,8 +20,9 @@ Resultados encontrados: {{ total_results }}
         <a href="{{ news.link }}">
           {% if news.img_url %}
           <img src="{{ news.img_url }}" alt="{{ news.title|encode_decode }}" class="image-replace" loading="lazy" />
-          {% else %} 
-          <img src="{% static 'img/logo.png' %}" alt="{{ news.title|encode_decode }}" class="image-replace-placeholder" />
+          {% else %}
+          <img src="{% static 'img/logo.png' %}" alt="{{ news.title|encode_decode }}"
+            class="image-replace-placeholder" />
           {% endif %}
         </a>
         <div class="sentiment-tag {{ news.sentiment|lower }}">
@@ -47,9 +48,20 @@ Resultados encontrados: {{ total_results }}
         </div>
       </div>
     </div>
+    {% empty %}
+    <div class="no-results">
+      <div class="heading-h-3">
+        No se encontraron resultados
+      </div>
+      <div class="spacer"></div>
+      <div class="text">
+        No se encontraron resultados para la búsqueda "{{ query }}". Por favor, intente con otra búsqueda.
+      </div>
+    </div>
     {% endfor %}
   </div>
   <div class="spacer"></div>
+  {% if page_obj.object_list %}
   <div class="pagination">
     {% if page_obj.has_previous %}
     <div class="pagination-arrows left">
@@ -60,9 +72,9 @@ Resultados encontrados: {{ total_results }}
     {% for i in page_obj.paginator.page_range %}
     <div class="pagination-number{% if page_obj.number == i %} active{% endif %}">
       {% if page_obj.number == i %}
-        <span>{{ i }}</span>
+      <span>{{ i }}</span>
       {% else %}
-        <a href="?query={{ query|urlencode }}&page={{ i }}">{{ i }}</a>
+      <a href="?query={{ query|urlencode }}&page={{ i }}">{{ i }}</a>
       {% endif %}
     </div>
     {% endfor %}
@@ -73,8 +85,9 @@ Resultados encontrados: {{ total_results }}
     </div>
     {% endif %}
   </div>
+  {% endif %}
 </div>
 
 <div class="spacer"></div>
 
-{% endblock %} {% endblock %}
+{% endblock %}
