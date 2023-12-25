@@ -87,7 +87,7 @@ Resultados: {{ total_results }}
   <div class="pagination">
     {% if page_obj.has_previous %}
     <div class="pagination-arrows left">
-      <a href="?query={{ query|urlencode }}&page={{ page_obj.previous_page_number }}">&larr; </a>
+      <a href="?query={{ query|urlencode }}&page={{ page_obj.previous_page_number }}&sort={{ sort }}{% for source in sources %}&source={{ source }}{% endfor %}{% for sentiment_value in sentiment %}&sentiment={{ sentiment_value }}{% endfor %}">&larr; </a>
     </div>
     {% endif %}
 
@@ -96,14 +96,14 @@ Resultados: {{ total_results }}
       {% if page_obj.number == i %}
       <span>{{ i }}</span>
       {% else %}
-      <a href="?query={{ query|urlencode }}&page={{ i }}">{{ i }}</a>
+      <a href="?query={{ query|urlencode }}&page={{ i }}&sort={{ sort }}{% for source in sources %}&source={{ source }}{% endfor %}{% for sentiment_value in sentiment %}&sentiment={{ sentiment_value }}{% endfor %}">{{ i }}</a>
       {% endif %}
     </div>
     {% endfor %}
 
     {% if page_obj.has_next %}
     <div class="pagination-arrows right">
-      <a href="?query={{ query|urlencode }}&page={{ page_obj.next_page_number }}"> &rarr;</a>
+      <a href="?query={{ query|urlencode }}&page={{ page_obj.next_page_number }}&sort={{ sort }}{% for source in sources %}&source={{ source }}{% endfor %}{% for sentiment_value in sentiment %}&sentiment={{ sentiment_value }}{% endfor %}"> &rarr;</a>
     </div>
     {% endif %}
   </div>
