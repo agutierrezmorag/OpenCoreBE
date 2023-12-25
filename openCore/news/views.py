@@ -5,7 +5,7 @@ from datetime import timedelta
 
 import numpy as np
 from django.core.cache import cache
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
 from django.utils import timezone
 
@@ -35,23 +35,31 @@ def read_json(filename, path):
 
 def get_news(sentiment=None, limit=None):
     """
-    Retrieve news articles based on optional filters.
+    Retrieve news articles based on optional sentiment and limit parameters.
 
     Args:
         sentiment (str, optional): The sentiment of the news articles. Defaults to None.
         limit (int, optional): The maximum number of news articles to retrieve. Defaults to None.
 
     Returns:
-        QuerySet: A queryset of news articles filtered by sentiment and limited by the specified limit.
+        list: A list of news articles matching the specified criteria.
     """
     two_weeks_ago = timezone.now() - timedelta(weeks=2)
-    news = News.objects.filter(date_published__gte=two_weeks_ago).order_by(
-        "-date_published"
-    )
+    news = News.objects.filter(date_published__gte=two_weeks_ago).order_by("-date_published")
+
     if sentiment:
         news = news.filter(sentiment=sentiment)
     if limit:
         news = news[:limit]
+
+    cache_key = f'news_{sentiment}_{limit}'
+    cached_news = cache.get(cache_key)
+    if cached_news is not None:
+        return cached_news
+
+    news = list(news)
+    cache.set(cache_key, news, 3600)
+
     return news
 
 
@@ -73,14 +81,12 @@ def home(request):
     recent_news = get_news(limit=24)[5:]
     negative_news = get_news(sentiment="Negativo", limit=20)
     positive_news = get_news(sentiment="Positivo", limit=20)
-    neutral_news = get_news(sentiment="Neutro", limit=20)
         
     context = {
         "latest_news": latest_news,
         "recent_news": recent_news,
         "negative_news": negative_news,
         "positive_news": positive_news,
-        "neutral_news": neutral_news,
     }
 
     cache.set("home_data", context, timeout=3600)
