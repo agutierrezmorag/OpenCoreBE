@@ -926,6 +926,50 @@ label {
   object-fit: contain;
 }
 
+.pagination {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
+.pagination-number {
+  background: var(--neutralcolors-200, #f8faff);
+  border-style: solid;
+  border-color: var(--neutralcolors-400, #e1e4ed);
+  border-width: 0.0625rem;
+  position: relative;
+  color: var(--neutralcolors-600, #6d758f);
+  text-align: center;
+  font-family: var(--display-3-extra-bold-font-family, "Inter-ExtraBold", sans-serif);
+  font-size: var(--display-3-extra-bold-font-size, 1rem);
+  font-weight: var(--display-3-extra-bold-font-weight, 800);
+  padding: 0.5em;
+}
+
+.pagination-number.active {
+  background: var(--neutralcolors-600, #6d758f);
+  color: var(--neutralcolors-100, #ffffff);
+}
+
+.pagination-arrows {
+  background: var(--neutralcolors-200, #f8faff);
+  border-style: solid;
+  border-color: var(--neutralcolors-400, #e1e4ed);
+  border-width: 0.0625rem;
+  position: relative;
+  color: var(--neutralcolors-600, #6d758f);
+  text-align: center;
+  font-family: var(--display-3-extra-bold-font-family, "Inter-ExtraBold", sans-serif);
+  font-weight: var(--display-3-extra-bold-font-weight, 800);
+  padding: 0.3em;
+}
+
+.pagination-arrows.left {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.pagination-arrows.right {
+  border-radius: 0 0.5rem 0.5rem 0rem;
+}
 
 /* RESULTS */

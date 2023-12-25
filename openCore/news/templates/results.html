@@ -49,21 +49,28 @@ Resultados encontrados: {{ total_results }}
     </div>
     {% endfor %}
   </div>
+  <div class="spacer"></div>
   <div class="pagination">
     {% if page_obj.has_previous %}
-    <a href="?query={{ query|urlencode }}&page={{ page_obj.previous_page_number }}">&larr; </a>
+    <div class="pagination-arrows left">
+      <a href="?query={{ query|urlencode }}&page={{ page_obj.previous_page_number }}">&larr; </a>
+    </div>
     {% endif %}
 
     {% for i in page_obj.paginator.page_range %}
+    <div class="pagination-number{% if page_obj.number == i %} active{% endif %}">
       {% if page_obj.number == i %}
         <span>{{ i }}</span>
       {% else %}
         <a href="?query={{ query|urlencode }}&page={{ i }}">{{ i }}</a>
       {% endif %}
+    </div>
     {% endfor %}
 
     {% if page_obj.has_next %}
-    <a href="?query={{ query|urlencode }}&page={{ page_obj.next_page_number }}"> &rarr;</a>
+    <div class="pagination-arrows right">
+      <a href="?query={{ query|urlencode }}&page={{ page_obj.next_page_number }}"> &rarr;</a>
+    </div>
     {% endif %}
   </div>
 </div>
