@@ -84,11 +84,23 @@ def home(request):
     negative_news = get_news(sentiment="Negativo", limit=20)
     positive_news = get_news(sentiment="Positivo", limit=20)
 
+    total_news = cache.get("total_news")
+    if total_news is None:
+        total_news = News.objects.all().count()
+        cache.set("total_news", total_news, 86400)
+
+    total_words = cache.get("total_words")
+    if total_words is None:
+        total_words = sum(len(news.content.split()) for news in News.objects.all())
+        cache.set("total_words", total_words, 86400)
+
     context = {
         "latest_news": latest_news,
         "recent_news": recent_news,
         "negative_news": negative_news,
         "positive_news": positive_news,
+        "total_news": total_news,
+        "total_words": total_words,
     }
 
     cache.set("home_data", context, timeout=3600)
