@@ -112,13 +112,12 @@ def filter_results(request, search_results):
         search_results = search_results.filter(website__in=sources)
     sentiment = request.GET.getlist("sentiment")
     if sentiment:
-        search_results = search_results.filter(sentiment=sentiment)
-
-    # Add date filter
-    start_date = request.GET.get("start_date")
-    end_date = request.GET.get("end_date")
-    if start_date and end_date:
-        search_results = search_results.filter(date__range=[start_date, end_date])
+        search_results = search_results.filter(sentiment__in=sentiment)
+    sort_option = request.GET.get("sort", "relevance")
+    if sort_option == "newest":
+        search_results = search_results.order_by("-date_published")
+    elif sort_option == "oldest":
+        search_results = search_results.order_by("date_published")
 
     return search_results
 
@@ -187,9 +186,10 @@ def search(request):
         )
 
         search_results = News.objects.filter(id__in=article_ids)
-        search_results = filter_results(request, search_results)
 
         cache.set(query_cache_key, search_results, timeout=3600)
+
+    search_results = filter_results(request, search_results)
 
     total_results = len(search_results)
     page_number = request.GET.get("page", 1)
@@ -202,10 +202,23 @@ def search(request):
     except EmptyPage:
         page_obj = paginator.page(paginator.num_pages)
 
+    context = {
+        "page_obj": page_obj,
+        "total_results": total_results,
+        "query": query,
+        "sources": request.GET.getlist("source"),
+        "sentiment": request.GET.getlist("sentiment"),
+        "sort": request.GET.get("sort", "relevance"),
+    }
+
+    print(context["sources"])
+    print(context["sentiment"])
+    print(context["sort"])
+
     return render(
         request,
         "results.html",
-        {"page_obj": page_obj, "total_results": total_results, "query": query},
+        context,
     )
 
 

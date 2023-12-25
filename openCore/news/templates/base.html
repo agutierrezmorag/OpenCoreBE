@@ -71,7 +71,7 @@
         <div class="search-container">
           <div class="search-bar">
             <div class="search-bar-placeholder-wrapper">
-              <input type="text" name="query" class="placeholder" placeholder="Buscar una noticia..." value={{ query }} required>
+              <input type="text" name="query" class="placeholder" placeholder="Buscar una noticia..." required value={{ query }}>
             </div>
             <button id="toggleButton" type="button" class="filter-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -88,35 +88,35 @@
             </div>
             <div class="row">
               <label>
-                <input type="checkbox" name="source" value="adn">
+                <input type="checkbox" name="source" value="adn" {% if "adn" in sources %}checked{% endif %}>
                 <img src="{% static 'img/source_logos/adn.png' %}" alt="adn" class="filter-image">
               </label>
               <label>
-                <input type="checkbox" name="source" value="chvn">
+                <input type="checkbox" name="source" value="chvn" {% if "chvn" in sources %}checked{% endif %}>
                 <img src="{% static 'img/source_logos/chvn.png' %}" alt=" chvn" class="filter-image">
               </label>
               <label>
-                <input type="checkbox" name="source" value="cnn">
+                <input type="checkbox" name="source" value="cnn" {% if "cnn" in sources %}checked{% endif %}>
                 <img src="{% static 'img/source_logos/cnn.png' %}" alt="cnn" class="filter-image">
               </label>
               <label>
-                <input type="checkbox" name="source" value="dinamo">
+                <input type="checkbox" name="source" value="dinamo" {% if "dinamo" in sources %}checked{% endif %}>
                 <img src="{% static 'img/source_logos/dinamo.png' %}" alt="dinamo" class="filter-image">
               </label>
               <label>
-                <input type="checkbox" name="source" value="mostrador">
+                <input type="checkbox" name="source" value="mostrador" {% if "mostrador" in sources %}checked{% endif %}>
                 <img src="{% static 'img/source_logos/elmostrador.png' %}" alt="mostrador" class="filter-image">
               </label>
               <label>
-                <input type="checkbox" name="source" value="latercera">
+                <input type="checkbox" name="source" value="latercera" {% if "latercera" in sources %}checked{% endif %}>
                 <img src="{% static 'img/source_logos/latercera.png' %}" alt="latercera" class="filter-image">
               </label>
               <label>
-                <input type="checkbox" name="source" value="meganoticias">
+                <input type="checkbox" name="source" value="meganoticias" {% if "meganoticias" in sources %}checked{% endif %}>
                 <img src="{% static 'img/source_logos/meganoticias.png' %}" alt="meganoticias" class="filter-image">
               </label>
               <label>
-                <input type="checkbox" name="source" value="t13">
+                <input type="checkbox" name="source" value="t13" {% if "t13" in sources %}checked{% endif %}>
                 <img src="{% static 'img/source_logos/t13.png' %}" alt="t13" class="filter-image">
               </label>
             </div>
@@ -128,19 +128,19 @@
             </div>
             <div class="row">
               <label>
-                <input type="checkbox" name="sentiment" value="Positivo">
+                <input type="checkbox" name="sentiment" value="Positivo" {% if "Positivo" in sentiment %}checked{% endif %}>
                 <div class="sentiment-tag-filters positivo">
                   <div class="button-text">Positivo</div>
                 </div>
               </label>
               <label>
-                <input type="checkbox" name="sentiment" value="Negativo">
+                <input type="checkbox" name="sentiment" value="Negativo" {% if "Negativo" in sentiment %}checked{% endif %}>
                 <div class="sentiment-tag-filters negativo">
                   <div class="button-text">Negativo</div>
                 </div>
               </label>
               <label>
-                <input type="checkbox" name="sentiment" value="Neutro">
+                <input type="checkbox" name="sentiment" value="Neutro" {% if "Neutro" in sentiment %}checked{% endif %}>
                 <div class="sentiment-tag-filters neutro">
                   <div class="button-text">Neutro</div>
                 </div>
@@ -148,6 +148,7 @@
             </div>
           </div>
         </div>
+        <input type="hidden" name="sort" value="{% if sort %}{{ sort }}{% else %}relevance{% endif %}">
       </form>
     </div>
   </div>
