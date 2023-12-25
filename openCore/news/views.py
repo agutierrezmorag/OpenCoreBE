@@ -45,14 +45,16 @@ def get_news(sentiment=None, limit=None):
         list: A list of news articles matching the specified criteria.
     """
     two_weeks_ago = timezone.now() - timedelta(weeks=2)
-    news = News.objects.filter(date_published__gte=two_weeks_ago).order_by("-date_published")
+    news = News.objects.filter(date_published__gte=two_weeks_ago).order_by(
+        "-date_published"
+    )
 
     if sentiment:
         news = news.filter(sentiment=sentiment)
     if limit:
         news = news[:limit]
 
-    cache_key = f'news_{sentiment}_{limit}'
+    cache_key = f"news_{sentiment}_{limit}"
     cached_news = cache.get(cache_key)
     if cached_news is not None:
         return cached_news
@@ -81,7 +83,7 @@ def home(request):
     recent_news = get_news(limit=24)[5:]
     negative_news = get_news(sentiment="Negativo", limit=20)
     positive_news = get_news(sentiment="Positivo", limit=20)
-        
+
     context = {
         "latest_news": latest_news,
         "recent_news": recent_news,
@@ -105,12 +107,19 @@ def filter_results(request, search_results):
     Returns:
         QuerySet: The filtered search results.
     """
-    sources = request.POST.getlist('source')
+    sources = request.GET.getlist("source")
     if sources:
         search_results = search_results.filter(website__in=sources)
-    sentiment = request.POST.getlist('sentiment')
+    sentiment = request.GET.getlist("sentiment")
     if sentiment:
         search_results = search_results.filter(sentiment=sentiment)
+
+    # Add date filter
+    start_date = request.GET.get("start_date")
+    end_date = request.GET.get("end_date")
+    if start_date and end_date:
+        search_results = search_results.filter(date__range=[start_date, end_date])
+
     return search_results
 
 
@@ -173,17 +182,19 @@ def search(request):
                     score["article_info"]["article_id"] for score in importance_scores
                 )
 
-        article_ids = set(article_id for ids in word_scores.values() for article_id in ids)
+        article_ids = set(
+            article_id for ids in word_scores.values() for article_id in ids
+        )
 
         search_results = News.objects.filter(id__in=article_ids)
         search_results = filter_results(request, search_results)
-        
+
         cache.set(query_cache_key, search_results, timeout=3600)
-        
+
     total_results = len(search_results)
-    page_number = request.GET.get('page', 1)
+    page_number = request.GET.get("page", 1)
     paginator = Paginator(search_results, 25)
-    
+
     try:
         page_obj = paginator.page(page_number)
     except PageNotAnInteger:
