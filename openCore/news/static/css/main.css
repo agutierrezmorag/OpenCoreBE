@@ -1,3 +1,9 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 /* HEADER */
 .nav-bar,
 .nav-bar * {
@@ -801,6 +807,7 @@ input:focus {
   justify-content: center;
   position: relative;
   overflow: hidden;
+  margin-top: auto;
 }
 
 .logo-footer {
