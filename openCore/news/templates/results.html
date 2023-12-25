@@ -18,8 +18,8 @@ Resultados: {{ total_results }}
       {% for source in sources %}
       <input type="hidden" name="source" value="{{ source }}">
       {% endfor %}
-      {% for sentiment in sentiments %}
-      <input type="hidden" name="sentiment" value="{{ sentiment }}">
+      {% for sentiment_value in sentiment %}
+      <input type="hidden" name="sentiment" value="{{ sentiment_value }}">
       {% endfor %}
       <div class="search-sort">
         <div class="sort-label">
