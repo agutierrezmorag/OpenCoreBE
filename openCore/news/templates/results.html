@@ -19,8 +19,8 @@ Resultados encontrados: {{ total_results }}
       <div class="image-replace">
         <a href="{{ news.link }}">
           {% if news.img_url %}
-          <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
-          {% else %}
+          <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" loading="lazy" />
+          {% else %} 
           <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" />
           {% endif %}
         </a>
