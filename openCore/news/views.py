@@ -157,25 +157,30 @@ def search(request):
 
     query = request.GET.get("query", "")
     query_words = set(query.lower().split())
+    query_cache_key = f"search_results_{query}"
+    search_results = cache.get(query_cache_key)
 
-    tfidf_words = {word_data["word"] for word_data in data}
+    if search_results is None:
+        tfidf_words = {word_data["word"] for word_data in data}
 
-    relevant_words = query_words.intersection(tfidf_words)
+        relevant_words = query_words.intersection(tfidf_words)
 
-    word_scores = defaultdict(list)
-    for word_tfidf in data:
-        if word_tfidf["word"] in relevant_words:
-            importance_scores = word_tfidf["importance_scores"]
-            word_scores[word_tfidf["word"]].extend(
-                score["article_info"]["article_id"] for score in importance_scores
-            )
+        word_scores = defaultdict(list)
+        for word_tfidf in data:
+            if word_tfidf["word"] in relevant_words:
+                importance_scores = word_tfidf["importance_scores"]
+                word_scores[word_tfidf["word"]].extend(
+                    score["article_info"]["article_id"] for score in importance_scores
+                )
 
-    article_ids = set(article_id for ids in word_scores.values() for article_id in ids)
+        article_ids = set(article_id for ids in word_scores.values() for article_id in ids)
 
-    search_results = News.objects.filter(id__in=article_ids)
-    search_results = filter_results(request, search_results)
+        search_results = News.objects.filter(id__in=article_ids)
+        search_results = filter_results(request, search_results)
+        
+        cache.set(query_cache_key, search_results, timeout=3600)
+        
     total_results = len(search_results)
-    
     page_number = request.GET.get('page', 1)
     paginator = Paginator(search_results, 25)
     
