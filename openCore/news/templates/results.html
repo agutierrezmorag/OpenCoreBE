@@ -17,7 +17,11 @@ Resultados encontrados: {{ total_results }}
     {% for news in search_results %}
     <div class="search-item">
       <div class="image-replace">
+        {% if news.img_url %}
         <img src="{{ news.img_url }}" alt="{{ news.title }}" class="image-replace" />
+        {% else %}
+        <img src="{% static 'img/logo.png' %}" alt="{{ news.title }}" class="image-replace-placeholder" />
+        {% endif %}
         <div class="sentiment-tag {{ news.sentiment|lower }}">
           <div class="button-text">
             {{ news.sentiment }}
