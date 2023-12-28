@@ -4,10 +4,14 @@ from collections import defaultdict
 from datetime import timedelta
 
 import numpy as np
+from decouple import config
 from django.core.cache import cache
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
 from django.utils import timezone
+from django.views.decorators.cache import cache_page
+from pymongo import MongoClient
+from pymongo.server_api import ServerApi
 
 from .models import News
 
@@ -65,6 +69,7 @@ def get_news(sentiment=None, limit=None):
     return news
 
 
+@cache_page(60 * 60)
 def home(request):
     """
     Renders the home page with news data.
@@ -109,32 +114,78 @@ def home(request):
 
 
 def filter_results(request, search_results):
-    """
-    Apply filters to the search results based on the user's selections.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-        search_results (QuerySet): The search results to filter.
-
-    Returns:
-        QuerySet: The filtered search results.
-    """
     sources = request.GET.getlist("source")
-    if sources:
-        search_results = search_results.filter(website__in=sources)
     sentiment = request.GET.getlist("sentiment")
-    if sentiment:
-        search_results = search_results.filter(sentiment__in=sentiment)
     sort_option = request.GET.get("sort", "relevance")
-    if sort_option == "newest":
-        search_results = search_results.order_by("-date_published")
-    elif sort_option == "oldest":
-        search_results = search_results.order_by("date_published")
+
+    # Apply all filters in a single list comprehension
+    search_results = [
+        doc
+        for doc in search_results
+        if (not sources or doc["website"] in sources)
+        and (not sentiment or doc["sentiment"] in sentiment)
+    ]
+
+    # Only sort if necessary
+    if sort_option in ["newest", "oldest"]:
+        reverse = sort_option == "newest"
+        search_results.sort(key=lambda doc: doc["date_published"], reverse=reverse)
 
     return search_results
 
 
 def search(request):
+    uri = config("MONGO_URI")
+    client = MongoClient(uri, server_api=ServerApi("1"))
+    try:
+        db = client["opencoredatabase"]
+        collection = db["news_news"]
+
+        search_query = request.GET.get("query", "")
+        cache_key = "search_results_" + "".join(e for e in search_query if e.isalnum())
+        results = cache.get(cache_key)
+        if results is None:
+            results = collection.aggregate(
+                [
+                    {
+                        "$search": {
+                            "index": "news_index",
+                            "text": {"query": search_query, "path": {"wildcard": "*"}},
+                        }
+                    }
+                ]
+            )
+            results = list(results)
+            cache.set(cache_key, results, 60 * 15)
+
+        results = filter_results(request, results)
+        total_results = len(results)
+
+        page_number = request.GET.get("page", 1)
+        paginator = Paginator(results, 25)
+
+        try:
+            page_obj = paginator.page(page_number)
+        except PageNotAnInteger:
+            page_obj = paginator.page(1)
+        except EmptyPage:
+            page_obj = paginator.page(paginator.num_pages)
+
+        context = {
+            "page_obj": page_obj,
+            "total_results": total_results,
+            "query": search_query,
+            "sources": request.GET.getlist("source"),
+            "sentiment": request.GET.getlist("sentiment"),
+            "sort": request.GET.get("sort", "relevance"),
+        }
+
+        return render(request, "results.html", context)
+    finally:
+        client.close()
+
+
+def searchhh(request):
     """
     Perform a search based on the user's query and return the search results.
 

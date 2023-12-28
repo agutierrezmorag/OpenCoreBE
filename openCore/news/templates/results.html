@@ -13,7 +13,7 @@ Resultados: {{ total_results }}
 {% load encode_decode %}
 
 <div class="search-results-grid">
-    <form id="sort-form" action="{% url 'query_results' %}" method="GET">
+    <form id="sort-form" action="{% url 'search' %}" method="GET">
       <input type="hidden" name="query" value="{{ query }}">
       {% for source in sources %}
       <input type="hidden" name="source" value="{{ source }}">
