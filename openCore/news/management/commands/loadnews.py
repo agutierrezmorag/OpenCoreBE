@@ -58,3 +58,6 @@ class Command(BaseCommand):
 
         except PyMongoError as e:
             self.stdout.write(self.style.ERROR(f"Error loading data. Error {str(e)}"))
+
+        finally:
+            client.close()
