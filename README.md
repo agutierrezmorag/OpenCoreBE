@@ -1,62 +1,100 @@
-# openCore
+# OpenCoreBE
 
-Proyecto openCore. Taller de sistemas. UNAP 2023.
+openCore es un proyecto basado en Python diseñado para la extracción y gestión de datos de noticias de politica chilena. Proporciona funcionalidades como cargar datos de noticias desde un archivo JSON a una base de datos en línea, ejecutar un servidor web, y más.
 
-<!-- TOC -->
-- [Primeros pasos](#primeros-pasos)
-- [Comandos creados](#comandos-creados)
-- [Tareas](#tareas)
-<!-- TOC -->
+## Primeros Pasos
 
-## Primeros pasos
+Para ejecutar OpenCoreBE en tu máquina, sigue estos pasos:
 
-Una vez clonado el repositorio, insertar el archivo `.env` enviado en su respectiva carpeta.
-Luego, ejecutar:
+1. Clona el repositorio en tu máquina local.
 
-```python
-pip install -r requirements.txt
-```
+2. Crea un entorno virtual para el proyecto. Si no tienes `virtualenv` instalado, puedes instalarlo con `pip install virtualenv`. Luego, en la carpeta del proyecto, ejecuta:
 
-No es necesario hacer migraciones, estas ya fueron realizadas con anterioridad.
+    ```sh
+    virtualenv venv
+    ```
 
-## Comandos creados
+    Esto creará un nuevo entorno virtual en una carpeta llamada venv.
 
-```python
-python manage.py loadnews
-```
+3. Activa el entorno virtual. En Windows, usa:
 
-Pasa los datos extraídos desde el archivo json a la base de datos disponible en línea.
+   ```sh
+   venv\Scripts\activate
+   ```
 
-## Correr el servidor
+    En Unix o MacOS, usa:
 
-Una vez se añada el archivo `.env` al directorio y se hagan las instalaciones de las librerias requisitos, ingresar a la carpeta _openCore_ y ejecutar el siguiente comando.
+    ```sh
+    source venv/bin/activate
+    ```
+
+4. Coloca el archivo `.env` proporcionado en la carpeta raíz de tu copia local del repositorio.
+
+5. Instala los paquetes de Python requeridos ejecutando el siguiente comando en tu terminal:
+
+    ```python
+    pip install -r requirements.txt
+    ```
+
+    Estos pasos aseguran que todas las dependencias del proyecto se instalen en un entorno aislado, en lugar de en tu instalación global de Python. Esto puede ayudar a evitar conflictos entre las dependencias de diferentes proyectos
+
+## Ejecutando el servidor
+
+Después de la configuración, navega al directorio openCore e inicia el servidor ejecutando:
 
 ```python
 python manage.py runserver
 ```
 
-## Tareas
+## Comandos clave
 
-- **Revisar y corregir archivo yml para el correcto dump de noticias del archivo json a la base de datos**.
+OpenCoreBE proporciona un comando personalizado para cargar datos de noticias:
 
-- Extender el script de web scraping para incluir más fuentes de noticias. Minimo 10 noticias por fuente:
+```python
+python manage.py loadnews
+```
 
-  - **T13**
-  - **La Tercera**
-  - **Mega**
-  - **CNN**
-  - **Chilevision**
-  - **El mostrador**
-  - **El dínamo**
-  - **ADN**
-  - ~~Cooperativa~~
-  - ~~24 horas~~
-  - ~~Emol~~
-  - ~~Ciper~~
-  - ~~SoyChile~~
-  - ~~El ciudadano~~
-  - ~~TVN~~
+Este comando lee datos de un archivo JSON `newsdb.json` (generado por el scraper) y los carga en la base de datos en línea.
 
-- Escribir un comando que elimine noticias de la base de datos, en caso de tener 14 días o más de antigüedad y agregarlo al workflow.
+## Dependencias
 
-_Los valores en negrita son cosas ya implementadas, los valores tachados fueron descartados._
+OpenCoreBE utiliza varias bibliotecas de Python y servicios, incluyendo:
+
+- **Django**: Un framework web de alto nivel en Python que permite un desarrollo rápido y un diseño limpio y pragmático.
+- **PyMongo**: Un driver de Python para MongoDB que proporciona herramientas para trabajar con MongoDB como datos de Python.
+- **MongoDB Atlas**: Un servicio de base de datos en la nube para MongoDB, que se utiliza para almacenar los datos de las noticias.
+- **python-decouple**: Una biblioteca que separa la configuración que contiene información sensible de tu código fuente.
+
+Para obtener una lista completa de las dependencias, consultar el archivo `requirements.txt`.
+
+## Flujo de Trabajo
+
+El flujo de trabajo de openCore consta de dos partes principales: la extracción de noticias y la carga de estas noticias en la base de datos de MongoDB Atlas.
+
+### Extracción de Noticias
+
+El primer paso en el flujo de trabajo es la extracción de noticias. Esto se realiza mediante un script de web scraping que recopila noticias de varias fuentes en línea. El script utiliza varias bibliotecas de Python, incluyendo BeautifulSoup y requests, para extraer los datos de las páginas web.
+
+El script de scraping recorre cada fuente de noticias, accede a las páginas web de las noticias, extrae los datos relevantes (como el título, la fecha de publicación, el contenido, etc.) y los almacena en un archivo JSON `newsdb.json`.
+
+### Carga de Noticias en la Base de Datos
+
+Una vez que los datos de las noticias se han extraído y almacenado en el archivo JSON, el siguiente paso es cargar estos datos en la base de datos de MongoDB Atlas.
+
+Esto se realiza mediante el comando personalizado `loadnews`:
+
+```python
+python manage.py loadnews
+```
+
+Este comando lee los datos del archivo JSON newsdb.json y los carga en la base de datos en línea. Para cada noticia, se crea un documento en la base de datos con los datos de la noticia.
+
+El comando `loadnews` utiliza la biblioteca PyMongo para interactuar con la base de datos de MongoDB. Antes de insertar una noticia en la base de datos, el comando verifica si la noticia ya existe en la base de datos para evitar duplicados.
+
+### Automatizacion
+
+Los pasos mencionados anteriormente son ejecutados de manera automatica todos los dias a las 08:00, 11:00 y 21:00 hrs. mediante [Github Actions](https://github.com/features/actions).
+
+## Deployment
+
+Este proyecto fue desplegado en el tier gratuito del servicio [Render](https://render.com/). Render lee directamente desde este repositorio, por ende, cada vez que se haga un push se vuelve a hacer el deploy.
