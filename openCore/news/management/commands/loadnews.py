@@ -26,6 +26,7 @@ class Command(BaseCommand):
         try:
             with open(json_file, "r", encoding="utf-8") as file:
                 data = json.load(file)
+            news_items = []
             for item in data:
                 if item["link"] not in previous_news_uris:
                     date_published_str = item["date"]
@@ -36,6 +37,7 @@ class Command(BaseCommand):
                         timezone=timezone.get_current_timezone(),
                     )
                     news_item = {
+                        "_id": item["link"],
                         "title": item["title"],
                         "date_published": date_published,
                         "content": item["content"],
@@ -44,10 +46,12 @@ class Command(BaseCommand):
                         "img_url": item["image_url"],
                         "sentiment": item["sentiment"],
                     }
+                    news_items.append(news_item)
                     print("------------------------------")
                     print(f"Titulo: {item['title']} ")
                     print(f"Sentimiento: {item['sentiment']} ")
-                    collection.insert_one(news_item)
+            if news_items:
+                collection.insert_many(news_items)
 
             self.stdout.write(
                 self.style.SUCCESS("Data loaded successfully into the database")
