@@ -20,6 +20,7 @@ jobs:
       DB_USER: ${{ secrets.DB_USER }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DB_HOST: ${{ secrets.DB_HOST }}
+      MONGO_URI: ${{ secrets.MONGO_URI }}
 
     steps:
       - name: Checkout code
