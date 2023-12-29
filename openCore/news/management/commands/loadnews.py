@@ -4,7 +4,7 @@ from decouple import config
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 from pymongo import MongoClient
-from pymongo.errors import PyMongoError
+from pymongo.errors import BulkWriteError, PyMongoError
 from pymongo.server_api import ServerApi
 
 
@@ -51,7 +51,10 @@ class Command(BaseCommand):
                     print(f"Titulo: {item['title']} ")
                     print(f"Sentimiento: {item['sentiment']} ")
             if news_items:
-                collection.insert_many(news_items)
+                try:
+                    collection.insert_many(news_items, ordered=False)
+                except BulkWriteError as bwe:
+                    print(bwe.details)
 
             self.stdout.write(
                 self.style.SUCCESS("Data loaded successfully into the database")
