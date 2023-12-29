@@ -37,7 +37,7 @@ class Command(BaseCommand):
                         timezone=timezone.get_current_timezone(),
                     )
                     news_item = {
-                        "_id": item["link"],
+                        "id": item["link"],
                         "title": item["title"],
                         "date_published": date_published,
                         "content": item["content"],
