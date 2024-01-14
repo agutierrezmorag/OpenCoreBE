@@ -98,3 +98,7 @@ Los pasos mencionados anteriormente son ejecutados de manera automatica todos lo
 ## Deployment
 
 Este proyecto fue desplegado en el tier gratuito del servicio [Render](https://render.com/). Render lee directamente desde este repositorio, por ende, cada vez que se haga un push se vuelve a hacer el deploy.
+
+## Screenshots
+
+![imagen](https://github.com/agutierrezmorag/OpenCoreBE/assets/84687977/a4a5ce27-5207-4e22-9ce8-1df8a6ed9866)
