@@ -1,8 +1,6 @@
 name: Bun Scraper
 
 on:
-  schedule:
-    - cron: '0 20 * * *' # Runs at 13:00 UTC every day
   workflow_dispatch:  
 
 jobs:
