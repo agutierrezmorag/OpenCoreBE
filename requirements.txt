@@ -102,7 +102,7 @@ soupsieve==2.5
 spacy==3.7.0
 spacy-legacy==3.0.12
 spacy-loggers==1.0.5
-sqlparse==0.2.4
+sqlparse==0.4.4
 srsly==2.4.8
 tensorboard==2.15.1
 tensorboard-data-server==0.7.2
@@ -122,7 +122,7 @@ twine==4.0.2
 typer==0.7.0
 typing_extensions==4.8.0
 tzdata==2023.3
-urllib3==2.0.4
+urllib3==2.0.7
 wasabi==1.1.2
 wcwidth==0.2.12
 weasel==0.3.1
